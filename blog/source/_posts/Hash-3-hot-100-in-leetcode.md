@@ -11,8 +11,10 @@ tags:
 src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-## 两数之和 [原题](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)
+## 两数之和 
 ### 算法简介
+[原题](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)
+
 两数之和是hot100中的一道简单题，不管是调用 **java** 中的 ***HashMap*** 的还是 **c++** 中的 ***unordered_map*** 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找，除此之外。还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插入，使键变为值，由此使查找工作变得简单的。
 - 时间复杂度为O(n)：一次遍历用于插入，查找无需遍历
 - 空间复杂度为O(n)：存储所有元素的哈希映射结果
@@ -74,6 +76,6 @@ public:
 `hashtable[nums[i]]=i`：`[]`为键，插入键值对
 
 ### 注意
-![](blog\source\images\两数之和运行结果.png)
+![](..\images\两数之和运行结果.png)
 可以看出尽管代码逻辑一模一样，但是C++在包装容器类时相对java做的更加简单，这样得到的优势是在内存上优于java，但也正是因为容器的方法摈弃了复杂的优化，所以运行速度上稍慢。
 同时，使用双循环遍历虽然时间复杂度上大大落后，但由于并不需要使用到容器类，不需要哈希映射的缘故，在内存上更优。
