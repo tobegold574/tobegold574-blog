@@ -6,6 +6,10 @@ tags:
     - 新模型
     - KAN
 ---
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 [kaggle notebook](https://www.kaggle.com/code/tobegold574/introductory-kan)
 [github repo](https://github.com/KindXiaoming/pykan)
 
