@@ -13,7 +13,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 ## 两数之和
 ### 算法简介
-两数之和是hot100中的一道简单题，不管是调用**java**中的_HashMap_的还是**c++**中的_unordered_map_哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。
+两数之和是hot100中的一道简单题，不管是调用**java**中的*HashMap*的还是**c++**中的*unordered_map*哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。
 - 时间复杂度为O(n)：一次遍历用于插入，查找无需遍历
 - 空间复杂度为O(n)：存储所有元素的哈希映射结果
 
