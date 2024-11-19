@@ -13,27 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/11/17/hash-3-hot-100-in-leetcode/"/>
+    <link rel="canonical" href="http://example.com/2024/11/19/滑动窗口-2-hot-100-in-leetcode/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="两数之和算法概述原题  两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 java 中的 HashMap 的还是 c++ 中的 unordered_map 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插">
+        <meta name="description" content="无重复字符的最长子串算法概述原题  题目要求是返回给出字符串的最长无重复子串长度。同样要用到双指针，但此时双指针的功能不在于 减少遍历 ，而在于 定位 ，也就是创建滑动窗口。  时间复杂度为O(n)：看似有两个循环，但实际上对应滑动窗口两侧，滑动窗口只往 一个方向 动态变化 空间复杂度为O(∣Σ∣)：字符集大小，因为要创建容器类对应字符串映射  JAVA1234567891011121314">
 <meta property="og:type" content="article">
-<meta property="og:title" content="哈希(3) --hot 100 in leetcode">
-<meta property="og:url" content="http://example.com/2024/11/17/Hash-3-hot-100-in-leetcode/index.html">
+<meta property="og:title" content="滑动窗口(2) --hot 100 in leetcode">
+<meta property="og:url" content="http://example.com/2024/11/19/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3-2-hot-100-in-leetcode/index.html">
 <meta property="og:site_name" content="hexo">
-<meta property="og:description" content="两数之和算法概述原题  两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 java 中的 HashMap 的还是 c++ 中的 unordered_map 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插">
+<meta property="og:description" content="无重复字符的最长子串算法概述原题  题目要求是返回给出字符串的最长无重复子串长度。同样要用到双指针，但此时双指针的功能不在于 减少遍历 ，而在于 定位 ，也就是创建滑动窗口。  时间复杂度为O(n)：看似有两个循环，但实际上对应滑动窗口两侧，滑动窗口只往 一个方向 动态变化 空间复杂度为O(∣Σ∣)：字符集大小，因为要创建容器类对应字符串映射  JAVA1234567891011121314">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
-<meta property="article:published_time" content="2024-11-17T08:20:10.000Z">
-<meta property="article:modified_time" content="2024-11-18T00:57:36.902Z">
+<meta property="article:published_time" content="2024-11-19T02:55:52.000Z">
+<meta property="article:modified_time" content="2024-11-19T14:23:15.498Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="哈希">
 <meta property="article:tag" content="hot 100">
 <meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="滑动窗口">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
     
     
     <!--- Icon Part-->
@@ -45,7 +43,7 @@
     
     <title>
         
-            哈希(3) --hot 100 in leetcode | tobegold574的个人博客
+            滑动窗口(2) --hot 100 in leetcode | tobegold574的个人博客
         
     </title>
 
@@ -240,7 +238,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">哈希(3) --hot 100 in leetcode</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">滑动窗口(2) --hot 100 in leetcode</h1>
                 </div>
             
             </div>
@@ -261,15 +259,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-17 16:20:10</span>
-        <span class="mobile">2024-11-17 16:20:10</span>
+        <span class="desktop">2024-11-19 10:55:52</span>
+        <span class="mobile">2024-11-19 10:55:52</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-18 08:57:36</span>
-            <span class="mobile">2024-11-18 08:57:36</span>
+            <span class="desktop">2024-11-19 22:23:15</span>
+            <span class="mobile">2024-11-19 22:23:15</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -281,15 +279,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%93%88%E5%B8%8C/">哈希</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                        <a href="/tags/hot-100/">hot 100</a>&nbsp;
                     </li>
                 
                     <li>
                         | <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>&nbsp;
                     </li>
                 
             </ul>
@@ -319,58 +317,43 @@
 src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-<h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 <strong>java</strong> 中的 <em><strong>HashMap</strong></em> 的还是 <strong>c++</strong> 中的 <em><strong>unordered_map</strong></em> 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插入，使键变为值，由此使查找工作变得简单的。</p>
+<h2 id="无重复字符的最长子串"><a href="#无重复字符的最长子串" class="headerlink" title="无重复字符的最长子串"></a>无重复字符的最长子串</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>题目要求是返回给出字符串的最长无重复子串长度。同样要用到双指针，但此时双指针的功能不在于 <em><strong>减少遍历</strong></em> ，而在于 <em><strong>定位</strong></em> ，也就是创建滑动窗口。</p>
 <ul>
-<li>时间复杂度为O(n)：一次遍历用于插入，查找无需遍历</li>
-<li>空间复杂度为O(n)：存储所有元素的哈希映射结果</li>
+<li>时间复杂度为O(n)：看似有两个循环，但实际上对应滑动窗口两侧，滑动窗口只往 <em><strong>一个方向</strong></em> 动态变化</li>
+<li>空间复杂度为O(∣Σ∣)：字符集大小，因为要创建容器类对应字符串映射</li>
 </ul>
-<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        // 创建哈希表的新实例（Map是接口，HashMap是接口实现）</span><br><span class="line">        Map&lt;Integer,Integer&gt; hashtable=new HashMap&lt;Integer,Integer&gt;();</span><br><span class="line">        // 遍历整个数组</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i!=nums.length;++i)&#123;</span><br><span class="line">            // 判断表内是否已经存在（插入过）与当前元素加起来能得到结果的元素</span><br><span class="line">            <span class="keyword">if</span>(hashtable.containsKey(target-nums[i]))&#123;</span><br><span class="line">                // 存在就直接返回 注意这里get()返回的是索引（反向查找）</span><br><span class="line">                <span class="built_in">return</span> new int[] &#123;hashtable.get(target-nums[i]),i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            // 到这里就说明还不存在，此时遍历到的元素还未映射入哈希表，这里将其放入表中</span><br><span class="line">            hashtable.put(nums[i],i);</span><br><span class="line">        &#125;</span><br><span class="line">        // 空白返回</span><br><span class="line">        <span class="built_in">return</span> new int[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int lengthOfLongestSubstring(String s) &#123;</span><br><span class="line">        // 创建空集合</span><br><span class="line">        Set&lt;Character&gt; occ=new HashSet&lt;Character&gt;();</span><br><span class="line">        // 虽然用的是集合，但是还是按照原字符串长度遍历</span><br><span class="line">        int n=s.length();</span><br><span class="line">        // 右指针和答案长度</span><br><span class="line">        int rk=-1,ans=0;</span><br><span class="line">        // 左指针遍历字符串</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;n;++i)&#123;</span><br><span class="line">            // 当左指针&gt;0，去除左指针左侧字符，避免重复遍历</span><br><span class="line">            <span class="keyword">if</span>(i!=0)&#123;</span><br><span class="line">                occ.remove(s.charAt(i-1));</span><br><span class="line">            &#125;</span><br><span class="line">            // 如果右指针下一个字符不重复，则纳入集合，不然停止循环，更新左指针</span><br><span class="line">            <span class="keyword">while</span>(rk+1&lt;n&amp;&amp;!occ.contains(s.charAt(rk+1)))&#123;</span><br><span class="line">                occ.add(s.charAt(rk+1));</span><br><span class="line">                ++rk;</span><br><span class="line">            &#125;</span><br><span class="line">            // 当前长度为滑动窗口动态变化的长度</span><br><span class="line">            ans=Math.max(ans,rk-i+1);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="重要实例方法及属性-JAVA"><a href="#重要实例方法及属性-JAVA" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><ul>
-<li><code>Map&lt;Integer,Integer&gt; hashtable=new HashMap&lt;Integer,Integer&gt;()</code>：使用HashMap接口，记得声明对键值对类型</li>
-<li><code>hashtable.containsKey(arg)</code>：查询是否存在对应键</li>
-<li><code>hashtable.put(key,value)</code>：将元素放入表中</li>
+<li><code>Set&lt;Character&gt; occ=new HashSet&lt;Character&gt;()</code>：JAVA使用<code>Character</code>代表基本类型<code>char</code>的包装类</li>
+<li><code>str.length()</code>：字符串长度</li>
+<li><code>str.charAt(index)</code>：返回参数索引处的字符</li>
+<li><code>set.add(element)</code>：添加非重复元素（如重复则不再添加），返回true或false</li>
+<li><code>set.remove(element)</code>：删除元素，返回true或false</li>
+<li><code>set.contains(element)</code>：是否存在某元素，返回true或flase</li>
 </ul>
-<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        // 使用unordered_map容器类</span><br><span class="line">        unordered_map&lt;int,int&gt; hashtable;</span><br><span class="line">        // 遍历整个数组</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;nums.size();++i)&#123;</span><br><span class="line">            // 判断表内是否已经存在（插入过）与当前元素加起来能得到结果的元素</span><br><span class="line">            auto it = hashtable.find(target-nums[i]);</span><br><span class="line">            // 找到就返回</span><br><span class="line">            <span class="keyword">if</span>(it !=hashtable.end())&#123;</span><br><span class="line">                <span class="built_in">return</span> &#123;it-&gt;second,i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            // 不存在就反向插入，以值为键，以键为值</span><br><span class="line">            hashtable[nums[i]]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLongestSubstring(string s) &#123;</span><br><span class="line">        // 哈希集合</span><br><span class="line">        unordered_set&lt;char&gt; occ;</span><br><span class="line">        int n = s.size();</span><br><span class="line">        // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动</span><br><span class="line">        int rk = -1, ans = 0;</span><br><span class="line">        // 外层循环，移动左指针</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            // 左指针向右移动一格，滑动窗口缩短，移除集合内的头部元素</span><br><span class="line">            <span class="keyword">if</span> (i != 0) &#123;</span><br><span class="line">                occ.erase(s[i - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">            // 右指针遇到重复字符退出循环，回到外层循环移动左指针</span><br><span class="line">            <span class="keyword">while</span> (rk + 1 &lt; n &amp;&amp; !occ.count(s[rk + 1])) &#123;</span><br><span class="line">                occ.insert(s[rk + 1]);</span><br><span class="line">                ++rk;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = max(ans, rk - i + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="重要实例方法及属性-C"><a href="#重要实例方法及属性-C" class="headerlink" title="重要实例方法及属性(C++)"></a>重要实例方法及属性(C++)</h4><ul>
-<li><code>hashtable.find(key)</code>：查键，找到了返回对应迭代器，没找到返回end()迭代器（最后一个元素之后的位置）</li>
-<li><code>hashtable.end()</code>：最后一个元素再往后的位置</li>
-<li><code>return &#123;it-&gt;second,i&#125;</code>：<code>it-&gt;second</code>指向迭代器中的值（first对应键），这样返回会自动传给vector的构造器构造完再返回</li>
-<li><code>hashtable[nums[i]]=i</code>：<code>[]</code>为键，插入键值对</li>
+<li><code>str[]</code>：返回值引用</li>
+<li><code>str.size()</code>：与JAVA访问字符串长度属性的方法不同</li>
+<li><code>unordered_set&lt;char&gt;</code>：C++没有基本类型的包装类</li>
+<li><code>set.erase(&amp;element_val)</code>：按值移除元素（重载），返回删除元素数量（对于集合0或1）</li>
+<li><code>set.count(&amp;element_val)</code>：计数元素出现次数，返回次数（对于集合0或1）</li>
+<li><code>set.insert(&amp;element_val)</code>：插入树或哈希表，具体看实现</li>
 </ul>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png"
-                      alt="运行结果"
-                ><br>可以看出尽管代码逻辑一模一样，但是C++在包装容器类时相对java做的更加简单，这样得到的优势是在内存上优于java，但也正是因为容器的方法摈弃了复杂的优化，所以运行速度上稍慢。<br>同时，使用双循环遍历虽然时间复杂度上大大落后，但由于并不需要使用到容器类，不需要哈希映射的缘故，在内存上更优。</p>
-<h2 id="字母异位词分组"><a href="#字母异位词分组" class="headerlink" title="字母异位词分组"></a>字母异位词分组</h2><h3 id="算法概述-1"><a href="#算法概述-1" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>与两数之和一样，都需要熟悉如何使用哈希表作为工具解决查找的问题，但区别在于这道题多了一层需要考虑用什么来作键，用什么来作为值的问题，这道题要求找出在字符串数组中存在的含有相同字母的字符串并分组。这里采用的就是通过排序解决此问题。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>滑动窗口由左指针负责遍历，右指针负责符合条件的定位，滑动窗口本身只是一个 <em><strong>工具</strong></em> ，并不是用于存储最终结果的，所以需要变量存储最终结果，这与双指针一样。</p>
+<h2 id="找到字符串中所有字母异位词"><a href="#找到字符串中所有字母异位词" class="headerlink" title="找到字符串中所有字母异位词"></a>找到字符串中所有字母异位词</h2><p>题目要求为找到给出字符串中所有目标字符串的字母改变顺序后的变形，并给出它们起始的索引。使用滑动窗口，这道题比上面一道题海多了一层抽象，因为这个题目的要求是 <em><strong>找到所有</strong></em> ， 而不是 <em><strong>找到某一个特殊的</strong></em> 。这也就意味着滑动窗口会用于统计最后结果的工具变量之间仍然不是直接联系，在这里， <em><strong>differ</strong></em> 是用来统计最终结果的，但与之交互的是 <em><strong>count</strong></em> ，而不是滑动窗口，后者根据滑动窗口的移动统计所有字符频次，而前者则只关心整体差异是否为0，只有一个变量。</p>
 <ul>
-<li>时间复杂度为O(nklogk)：k是字符串元素的最大长度，n是字符串数量，klogk用于排序，n*1用于遍历字符串数组构建哈希表</li>
-<li>空间复杂度为O(nk)：k是字符串元素的最大长度，n是字符串数量</li>
+<li>时间复杂度为O(n+m+Σ)：n+m为两个字符串的长度，∑为可能字符集的长度</li>
+<li>空间复杂度为O(∑)：需要存储字符集</li>
 </ul>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">        Map&lt;String,List&lt;String&gt;&gt; map=new HashMap&lt;String,List&lt;String&gt;&gt;();</span><br><span class="line">        // 遍历所有字符串</span><br><span class="line">        <span class="keyword">for</span> (String str:strs)&#123;</span><br><span class="line">            // 将字符串分割成字符数组</span><br><span class="line">            char[] array=str.toCharArray();</span><br><span class="line">            // 按unicode排序</span><br><span class="line">            Arrays.<span class="built_in">sort</span>(array);</span><br><span class="line">            // 将排序后的字符串作为键，</span><br><span class="line">            String key=new String(array);</span><br><span class="line">            // 从哈希表中查找对应键的值的列表，不存在就生成一个空的返回</span><br><span class="line">            List&lt;String&gt; list =map.getOrDefault(key,new ArrayList&lt;String&gt;());</span><br><span class="line">            // 将新的字符串加入到值的列表中</span><br><span class="line">            list.add(str);</span><br><span class="line">            // 为已有的键值添加新值后放回哈希表或者初始化键值对</span><br><span class="line">            map.put(key,list);</span><br><span class="line">        &#125;</span><br><span class="line">        // 返回一个包含所有各个值的分类的列表的列表，</span><br><span class="line">        <span class="built_in">return</span> new ArrayList&lt;List&lt;String&gt;&gt;(map.values());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<h4 id="重要实例方法及属性-JAVA-1"><a href="#重要实例方法及属性-JAVA-1" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><ul>
-<li><code>for (String str:strs)</code>：for-each访问，快但只读</li>
-<li><code>str.toCharArray()</code>：String的实例方法，将字符串转为字符数组</li>
-<li><code>Arrays.sort(str)</code>：Arrays是静态方法工具类，sort()使str按照unicode排序，直接修改，不返回</li>
-<li><code>map.getOrDefault(key,defaultvalue)</code>：查键，查不到返回默认值（由第二个参数指定）</li>
-<li><code>new ArrayList&lt;List&lt;String&gt;&gt;()</code>：<code>List&lt;String&gt;</code>作为ArrayList的元素类型</li>
-<li><code>map.values()</code>：返回<code>Collection&lt;V&gt;</code>，也就是可读可写的视图</li>
-</ul>
-<h3 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        unordered_map&lt;string,vector&lt;string&gt;&gt; mp;</span><br><span class="line">        <span class="keyword">for</span> (string&amp; str:strs)&#123;</span><br><span class="line">            string key=str;</span><br><span class="line">            // 排序</span><br><span class="line">            <span class="built_in">sort</span>(key.begin(),key.end());</span><br><span class="line">            // 对当前字符串生成的键插入当前字符串的值</span><br><span class="line">            mp[key].emplace_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        // 重新创建一个列表的列表用于放置答案</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">        // 通过循环将每个键值对的值逐个插入</span><br><span class="line">        <span class="keyword">for</span>(auto it=mp.begin();it!=mp.end();++it)&#123;</span><br><span class="line">            ans.emplace_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+<h3 id="JAVA-1"><a href="#JAVA-1" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; findAnagrams(String s, String p) &#123;</span><br><span class="line">        \\ 先算好两个字符串长度</span><br><span class="line">        int sLen=s.length(),pLen=p.length();</span><br><span class="line">        \\ 如果用于匹配的字符串还要长，说明肯定没有了</span><br><span class="line">        <span class="keyword">if</span>(sLen&lt;pLen)&#123;</span><br><span class="line">            <span class="built_in">return</span> new ArrayList&lt;Integer&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        \\ 空白答案</span><br><span class="line">        List&lt;Integer&gt; ans=new ArrayList&lt;Integer&gt;();</span><br><span class="line">        \\ 整型数组，用于存储字母出现频次</span><br><span class="line">        int[] count=new int[26];</span><br><span class="line">        \\ 对s和p进行字符出现频次比较，以p的长度作为遍历次数</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;pLen;++i)&#123;</span><br><span class="line">            \\ 对于每一个遍历到的字母，-<span class="string">&#x27;a&#x27;</span>会将字符转化成数字，也就对应了26个英文字母</span><br><span class="line">            \\ s中出现的字符对应count数组索引的值+1</span><br><span class="line">            ++count[s.charAt(i)-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            \\ p中出现的字符对应count数组索引的值-1</span><br><span class="line">            --count[p.charAt(i)-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        \\ 用于记录差异</span><br><span class="line">        int differ=0;</span><br><span class="line">        \\ count内但凡有一个值不为0，即代表不是异位词</span><br><span class="line">        <span class="keyword">for</span>(int j=0;j&lt;26;++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count[j]!=0)&#123;</span><br><span class="line">                ++differ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        \\ 如果differ没有改变，也就是说明第一组滑动窗口匹配成功</span><br><span class="line">        <span class="keyword">if</span>(differ==0)&#123;</span><br><span class="line">            ans.add(0);</span><br><span class="line">        &#125;</span><br><span class="line">        \\ 滑动窗口从下一组匹配对象开始，起始位置为sLen-pLen（左指针）</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;sLen-pLen;++i)&#123;</span><br><span class="line">            \\ 移动左指针的预处理</span><br><span class="line">            \\ 如果当前字符出现过，移除字符后就没出现过了，那么差异就变少了</span><br><span class="line">            <span class="keyword">if</span>(count[s.charAt(i)-<span class="string">&#x27;a&#x27;</span>]==1)&#123;</span><br><span class="line">                --differ;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(count[s.charAt(i)-<span class="string">&#x27;a&#x27;</span>]==0)&#123;</span><br><span class="line">                \\ 如果当前字符没出现过，现在出现了，那么差异就增加了</span><br><span class="line">                ++differ;</span><br><span class="line">            &#125;</span><br><span class="line">            \\ 移除左侧字符</span><br><span class="line">            --count[s.charAt(i)-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            \\ 移动右指针（新增右侧字符）的预处理</span><br><span class="line">            \\ 如果之前缺少，现在就一样了</span><br><span class="line">            <span class="keyword">if</span>(count[s.charAt(i+pLen)-<span class="string">&#x27;a&#x27;</span>]==-1)&#123;</span><br><span class="line">                --differ;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(count[s.charAt(i+pLen)-<span class="string">&#x27;a&#x27;</span>]==0)&#123;</span><br><span class="line">                \\ 如果之前不缺，现在多了</span><br><span class="line">                ++differ;</span><br><span class="line">            &#125;</span><br><span class="line">            \\ 新增右侧字符</span><br><span class="line">            ++count[s.charAt(i+pLen)-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            \\ 滑动窗口整体移动一位，如果differ为0，则代表当前滑动窗口内为异位词</span><br><span class="line">            <span class="keyword">if</span>(differ==0)&#123;</span><br><span class="line">                ans.add(i+1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h4 id="重要实例方法及属性-C-1"><a href="#重要实例方法及属性-C-1" class="headerlink" title="重要实例方法及属性(C++)"></a>重要实例方法及属性(C++)</h4><ul>
-<li><code>sort(container.begin(),container.end())</code>：面向STL的排序算法</li>
-<li><code>vector.emplace_back</code>：直接在vector末尾创建新对象</li>
-<li><code>for(auto it=mp.begin();it!=mp.end();++it)</code>：迭代器遍历</li>
-</ul>
-<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>此处java和C++的差别就在于，java拥有视图(<code>map.values()</code>)可以直接访问哈希表内部属性，但C++必须依靠迭代器(<code>for(auto it=mp.begin();it!=mp.end();++it)</code>)进行访问。</p>
-<h2 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a>最长连续序列</h2><h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>用哈希表不是很好的解法，所以不作例子了。建议直接排序。</p>
+<h3 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\\ 除了用vector以及vector.emplace_back()，没有区别</span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>在面对不能直接用相应算法直接解决的问题前，要想想有没有可不可以添加一些抽象关系进去，使不合适的输出或者输入转变为合适的输入输出，如滑动窗口、双指针这样的算法其实本身思想非常简单，但如何在此之上搭积木，才是我们要思考的问题。</p>
 
         </div>
 
@@ -378,18 +361,18 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 哈希(3) --hot 100 in leetcode</li>
+        <li><strong>Title:</strong> 滑动窗口(2) --hot 100 in leetcode</li>
         <li><strong>Author:</strong> tobegold574</li>
         <li><strong>Created at
-                :</strong> 2024-11-17 16:20:10</li>
+                :</strong> 2024-11-19 10:55:52</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-18 08:57:36
+                    :</strong> 2024-11-19 22:23:15
             </li>
         
         <li>
-            <strong>Link:</strong> https://tobegold574.me/2024/11/17/Hash-3-hot-100-in-leetcode/
+            <strong>Link:</strong> https://tobegold574.me/2024/11/19/滑动窗口-2-hot-100-in-leetcode/
         </li>
         <li>
             <strong>
@@ -411,15 +394,15 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E5%93%88%E5%B8%8C/">#哈希</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
                         <a href="/tags/hot-100/">#hot 100</a>&nbsp;
                     </li>
                 
                     <li class="tag-item mx-0.5">
                         <a href="/tags/leetcode/">#leetcode</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">#滑动窗口</a>&nbsp;
                     </li>
                 
             </ul>
@@ -430,29 +413,14 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2024/11/18/%E5%8F%8C%E6%8C%87%E9%92%88-4-hot-100-in-leetcode/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">双指针(4) --hot 100 in leetcode</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/11/08/introductory-KAN/"
+                        href="/2024/11/18/%E5%8F%8C%E6%8C%87%E9%92%88-4-hot-100-in-leetcode/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">introductory KAN</span>
+                                <span class="post-nav-title-item">双指针(4) --hot 100 in leetcode</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -516,8 +484,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">哈希(3) --hot 100 in leetcode</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-text">两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84"><span class="nav-text">字母异位词分组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-1"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-text">Java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-1"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97"><span class="nav-text">最长连续序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-2"><span class="nav-text">算法概述</span></a></li></ol></li></ol>
+        <div class="page-title">滑动窗口(2) --hot 100 in leetcode</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2"><span class="nav-text">无重复字符的最长子串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D"><span class="nav-text">找到字符串中所有字母异位词</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-1"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-1"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="nav-text">注意</span></a></li></ol></li></ol>
 
     </div>
 </div>
