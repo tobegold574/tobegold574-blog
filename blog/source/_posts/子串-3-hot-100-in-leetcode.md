@@ -89,7 +89,7 @@ public:
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n=nums.length;
-        \\ 创建双向队列（以双向链表linkedLsit为实现，随机访问慢，插入高效）
+        \\ 创建双向队列（以双向链表linkedList为实现，随机访问慢，插入高效）
         Deque<Integer> deque=new LinkedList<Integer>();
         \\ 初始化滑动窗口
         for(int i=0;i<k;++i){
@@ -179,4 +179,122 @@ public:
 `[]`：（不带边界检查）索引
 
 ### 注意
-这里的基础结构还是滑动窗口，但其实只表现为 ***i*** 和 ***i+k*** 这两个索引罢了。真正的内核就是在滑动窗口之上用单调队列来管理一些真正有用的属性，一定要学会像这样分离然后分层的思想。
+这里的基础结构还是滑动窗口，但其实只表现为 ***i*** 和 ***i+k*** 这两个索引罢了。真正的内核就是在滑动窗口之上用单调队列来管理一些真正有用的属性，一定要学会像这样分离然后分层的思想。除此之外，还有通过 **预处理+分块** 的方法能够更便捷的解决这个问题。
+
+## 最小覆盖子串
+### 算法概述
+[原题](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
+
+这道题要求在目标字符串中找到包含给定字符串所有字符的最小子字符串。还是用滑动窗口实现，难点与之前不同，之前需要构造新的数据结构来辅助与答案的交互，也就是说需要搭建抽象的桥梁，但这个的难点主要在实现上，因为滑动窗口的大小是动态的，如何创建行之有效的辅助函数帮助滑动窗口移动是关键点（实际上这里又使用了中间数组）。这里给出的JAVA代码是确定了测试集中不含英文字母外字符，且选择 **双指针放在同一循环条件内，左指针跟着右指针移动** 。
+
+### JAVA
+```bash
+\\ 一下解法不能够处理非英文字母以外的情况（更全面的解法应该用哈希映射而不是数字数组）
+class Solution {
+    public String minWindow(String s, String t) {
+        \\ 将输入字符串转为字符数组（原生数组更易于遍历与查找）
+        char[] chs = s.toCharArray();
+        char[] cht = t.toCharArray();
+        \\ 记录需求各字符数量和当前字符串中各字符数量（包含小写字母和大写字母，所以为52）
+        int[] pats = new int[52];
+        int[] patt = new int[52];
+        \\ 记录未满足字符种类数量
+        int tot = 0;
+        \\ 初始化各字符需求频次
+        for (char ct : cht) {
+           if (++patt[index(ct)]==1) {
+            tot++;
+           }
+        }
+        \\ 返回答案
+        String res = "";
+        \\ 遍历目标字符串
+        for (int i=0,l=0;i<s.length();++i) {
+            \\ 获取当前字符索引
+            int ids = index(chs[i]);
+            \\ 如果当前两个记录数组中的元素（相应字符出现频次）一致，则整体差异减小
+            if(++pats[ids]==patt[ids]){
+                --tot;
+            }
+            \\ 移动滑动窗口
+            while (l<i) {
+                \\ 左指针
+                int li = index(chs[l]);
+                \\ 如果记录数组中当前左指针指向字符出现过多
+                if (pats[li]>patt[li]) {
+                    \\ 左移左指针
+                    pats[li]--;
+                    ++l;
+                    continue;
+                }
+                break;
+            }
+            \\ 当整体差异不存在时，更新答案（含长度比较）
+            if(tot==0 &&(res == "" || (i-l+1)<res.length())){
+                res = s.substring(l,i+1);
+            }
+        }
+        return res;
+    }
+
+    \\ 工具函数，返回字母（26英文字母）数字映射
+    private int index(char c){
+        \\ 小写字母和大写字母不同计算方式（大写字母还需要加上26）
+        return c>='a'?c-'a':c-'A'+26;
+    }
+}
+```
+
+#### 重要实例方法及属性(JAVA)
+`String.toCharArray()`：字符串转为字符数组
+`return c>='a'?c-'a':c-'A'+26;`：小写字母直接映射到0-25，大写字母映射到26-51
+`String.substring(begin,end)`：两个参数应该为起始的索引
+
+### C++
+```bash
+class Solution {
+public:
+    // string可以直接通过重载[]索引，所以不需要转换成字符数组
+    string minWindow(string s, string t) {
+        vector<int> pats(56, 0);
+        vector<int> patt(56, 0);
+        int tot = 0;
+        for (char ct : t) {
+            if (++patt[index(ct)] == 1) {
+                tot++;
+            }
+        }
+        string res{""};
+        for (int i = 0, l = 0; i < s.size(); ++i) {
+            int ids = index(s[i]);
+            if (++pats[ids] == patt[ids]) {
+                --tot;
+            }
+            while (l < i) {
+                int li = index(s[l]);
+                if (pats[li] > patt[li]) {
+                    pats[li]--;
+                    l++;
+                    continue;
+                }
+                break;
+            }
+            if (tot == 0 && (res.empty() || (i - l + 1) < res.size())) {
+                res = s.substr(l, i-l + 1);
+            }
+        }
+        return res;
+    }
+private:
+    int index(char c) { return c >= 'a' ? c - 'a' : c - 'A' + 26; }
+};
+```
+
+#### 重要实例方法及属性(C++)
+`string.substr(pos,len)`：取起始位置和截取长度为参数，返回子字符串
+
+### 注意
+这其中也包含了一个相对定式的结构，也就是以滑动窗口为单位来看，在求某个特殊的滑动窗口时，将滑动窗口的整体特征提取压缩，此题中压缩到了tot一个值（e.g., 之前的differ），然后只通过这个一个值检查是否匹配。
+
+
+
