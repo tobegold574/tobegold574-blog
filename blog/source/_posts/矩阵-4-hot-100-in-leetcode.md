@@ -250,7 +250,9 @@ public:
 ### 算法概述
 [原题](https://leetcode.cn/problems/search-a-2d-matrix-ii/?envType=study-plan-v2&envId=top-100-liked)
 
-题目要求为搜索矩阵中的某个目标值，且每行矩阵从左到右、从上到下升序排列。
+题目要求为搜索矩阵中的某个目标值，且每行矩阵从左到右、从上到下升序排列。使用Z字形查找，从中间值开始，逐次比较移动。
+- 时间复杂度为O(m+n)：如果运气不好会多绕一圈
+- 空间复杂度为O(1)：行、列指针
 
 ### JAVA
 ```bash

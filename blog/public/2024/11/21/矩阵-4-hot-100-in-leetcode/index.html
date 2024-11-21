@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/%5Cimages%5C%E9%A1%BA%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC90%E5%BA%A6%E5%85%AC%E5%BC%8F.png">
 <meta property="article:published_time" content="2024-11-21T04:58:43.000Z">
-<meta property="article:modified_time" content="2024-11-21T09:14:33.973Z">
+<meta property="article:modified_time" content="2024-11-21T09:18:04.698Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="hot 100">
 <meta property="article:tag" content="leetcode">
@@ -206,7 +206,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -214,7 +214,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -254,7 +254,7 @@
                     <div class="author flex items-center">
                         <span class="name text-default-text-color text-lg font-semibold">tobegold574</span>
                         
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
                         
                     </div>
                     <div class="meta-info">
@@ -268,8 +268,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-21 17:14:33</span>
-            <span class="mobile">2024-11-21 17:14:33</span>
+            <span class="desktop">2024-11-21 17:18:04</span>
+            <span class="mobile">2024-11-21 17:18:04</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -359,7 +359,11 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
                       alt="公式"
                 ><br>公式本质是逆时针的，和题目要求的顺时针旋转是相反的。<br>要注意 <strong>代码本身逻辑可以与题目要求相反</strong> ，同时达到相同效果。</p>
 <h2 id="搜素二维矩阵-II"><a href="#搜素二维矩阵-II" class="headerlink" title="搜素二维矩阵 II"></a>搜素二维矩阵 II</h2><h3 id="算法概述-3"><a href="#算法概述-3" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-a-2d-matrix-ii/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>题目要求为搜索矩阵中的某个目标值，且每行矩阵从左到右、从上到下升序排列。</p>
+<p>题目要求为搜索矩阵中的某个目标值，且每行矩阵从左到右、从上到下升序排列。使用Z字形查找，从中间值开始，逐次比较移动。</p>
+<ul>
+<li>时间复杂度为O(m+n)：如果运气不好会多绕一圈</li>
+<li>空间复杂度为O(1)：行、列指针</li>
+</ul>
 <h3 id="JAVA-3"><a href="#JAVA-3" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean searchMatrix(int[][] matrix, int target) &#123;</span><br><span class="line">        int m = matrix.length, n = matrix[0].length;</span><br><span class="line">        // 初始为右上角</span><br><span class="line">        int x = 0, y = n - 1;</span><br><span class="line">        <span class="keyword">while</span> (x &lt; m &amp;&amp; y &gt;= 0) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[x][y] == target) &#123;</span><br><span class="line">                <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            // 如果较小，行方向向内移动</span><br><span class="line">            <span class="keyword">if</span> (matrix[x][y] &gt; target) &#123;</span><br><span class="line">                --y;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                // 较大，则行方向向下移动</span><br><span class="line">                ++x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="C-3"><a href="#C-3" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 一样的</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123;</span><br><span class="line">        int m = matrix.size(), n = matrix[0].size();</span><br><span class="line">        int x = 0, y = n - 1;</span><br><span class="line">        <span class="keyword">while</span> (x &lt; m &amp;&amp; y &gt;= 0) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[x][y] == target) &#123;</span><br><span class="line">                <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (matrix[x][y] &gt; target) &#123;</span><br><span class="line">                --y;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ++x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
@@ -379,7 +383,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-21 17:14:33
+                    :</strong> 2024-11-21 17:18:04
             </li>
         
         <li>
@@ -423,6 +427,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/11/21/%E9%93%BE%E8%A1%A8-14-hot-100-in-leetcode/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">链表(14) --hot 100 in leetcode</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -529,7 +548,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        7 posts in total
+                        8 posts in total
                     </span>
                     
                 </p>
