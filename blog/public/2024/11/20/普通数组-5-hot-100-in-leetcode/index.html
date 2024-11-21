@@ -26,7 +26,7 @@
 <meta property="og:description" content="最大子数组和算法概述原题  此题要求为找到最大的子数组的和。因为这个题目只要求一个最终的和，所以完全不需要双指针和滑动窗口这样相对负责的结构，简单的dp（动态规划）就能做出来。  时间复杂度为O(n)：遍历一次 空间复杂度为O(1)：只需要存储中间常数  JAVA123456789101112class Solution &#123;    public int maxSubArray(in">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-20T13:14:16.000Z">
-<meta property="article:modified_time" content="2024-11-21T03:16:26.751Z">
+<meta property="article:modified_time" content="2024-11-21T04:58:08.055Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="hot 100">
 <meta property="article:tag" content="leetcode">
@@ -204,7 +204,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -212,7 +212,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -266,8 +266,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-21 11:16:26</span>
-            <span class="mobile">2024-11-21 11:16:26</span>
+            <span class="desktop">2024-11-21 12:58:08</span>
+            <span class="mobile">2024-11-21 12:58:08</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -373,6 +373,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 <h3 id="C-4"><a href="#C-4" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int firstMissingPositive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        // 用for-each</span><br><span class="line">        <span class="keyword">for</span> (int&amp; num: nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &lt;= 0) &#123;</span><br><span class="line">                num = n + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            int num = abs(nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (num &lt;= n) &#123;</span><br><span class="line">                nums[num - 1] = -abs(nums[num - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; 0) &#123;</span><br><span class="line">                <span class="built_in">return</span> i + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="注意-4"><a href="#注意-4" class="headerlink" title="注意"></a>注意</h3><p><code>nums[num - 1] = -abs(nums[num - 1]);</code>：这一行不能直接改为任意负数，因为这一行的功能不仅包含把正整数改为相应索引的负数，而且还将该负数的值确定为原值的负值，也就意味着对于当循环遍历到了这些被修改过的索引值时，只需取绝对值（<code>int num = abs(nums[i])</code>）就仍然按照正常流程工作。</p>
+<p>还需要学习的是这种 <strong>借助索引</strong> 和 <strong>添加标记</strong> 的能力。 </p>
 
         </div>
 
@@ -387,7 +388,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-21 11:16:26
+                    :</strong> 2024-11-21 12:58:08
             </li>
         
         <li>
@@ -431,6 +432,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/11/21/%E7%9F%A9%E9%98%B5-4-hot-100-in-leetcode/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">矩阵(4) --hot 100 in leetcode</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -537,7 +553,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        6 posts in total
+                        7 posts in total
                     </span>
                     
                 </p>
