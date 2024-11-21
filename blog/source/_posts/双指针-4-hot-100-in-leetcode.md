@@ -49,7 +49,7 @@ class Solution {
 
 ### C++
 ```bash
-\\ 基本上一模一样
+// 基本上一模一样
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
@@ -128,7 +128,7 @@ class Solution {
 
 ### C++
 ```bash
-\\ 没区别
+// 没区别
 class Solution {
 public:
     int maxArea(vector<int>& height) {
@@ -225,18 +225,18 @@ class Solution {
 class Solution {
     public int trap(int[] height) {
         int ans=0;
-        \\ 双指针指向左右边界
+        // 双指针指向左右边界
         int left=0, right=height.length-1;
-        \\ 用于将左右侧的积水量分开独立计算
+        // 用于将左右侧的积水量分开独立计算
         int leftMax=0,rightMax=0;
-        \\ 双向遍历
+        // 双向遍历
         while(left<right){
-            \\ 每次移动指针都会尝试更新最大高度，用于之后计算积水
+            // 每次移动指针都会尝试更新最大高度，用于之后计算积水
             leftMax=Math.max(leftMax,height[left]);
             rightMax=Math.max(rightMax,height[right]);
-            \\ 这个判断和积水量计算无关，只是为了优化遍历
+            // 这个判断和积水量计算无关，只是为了优化遍历
             if(height[left]<height[right]){
-                \\ 计算还是独立的
+                // 计算还是独立的
                 ans+=leftMax-height[left];
                 ++left;
             }else{
@@ -251,7 +251,7 @@ class Solution {
 
 ### C++
 ```bash
-\\ 除了使用max以外无差别
+// 除了使用max以外无差别
 class Solution {
 public:
     int trap(vector<int>& height) {

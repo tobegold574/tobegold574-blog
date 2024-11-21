@@ -83,39 +83,41 @@ public:
 这道题目要求在实现基本的滑动窗口的基础上找到滑动窗口内的最大值。在求最大值这类窗口内部的某个特殊的值，而非整个窗口的整体性质时，要考虑的就是窗口移动时的特性，即 **每次移动** 都共用了 **k-1个元素** ，只有 **一个元素** 在变化，由此找到优化的方法，也就是把在滑动窗口整体中寻找最大值降为 **窗口首尾** 的变化。
 
 使用双向队列来解决，通过只存储一系列单调排列的值，在滑动窗口移动的时候，只会读取新值和抛弃可能超出边界的队首，关键点在于不仅 **队列内部的值是单调排列的，而且索引也是从小到大** ，这就是为什么用两个while，而不是if。
+- 时间复杂度为O(n)：遍历一次
+- 空间复杂度为O(k)：滑动窗口长度
 
 ### JAVA
 ```bash
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n=nums.length;
-        \\ 创建双向队列（以双向链表linkedList为实现，随机访问慢，插入高效）
+        // 创建双向队列（以双向链表linkedList为实现，随机访问慢，插入高效）
         Deque<Integer> deque=new LinkedList<Integer>();
-        \\ 初始化滑动窗口
+        // 初始化滑动窗口
         for(int i=0;i<k;++i){
-            \\ 如果当前遍历元素>=队列末端元素，移除末端元素（相当于排序，队首元素最大）
+            // 如果当前遍历元素>=队列末端元素，移除末端元素（相当于排序，队首元素最大）
             while(!deque.isEmpty()&&nums[i]>=nums[deque.peekLast()]){
                 deque.pollLast();
             }
-            \\ 当前元素索引入队列末端
+            // 当前元素索引入队列末端
             deque.offerLast(i);
         }
-        \\ 答案
+        // 答案
         int[] ans=new int[n-k+1];
-        \\ 第一个滑动窗口已经处理完，当前队首元素作为第一个答案
+        // 第一个滑动窗口已经处理完，当前队首元素作为第一个答案
         ans[0]=nums[deque.peekFirst()];
-        \\ 从滑动窗口右侧开始遍历
+        // 从滑动窗口右侧开始遍历
         for(int i=k;i<n;++i){
-            \\ 重复初始化时的入队预处理
+            // 重复初始化时的入队预处理
             while(!deque.isEmpty()&&nums[i]>=nums[deque.peekLast()]){
                 deque.pollLast();
             }
             deque.offerLast(i);
-            \\ 当队首元素索引小于i-k，也就是在滑动窗口左边界之外的元素被移除
+            // 当队首元素索引小于i-k，也就是在滑动窗口左边界之外的元素被移除
             while(deque.peekFirst()<=i-k){
                 deque.pollFirst();
             }
-            \\ 队首元素始终是最大值
+            // 队首元素始终是最大值
             ans[i-k+1]=nums[deque.peekFirst()];
         }
         return ans;
@@ -139,29 +141,29 @@ class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         int n = nums.size();
-        \\ 双向队列
+        // 双向队列
         deque<int> q;
         for (int i = 0; i < k; ++i) {
-            \\ 空或不在单调排列
+            // 空或不在单调排列
             while (!q.empty() && nums[i] >= nums[q.back()]) {
                 q.pop_back();
             }
-            \\ 读取
+            // 读取
             q.push_back(i);
         }
-        \\ 列表初始化
+        // 列表初始化
         vector<int> ans = {nums[q.front()]};
         for (int i = k; i < n; ++i) {
-            \\ 同上
+            // 同上
             while (!q.empty() && nums[i] >= nums[q.back()]) {
                 q.pop_back();
             }
             q.push_back(i);
-            \\ 索引超出，丢弃
+            // 索引超出，丢弃
             while (q.front() <= i - k) {
                 q.pop_front();
             }
-            \\ 读取
+            // 读取
             ans.push_back(nums[q.front()]);
         }
         return ans;
@@ -186,50 +188,52 @@ public:
 [原题](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
 
 这道题要求在目标字符串中找到包含给定字符串所有字符的最小子字符串。还是用滑动窗口实现，难点与之前不同，之前需要构造新的数据结构来辅助与答案的交互，也就是说需要搭建抽象的桥梁，但这个的难点主要在实现上，因为滑动窗口的大小是动态的，如何创建行之有效的辅助函数帮助滑动窗口移动是关键点（实际上这里又使用了中间数组）。这里给出的JAVA代码是确定了测试集中不含英文字母外字符，且选择 **双指针放在同一循环条件内，左指针跟着右指针移动** 。
+- 时间复杂度为O(n+m+∑)：两个字符串遍历加上动态窗口移动
+- 空间复杂度为O(n+m) (C++)：要存字符出现频次
 
 ### JAVA
 ```bash
-\\ 一下解法不能够处理非英文字母以外的情况（更全面的解法应该用哈希映射而不是数字数组）
+// 一下解法不能够处理非英文字母以外的情况（更全面的解法应该用哈希映射而不是数字数组）
 class Solution {
     public String minWindow(String s, String t) {
-        \\ 将输入字符串转为字符数组（原生数组更易于遍历与查找）
+        // 将输入字符串转为字符数组（原生数组更易于遍历与查找）
         char[] chs = s.toCharArray();
         char[] cht = t.toCharArray();
-        \\ 记录需求各字符数量和当前字符串中各字符数量（包含小写字母和大写字母，所以为52）
+        // 记录需求各字符数量和当前字符串中各字符数量（包含小写字母和大写字母，所以为52）
         int[] pats = new int[52];
         int[] patt = new int[52];
-        \\ 记录未满足字符种类数量
+        // 记录未满足字符种类数量
         int tot = 0;
-        \\ 初始化各字符需求频次
+        // 初始化各字符需求频次
         for (char ct : cht) {
            if (++patt[index(ct)]==1) {
             tot++;
            }
         }
-        \\ 返回答案
+        // 返回答案
         String res = "";
-        \\ 遍历目标字符串
+        // 遍历目标字符串
         for (int i=0,l=0;i<s.length();++i) {
-            \\ 获取当前字符索引
+            // 获取当前字符索引
             int ids = index(chs[i]);
-            \\ 如果当前两个记录数组中的元素（相应字符出现频次）一致，则整体差异减小
+            // 如果当前两个记录数组中的元素（相应字符出现频次）一致，则整体差异减小
             if(++pats[ids]==patt[ids]){
                 --tot;
             }
-            \\ 移动滑动窗口
+            // 移动滑动窗口
             while (l<i) {
-                \\ 左指针
+                // 左指针
                 int li = index(chs[l]);
-                \\ 如果记录数组中当前左指针指向字符出现过多
+                // 如果记录数组中当前左指针指向字符出现过多
                 if (pats[li]>patt[li]) {
-                    \\ 左移左指针
+                    // 右移左指针
                     pats[li]--;
                     ++l;
                     continue;
                 }
                 break;
             }
-            \\ 当整体差异不存在时，更新答案（含长度比较）
+            // 当整体差异不存在时，更新答案（含长度比较）
             if(tot==0 &&(res == "" || (i-l+1)<res.length())){
                 res = s.substring(l,i+1);
             }
@@ -237,9 +241,9 @@ class Solution {
         return res;
     }
 
-    \\ 工具函数，返回字母（26英文字母）数字映射
+    // 工具函数，返回字母（26英文字母）数字映射
     private int index(char c){
-        \\ 小写字母和大写字母不同计算方式（大写字母还需要加上26）
+        // 小写字母和大写字母不同计算方式（大写字母还需要加上26）
         return c>='a'?c-'a':c-'A'+26;
     }
 }

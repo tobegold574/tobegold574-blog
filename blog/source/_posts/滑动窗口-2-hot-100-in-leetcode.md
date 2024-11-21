@@ -107,59 +107,59 @@ public:
 ```bash
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        \\ 先算好两个字符串长度
+        // 先算好两个字符串长度
         int sLen=s.length(),pLen=p.length();
-        \\ 如果用于匹配的字符串还要长，说明肯定没有了
+        // 如果用于匹配的字符串还要长，说明肯定没有了
         if(sLen<pLen){
             return new ArrayList<Integer>();
         }
-        \\ 空白答案
+        // 空白答案
         List<Integer> ans=new ArrayList<Integer>();
-        \\ 整型数组，用于存储字母出现频次
+        // 整型数组，用于存储字母出现频次
         int[] count=new int[26];
-        \\ 对s和p进行字符出现频次比较，以p的长度作为遍历次数
+        // 对s和p进行字符出现频次比较，以p的长度作为遍历次数
         for(int i=0;i<pLen;++i){
-            \\ 对于每一个遍历到的字母，-'a'会将字符转化成数字，也就对应了26个英文字母
-            \\ s中出现的字符对应count数组索引的值+1
+            // 对于每一个遍历到的字母，-'a'会将字符转化成数字，也就对应了26个英文字母
+            // s中出现的字符对应count数组索引的值+1
             ++count[s.charAt(i)-'a'];
-            \\ p中出现的字符对应count数组索引的值-1
+            // p中出现的字符对应count数组索引的值-1
             --count[p.charAt(i)-'a'];
         }
-        \\ 用于记录差异
+        // 用于记录差异
         int differ=0;
-        \\ count内但凡有一个值不为0，即代表不是异位词
+        // count内但凡有一个值不为0，即代表不是异位词
         for(int j=0;j<26;++j){
             if(count[j]!=0){
                 ++differ;
             }
         }
-        \\ 如果differ没有改变，也就是说明第一组滑动窗口匹配成功
+        // 如果differ没有改变，也就是说明第一组滑动窗口匹配成功
         if(differ==0){
             ans.add(0);
         }
-        \\ 滑动窗口从下一组匹配对象开始，起始位置为sLen-pLen（左指针）
+        // 滑动窗口从下一组匹配对象开始，起始位置为sLen-pLen（左指针）
         for(int i=0;i<sLen-pLen;++i){
-            \\ 移动左指针的预处理
-            \\ 如果当前字符出现过，移除字符后就没出现过了，那么差异就变少了
+            // 移动左指针的预处理
+            // 如果当前字符出现过，移除字符后就没出现过了，那么差异就变少了
             if(count[s.charAt(i)-'a']==1){
                 --differ;
             }else if(count[s.charAt(i)-'a']==0){
-                \\ 如果当前字符没出现过，现在出现了，那么差异就增加了
+                // 如果当前字符没出现过，现在出现了，那么差异就增加了
                 ++differ;
             }
-            \\ 移除左侧字符
+            // 移除左侧字符
             --count[s.charAt(i)-'a'];
-            \\ 移动右指针（新增右侧字符）的预处理
-            \\ 如果之前缺少，现在就一样了
+            // 移动右指针（新增右侧字符）的预处理
+            // 如果之前缺少，现在就一样了
             if(count[s.charAt(i+pLen)-'a']==-1){
                 --differ;
             }else if(count[s.charAt(i+pLen)-'a']==0){
-                \\ 如果之前不缺，现在多了
+                // 如果之前不缺，现在多了
                 ++differ;
             }
-            \\ 新增右侧字符
+            // 新增右侧字符
             ++count[s.charAt(i+pLen)-'a'];
-            \\ 滑动窗口整体移动一位，如果differ为0，则代表当前滑动窗口内为异位词
+            // 滑动窗口整体移动一位，如果differ为0，则代表当前滑动窗口内为异位词
             if(differ==0){
                 ans.add(i+1);
             }
@@ -172,7 +172,7 @@ class Solution {
 
 ### C++
 ```bash
-\\ 除了用vector以及vector.emplace_back()，没有区别
+// 除了用vector以及vector.emplace_back()，没有区别
 ...
 ```
 
