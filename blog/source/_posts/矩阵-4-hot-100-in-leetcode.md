@@ -189,3 +189,116 @@ public:
 `while (left <= right && top <= bottom)`：最外层循环管理的是四指针逐渐走向矩阵中心的过程
 `if (left < right && top < bottom)`：还需要注意的是，矩阵的结构 **不一定是正方形** ，也就意味着，到最后的最后，可能只有上右或者下左可以遍历最中心那几个一维的元素，也就是说必须要多这一层if判断，否则就会重复遍历。
 所以说要考虑的还是蛮多的，虽然解法思路简单，但是各种可能的情况还是都要考虑。
+
+## 旋转图像
+### 算法概述
+[原题](https://leetcode.cn/problems/rotate-image/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求把矩阵顺时针旋转90度。可以通过计算得出每个元素在旋转90度之后的索引变化，用中间变量存储变化位置的元素值，然后循环旋转即可。
+- 时间复杂度为O(n^2)：遍历矩阵
+- 空间复杂度为O(1)：中间变量
+
+### JAVA
+```bash
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        // 需要把整个矩阵分为均匀四块（n为偶数正常分，n为奇数保留中心元素不动）
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < (n + 1) / 2; ++j) {
+                // 存储当前元素
+                int temp = matrix[i][j];
+                // 顺时针旋转，但在赋值时方向相反，应为逆时针，分为四个部分，所以有四次
+                matrix[i][j] = matrix[n - j - 1][i];
+                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+                matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+                // 最后一次是顺时针方向的第一次
+                matrix[j][n - i - 1] = temp;
+            }
+        }
+    }
+}
+```
+
+### C++
+```bash
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < (n + 1) / 2; ++j) {
+                // 使用c++17的新std接口，就不需要temp了
+                tie(matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1]) \
+                    = make_tuple(matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1], matrix[i][j]);
+            }
+        }
+    }
+};
+```
+
+#### 重要实例方法及属性(C++)
+`std::tie(...variables)`：用于解包元组（类似于python的自动解包）
+`std::make_tuple(...args)`：打包多个变量成元组
+
+### 注意
+![公式](\images\顺时针旋转90度公式.png)
+公式本质是逆时针的，和题目要求的顺时针旋转是相反的。
+要注意 **代码本身逻辑可以与题目要求相反** ，同时达到相同效果。
+
+## 搜素二维矩阵 II
+### 算法概述
+[原题](https://leetcode.cn/problems/search-a-2d-matrix-ii/?envType=study-plan-v2&envId=top-100-liked)
+
+题目要求为搜索矩阵中的某个目标值，且每行矩阵从左到右、从上到下升序排列。
+
+### JAVA
+```bash
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length, n = matrix[0].length;
+        // 初始为右上角
+        int x = 0, y = n - 1;
+        while (x < m && y >= 0) {
+            if (matrix[x][y] == target) {
+                return true;
+            }
+            // 如果较小，行方向向内移动
+            if (matrix[x][y] > target) {
+                --y;
+            } else {
+                // 较大，则行方向向下移动
+                ++x;
+            }
+        }
+        return false;
+    }
+}
+```
+
+### C++
+```bash
+// 一样的
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size(), n = matrix[0].size();
+        int x = 0, y = n - 1;
+        while (x < m && y >= 0) {
+            if (matrix[x][y] == target) {
+                return true;
+            }
+            if (matrix[x][y] > target) {
+                --y;
+            }
+            else {
+                ++x;
+            }
+        }
+        return false;
+    }
+};
+```
+
+### 注意
+我一开始想的是两层二叉查找，但实际上行内排序和列内排序本身是没有关联的，所以必须 **一个一个移动查找** ，也就是给出的Z字形查找，因为 **左边与上面的总是小的，右边和下面总是更大的** ，即使可能会稍微小绕一下，但也相对最简便了。要学会 **从最基本的规律出发，从中间值开始** 。
