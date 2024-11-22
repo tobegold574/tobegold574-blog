@@ -280,3 +280,675 @@ public class Solution {
 ![公式](\images\入环点计算公式.png)
 其中 *a* 是环外距离， *b* 快慢指针走过的环内距离， *c* 是相遇点顺时针计算离入环点的距离。
 可见有时不用很复杂的代码解决问题，和之前的矩阵顺时针旋转类似，用纸笔也可以计算出通用的公式，更方便执行。
+
+## 合并两个有序链表
+### 算法概述
+[原题](https://leetcode.cn/problems/merge-two-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked)
+
+题目要求为将给出的有序列表按照升序合并。还是双指针，同时因为链表很灵活，对于输入链表可以在遍历时同时修改，所以不需要创建新的变量。很像矩阵的查找目标值的思路（Z字形移动），因为实际的代码逻辑就是找单次比较中较小的，然后移动相应指针。
+- 时间复杂度为O(n+m)：都需要遍历比较
+- 空间复杂度为O(1)：只需要一个变量标记目前较大值
+
+### JAVA
+```bash
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+       // 因为双指针会移动，所以还需要一个指针指向起始位置
+       ListNode prehead=new ListNode(-1);
+       // prev指向上次比较得到的较小值的下一个值
+       ListNode prev=prehead;
+       // l1和l2不是同时移动，它们只需要指向需要比较的元素
+       while(l1!=null&&l2!=null){
+        // 谁小谁往前移动（升序）
+        if(l1.val<=l2.val){
+            prev.next=l1;
+            l1=l1.next;
+        }else{
+            prev.next=l2;
+            l2=l2.next;
+        }
+        // prev指向移动的那个元素
+        prev=prev.next;
+       }
+       // 拼接未比较完的那个链表（升序，无需比较）
+       prev.next=l1==null?l2:l1;
+       // 返回之前标记的位置
+       return prehead.next;
+    }
+}
+```
+
+### C++
+```bash
+// 无区别
+```
+
+### 注意
+可以用链表的头结点直接操作，但是需要记得 **标记起始点** 。
+因为双指针的操作需要沿着它们各自链表，所以需要一个额外的指针将比较的结果串起来， **它落后于链表遍历指针** 。
+
+## 两数相加
+### 算法概述
+[原题](https://leetcode.cn/problems/add-two-numbers/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为求出两个以逆序且各个节点用以表示位数的链表表示的数字之和。就是直接相加，同时保留进位。
+- 时间复杂度为O(m+n)：都遍历一遍就行
+- 空间复杂度为O(1)：返回的链表不算
+
+
+### JAVA
+``` bash
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // 创建新的链表返回
+        ListNode head = null, tail = null;
+        // 进位
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            // next有则移动，无则为0（长度不相同）
+            int n1 = l1 != null ? l1.val : 0;
+            int n2 = l2 != null ? l2.val : 0;
+            int sum = n1 + n2 + carry;
+            if (head == null) {
+                // 题目要求单节点只保存一位
+                head = tail = new ListNode(sum % 10);
+            } else {
+                // 头结点用于返回，尾节点用于更新返回链表
+                tail.next = new ListNode(sum % 10);
+                tail = tail.next;
+            }
+            // 进位计算
+            carry = sum / 10;
+            // 移动指针
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+        // 如果最后还有进位，就创建新节点
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
+        return head;
+    }
+}
+```
+
+### C++
+```bash
+// 一样
+```
+
+### 注意
+虽然思路不复杂，但是搭建一个优雅的代码框架还是很困难的。
+要注意用`int n1 = l1 != null ? l1.val : 0;`将值与遍历分离（因为每一个节点只能存一个数字，但和会是两位的）。
+要常温常新。
+
+## 删除链表的倒数第N个节点
+### 算法概述
+[原题](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为删除链表中倒数的第n个节点并返回链表。快慢指针，快指针到头了，恰好慢指针也到该删除的节点前面。
+- 时间复杂度为O(n)：一个循环
+- 空间复杂度为O(1)：双指针
+
+### JAVA
+```bash
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        // 头结点之前
+        ListNode dummy = new ListNode(0, head);
+        ListNode first = head;
+        ListNode second = dummy;
+        // 快指针先移动n次
+        for (int i = 0; i < n; ++i) {
+            first = first.next;
+        }
+        // 一起动
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+        // 删除节点
+        second.next = second.next.next;
+        ListNode ans = dummy.next;
+        return ans;
+    }
+}
+```
+
+### C++
+```bash
+// 没区别
+```
+
+### 注意
+`ListNode dummy = new ListNode(0, head);`： *dummy* 是为了处理边界情况，也就是删除的就是头结点。
+`second.next = second.next.next;`：我前面想删除节点得找到前后节点，但实际上只需要找到前一个节点即可，这就是数据结构不熟。
+思路很简单，但是怎样优雅的实现需要学习与思考。
+
+## 两两交换链表中的节点
+### 算法概述
+[原题](https://leetcode.cn/problems/swap-nodes-in-pairs/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求将链表中的两两相邻节点原地交换位置。就是正常的遍历交换（迭代）。
+- 时间复杂度为O(n)：节点要遍历完
+- 空间复杂度为O(1)；和上题一样需要哑结点和一些其他的中间变量
+
+### JAVA
+```bash
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        // 哑结点和上题一样，是用来处理边界的，因为一套操作下来需要三个节点，而头两个节点不够
+        ListNode dummyHead = new ListNode(0,head);
+        // 结构为temp node1 node2
+        ListNode temp = dummyHead;
+        // 三节点结构完整，符合交换条件
+        while (temp.next != null && temp.next.next != null) {
+            ListNode node1 = temp.next;
+            ListNode node2 = temp.next.next;
+            // temp不参与交换，temp的更新是用于判断后面是否符合交换条件
+            temp.next = node2;
+            node1.next = node2.next;
+            node2.next = node1;
+            temp = node1;
+        }
+        return dummyHead.next;
+    }
+}
+```
+
+### C++
+```bash
+// 相同
+```
+
+### 注意
+`ListNode dummyHead = new ListNode(0,head);`：链表原地操作往往需要一个哑结点辅助处理边界。
+`while (temp.next != null && temp.next.next != null)`： *temp* 只参与判断是否需要交换，交换本身 *node1* 和  *node2* 就能完成。
+思路不难，重在实现与全面的考虑。
+
+## K个一组翻转链表
+### 算法概述
+[原题](https://leetcode.cn/problems/reverse-nodes-in-k-group/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为以k为一组翻转子链表。其实思路不复杂，关键是怎么组织需要使用到的中间变量。
+- 时间复杂度为O(n)：一次遍历
+- 空间复杂度为O(1)；依托中间变量
+
+### JAVA
+```bash
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummy = new ListNode(0,head);
+        // 需要保留当前翻转部分的前一个节点
+        ListNode pre = dummy;
+
+        while (head != null) {
+            // 使用tail指针从头开始遍历
+            ListNode tail = pre;
+            // 一个k链表一个k链表的来
+            for (int i = 0; i < k; ++i) {
+                tail = tail.next;
+                if (tail == null) {
+                    // 剩余不足k，可返回
+                    return dummy.next;
+                }
+            }
+            // 当前翻转链表的后一个节点
+            ListNode nex = tail.next;
+            // 翻转完了头尾倒置
+            ListNode[] reverse = myReverse(head, tail);
+            head = reverse[0];
+            tail = reverse[1];
+            // 相当于一个新的链表需要重新接入原链表
+            pre.next = head;
+            tail.next = nex;
+            // 更新，tail此时为翻转链表中的最后一个元素
+            pre = tail;
+            head = tail.next;
+        }
+
+        return dummy.next;
+    }
+
+    // 反转链表
+    public ListNode[] myReverse(ListNode head, ListNode tail) {
+        ListNode prev = tail.next;
+        ListNode curr = head;
+        while (prev != tail) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return new ListNode[]{tail, head};
+    }
+}
+```
+
+### C++
+```bash
+class Solution {
+// public区别不大
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* dummy=new ListNode(0,head);
+        ListNode* pre=dummy;
+        while(head!=nullptr){
+            ListNode* tail=pre;
+            for(int i=0;i!=k;++i){
+                tail=tail->next;
+                if(tail==nullptr){
+                    return dummy->next;
+                }
+            }
+            ListNode* nex=tail->next;
+            // 这里用tie解包更方便
+            tie(head,tail)=myReverse(head,tail);
+
+            pre->next=head;
+            tail->next=nex;
+            
+            pre=tail;
+            head=tail->next;
+        }
+        return dummy->next;
+    }
+// 这里用了pair容器，
+private:
+    pair<ListNode*,ListNode*> myReverse(ListNode* head, ListNode* tail){
+        ListNode* prev=tail->next;
+        ListNode* curr=head;
+        while(prev!=tail){
+            ListNode* next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return {tail,head};
+
+    }
+};
+```
+
+#### 重要实例方法及属性(C++)
+`pair<ListNode*,ListNode*>`：使用pair容器类返回多个值
+`tie(head,tail)=myReverse(head,tail)`：std::tie不仅可以解包std::tuple，也可以解包std::pair
+
+### 注意
+`ListNode* dummy=new ListNode(0,head);`这种需要操作子单位的题目都需要哑结点。
+代码中用到`pre`来存储子链表的前一个节点，这里需要考虑到的是链表本身的特性，即 **必须要有前一个节点，才能插入** 。
+以及用到了`tail`来进行遍历，判断是否剩余节点满足翻转条件。这里需要注意的是，`tail`不仅仅可用于遍历，还可用于 **更新** `pre`，这是很重要的。
+以及还需要在翻转前保存子链表的下一个节点`nex`，在翻转后重新连接。
+1. `pre`用于指向子链表前一个节点。
+2. `tail`用于指向子链表的最后一个节点，以及下一组子链表的`pre`。
+3. `nex`指向子链表的后一个节点。
+
+还需要注意的是在翻转中：`while(prev!=tail)`是以`tail`为终止条件，而不是`while(curr!=null)`，需要注意翻转对象的性质改变辅助函数。
+
+## 随机链表的复制
+### 算法概述
+[原题](https://leetcode.cn/problems/copy-list-with-random-pointer/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为深拷贝给出的链表（每个子节点包括后驱和一个随机索引）。难点在于顺序，或者说思路本身并不难，如何组织出一个行之有效的方法才难。
+给出的解法是三个循环：新节点（包含next）->random->新表。核心思路就是在原链表上操作，这样会极大减少查询原链表信息的难度，会使所有操作简化为使用几次迭代的问题。
+- 时间复杂度为O(n)：遍历三次
+- 空间复杂度为O(1)：中间变量，输出不算
+
+### JAVA
+```bash
+class Solution {
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        // 对遍历的当前节点进行深拷贝并放在其后一个位置（等同于上一个节点，无random）
+        for (Node node = head; node != null; node = node.next.next) {
+            // 深拷贝
+            Node nodeNew = new Node(node.val);
+            // 前后连接
+            nodeNew.next = node.next;
+            node.next = nodeNew;
+        }
+        // 仍然遍历原链表，为新节点创建random指针
+        for (Node node = head; node != null; node = node.next.next) {
+            // 所有新节点是原节点的next
+            Node nodeNew = node.next;
+            // （核心）用原节点的random进行拷贝
+            nodeNew.random = (node.random != null) ? node.random.next : null;
+        }
+        // 头结点也变了
+        Node headNew = head.next;
+        // 遍历整个链表（包含新节点和原节点），进行分离
+        for (Node node = head; node != null; node = node.next) {
+            // 保存新节点
+            Node nodeNew = node.next;
+            // 丢弃新节点
+            node.next = node.next.next;
+            // 生成整个深拷贝新链表
+            nodeNew.next = (nodeNew.next != null) ? nodeNew.next.next : null;
+        }
+        return headNew;
+    }
+}
+```
+
+### C++
+```bash
+// 没有区别
+```
+
+### 注意
+第一个循环中把新节点插入节点之间的最大原因，就是可以在第三个循环中的`nodeNew.next = (nodeNew.next != null) ? nodeNew.next.next : null;`直接修改新节点的`next`，而且只需要两次迭代即可。
+同时也方便了第二个循环中的`nodeNew.random = (node.random != null) ? node.random.next : null;`用以更新random，这样只需对当前节点的random进行迭代即可。
+总而言之，核心的核心就是 **把新节点插入到原链表中** ，这也属于基于原链表使操作更便捷，非常经典，需要牢记和熟练。
+
+还有回溯+哈希表的解法，时间复杂度一样：
+```bash
+class Solution {
+public:
+    unordered_map<Node*, Node*> cachedNode;
+
+    Node* copyRandomList(Node* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+        // 判断表里面有没有当前节点，没有就加进去
+        if (!cachedNode.count(head)) {
+            Node* headNew = new Node(head->val);
+            cachedNode[head] = headNew;
+            // 递归解决
+            headNew->next = copyRandomList(head->next);
+            headNew->random = copyRandomList(head->random);
+        }
+        return cachedNode[head];
+    }
+};
+```
+
+
+## 排序链表
+### 算法概述
+[原题](https://leetcode.cn/problems/sort-list/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为升序排列给出的链表。使用自底向上的归并排序。
+自底向上的归并排序，就是把原链表以1、2、4、6、8……等sublength的长度分为多个子链表，每次分成两个子链表后，将这两个子链表以“合并两个升序链表”的方式合并，因为是从1开始的，所以这样做没有问题。不断循环这样向上合并的过程，后面即使两个子链表剩的长度不够也没有问题，“合并两个升序链表”给出了解释。
+- 时间复杂度为O(nlogn)：归并排序
+- 空间复杂度为O(1)：原地操作
+
+### JAVA
+```bash
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        int length = 0;
+        ListNode node = head;
+        // 算链表长度
+        while (node != null) {
+            length++;
+            node = node.next;
+        }
+        // 哑结点
+        ListNode dummyHead = new ListNode(0, head);
+        // 归并排序（位运算<<=1就是*=2）
+        for (int subLength = 1; subLength < length; subLength <<= 1) {
+            ListNode prev = dummyHead, curr = dummyHead.next;
+            // 分割
+            while (curr != null) {
+                // head1为第一个子链表中的头结点（链表中的头结点）
+                ListNode head1 = curr;
+                // 遍历到尾节点
+                for (int i = 1; i < subLength && curr.next != null; i++) {
+                    curr = curr.next;
+                }
+                // head2是第一个子链表后的第一个节点
+                ListNode head2 = curr.next;
+                // 断开
+                curr.next = null;
+                // 进入第二个链表（重复上述操作）
+                curr = head2;
+                for (int i = 1; i < subLength && curr != null && curr.next != null; i++) {
+                    curr = curr.next;
+                }
+                ListNode next = null;
+                // 现在curr是第二个链表的最后一个元素
+                if (curr != null) {
+                    next = curr.next;
+                    // 断开，此时next是下一个子链表对的节点
+                    curr.next = null;
+                }
+                // 经历过分割与重新合并且排过序的子链表对
+                ListNode merged = merge(head1, head2);
+                // 遍历完子链表对
+                prev.next = merged;
+                while (prev.next != null) {
+                    prev = prev.next;
+                }
+                curr = next;
+            }
+        }
+        return dummyHead.next;
+    }
+
+    public ListNode merge(ListNode head1, ListNode head2) {
+        // 还要哑结点
+        ListNode dummyHead = new ListNode(0);
+        // 三个临时变量
+        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;
+        // 和“合并两个升序链表”的逻辑一样的
+        while (temp1 != null && temp2 != null) {
+            if (temp1.val <= temp2.val) {
+                temp.next = temp1;
+                temp1 = temp1.next;
+            } else {
+                temp.next = temp2;
+                temp2 = temp2.next;
+            }
+            temp = temp.next;
+        }
+        if (temp1 != null) {
+            temp.next = temp1;
+        } else if (temp2 != null) {
+            temp.next = temp2;
+        }
+        return dummyHead.next;
+    }
+}
+```
+
+### C++
+```bash
+// 没啥区别
+```
+
+### 注意
+自顶向下和自底向上的归并排序 **时间复杂度一样** ，但是 **空间复杂度上后者更优** 。但自顶向上的应用更广泛，自底向上 **适合链表** 。
+1. `class Solution`中的`dummyHead`用于处理整个链表的极端边界情况。
+2. `merge()`中的`dummyHead`用于处理“合并两个升序链表”中的极端边界情况。
+3. `head1`是当前子链表对第一个子链表的头，`head2`是当前子链表对第二个子链表的头。
+4. `next`指向下一个子链表对的头结点，`curr`依据它来更新。
+5. `prev`用于存储前一个子链表对的最后一个节点，然后将合并完（分割过的）子链表对重新连接回来。
+
+归并排序对于链表极为重要， **务必背记** 。
+
+## 合并k个升序链表
+### 算法概述
+[原题](https://leetcode.cn/problems/merge-k-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为合并给出链表中的所有升序子链表。采用的还是和上题一样的分治法。但是这里因为用的是递归，所以隐藏代码写的更深，没有写出来。用的是独立的两个递归函数共同工作。
+- 时间复杂度为O(kn×logk)：多组分治遍历的次数求和
+- 空间复杂度为O(logk)：栈
+
+### JAVA
+```bash
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        // 直接用函数彻底分装
+        return merge(lists, 0, lists.length - 1);
+    }
+    // 左右指针从左右边界开始
+    public ListNode merge(ListNode[] lists, int l, int r) {
+        // 这两个判断条件是为递归底部使用的
+        if (l == r) {
+            return lists[l];
+        }
+        if (l > r) {
+            return null;
+        }
+        // 除以2
+        int mid = (l + r) >> 1;
+        // 递归（在栈中是自底向上）
+        return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
+    }
+    // 
+    public ListNode mergeTwoLists(ListNode a, ListNode b) {
+        // 分治到只剩一个
+        if (a == null || b == null) {
+            return a != null ? a : b;
+        }
+        // 这下和前面两道题都是一样的
+        ListNode dummy = new ListNode(0);
+        // 要记得比较用的三元结构的第一个得从dummy开始
+        ListNode tail = dummy, aPtr = a, bPtr = b;
+        while (aPtr != null && bPtr != null) {
+            if (aPtr.val < bPtr.val) {
+                tail.next = aPtr;
+                aPtr = aPtr.next;
+            } else {
+                tail.next = bPtr;
+                bPtr = bPtr.next;
+            }
+            tail = tail.next;
+        }
+        // 处理末端边界
+        tail.next = (aPtr != null ? aPtr : bPtr);
+        return dummy.next;
+    }
+}
+```
+
+### C++
+```bash
+// 没区别，就是java里的!=null可以不用写，直接写指针名会自动判断的
+```
+
+### 注意
+两道题都用到了基本的排序，说明还是很重要的，“合并两个升序链表”还是要牢记、
+把功能分离到两个递归函数里来工作，是比较复杂的，虽然说结构很清晰简单，但是栈内的顺序还是要理清楚，要多练习。
+
+## LRU缓存
+### 算法概述
+[原题](https://leetcode.cn/problems/lru-cache/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求设计一个满足getter和setter(get,put,capacity初始化)的类，LRU意为最近访问的数据在实例内优先级更高，且要求get()和put()在O(1)时间内完成。核心是在确保访问操作的时间复杂度的同时，根据capacity动态调整存储的键值对。使用双向链表实现。
+
+### JAVA
+```bash
+class LRUCache {
+    // 双向链表节点
+    class DLinkedNode {
+        int key;
+        int value;
+        // 前驱和后驱都要有
+        DLinkedNode prev;
+        DLinkedNode next;
+
+        // 两个构造器
+        public DLinkedNode() {}
+
+        public DLinkedNode(int _key, int _value) {key = _key;value = _value;}
+    }
+
+    // 数字索引，值为节点实例
+    private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
+    // 双向链表内部跟踪节点总数
+    private int size;
+    private int capacity;
+    // 头、尾指针
+    private DLinkedNode head, tail;
+
+    // capacity初始化
+    public LRUCache(int capacity) {
+        this.size = 0;
+        this.capacity = capacity;
+        head = new DLinkedNode();
+        tail = new DLinkedNode();
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    public int get(int key) {
+        DLinkedNode node = cache.get(key);
+        if (node == null) {
+            return -1;
+        }
+        // 移动到头部，即变为“最近使用”
+        moveToHead(node);
+        return node.value;
+    }
+
+    public void put(int key, int value) {
+        DLinkedNode node = cache.get(key);
+        // 没有就新建一个节点
+        if (node == null) {
+            DLinkedNode newNode = new DLinkedNode(key, value);
+            cache.put(key, newNode);
+            // 新建也是“最近使用”
+            addToHead(newNode);
+            ++size;
+            if (size > capacity) {
+                // 把“最不最近使用”的节点删去，腾出空间
+                DLinkedNode tail = removeTail();
+                cache.remove(tail.key);
+                --size;
+            }
+        } else {
+            // “最近使用”
+            node.value = value;
+            moveToHead(node);
+        }
+    }
+
+    private void addToHead(DLinkedNode node) {
+        // 移动节点位置基操，先改node，再改前后驱
+        node.prev = head;
+        node.next = head.next;
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    private void removeNode(DLinkedNode node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void moveToHead(DLinkedNode node) {
+        // 这里没有真的去遍历移动，而是直接删除和新建，更方便
+        removeNode(node);
+        addToHead(node);
+    }
+
+    private DLinkedNode removeTail() {
+        DLinkedNode res = tail.prev;
+        removeNode(res);
+        return res;
+    }
+}
+```
+
+### C++
+```bash
+// 一样的思路，除了哈希表的接口不一样
+```
+
+### 注意
+标准的将自定义数据结构和常用容器复合的类定义，要注意体现数据结构的特征（e.g., `moveToHead`直接删除和插入）。
+在这个类中，哈希表和双向链表都存了一次数据，因为 **哈希表是用于快速访问** ，而 **双向链表是用于更新顺序** ，这里需要兼取两者的优势。
+两个数据结构之间的交互或者数据结构本身的欠缺需要设置私有变量来弥补（e.g., `size`和`capacity`）。
+
+**常温常新**
