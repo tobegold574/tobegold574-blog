@@ -18,16 +18,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="相交链表算法概述原题  题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是到对方的链表中继续遍历。  时间复杂度为O(n+m)">
+        <meta name="description" content="相交链表算法概述原题  题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是 到对方的链表中继续遍历 。  时间复杂度为O(n+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表(14) --hot 100 in leetcode">
 <meta property="og:url" content="http://example.com/2024/11/21/%E9%93%BE%E8%A1%A8-14-hot-100-in-leetcode/index.html">
 <meta property="og:site_name" content="hexo">
-<meta property="og:description" content="相交链表算法概述原题  题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是到对方的链表中继续遍历。  时间复杂度为O(n+m)">
+<meta property="og:description" content="相交链表算法概述原题  题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是 到对方的链表中继续遍历 。  时间复杂度为O(n+">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/%5Cimages%5C%E5%85%A5%E7%8E%AF%E7%82%B9%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.png">
 <meta property="article:published_time" content="2024-11-21T09:15:48.000Z">
-<meta property="article:modified_time" content="2024-11-22T13:00:29.420Z">
+<meta property="article:modified_time" content="2024-11-22T13:05:42.340Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="hot 100">
 <meta property="article:tag" content="leetcode">
@@ -268,8 +268,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-22 21:29</span>
-            <span class="mobile">2024-11-22 21:29</span>
+            <span class="desktop">2024-11-22 21:05:42</span>
+            <span class="mobile">2024-11-22 21:05:42</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -320,7 +320,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 </script>
 
 <h2 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是到对方的链表中继续遍历。</p>
+<p>题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是 <em><strong>到对方的链表中继续遍历</strong></em> 。</p>
 <ul>
 <li>时间复杂度为O(n+m)：双指针同时遍历，最多遍历完（返回null情况）</li>
 <li>空间复杂度为O(1)：双指针存储</li>
@@ -343,7 +343,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 <h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>链表的特性便在于灵活的插入与复杂的遍历，所以必须要在遍历的同时利用灵活的插入改变前驱和后驱来调整链表的顺序，不仅对于链表的顺序，在面对任何操作链表的问题时，应该记住它的灵活性所在，并加以利用。</p>
 <p>代码中难以理解的就是，虽然可以用空节点填补头结点的前驱空缺，但实际上链表只包含了自己的信息和下一个节点的信息，所以 <em>prev</em> 在这里的作用只是一个为了循环遍历服务的中间变量，就看的很奇怪，实际上只有 <em>next</em> 和 <em>curr</em> 是实际操作的主体，而且 <em>next</em> 因为可以通过当前节点访问，所以每次循环都会重新生成，是临时的。</p>
 <h2 id="回文链表"><a href="#回文链表" class="headerlink" title="回文链表"></a>回文链表</h2><h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-linked-list/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求为判断链表是否为互文的。互文的关键特征是链表是否是对称的，也就是说要找到中间节点，再翻转后半部分，再进行比较才行。</p>
+<p>本题要求为判断链表是否为互文的。互文的关键特征是链表是否是对称的，也就是说要找到中间节点，再 <em><strong>翻转后半部分</strong></em> ，再进行比较才行。</p>
 <ul>
 <li>时间复杂度为O(n)：只需遍历找到中间节点</li>
 <li>空间复杂度为O(1)：只修改原链表</li>
@@ -354,7 +354,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <h3 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h3><p>学会用<code>fast</code>和<code>slow</code>快慢指针找节点（之前也有双指针题目用过快慢指针）。<br>牢记 <strong>反转链表</strong> 的思路，可以用作其他题的模块。</p>
 <h2 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h2><h3 id="算法概述-3"><a href="#算法概述-3" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求判断链表中是否有环。可以用快慢指针解决。</p>
+<p>本题要求判断链表中是否有环。可以用 <em><strong>快慢指针</strong></em> 解决。</p>
 <ul>
 <li>时间复杂度为O(n)：就按照慢指针最多移动多远算</li>
 <li>空间复杂度为O(1)：快慢指针</li>
@@ -365,7 +365,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <h3 id="注意-3"><a href="#注意-3" class="headerlink" title="注意"></a>注意</h3><p>像前面的求交点问题一样，都是不可避免的需要一个几乎完整的循环遍历，但怎么让其中的双指针通过 <strong>相遇</strong> 把问题解决，是这类题目的重点。可以为双指针赋予不同的起点、速度等等，来求得不同的目标。</p>
 <h2 id="环形链表-II"><a href="#环形链表-II" class="headerlink" title="环形链表 II"></a>环形链表 II</h2><h3 id="算法概述-4"><a href="#算法概述-4" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求为返回进入环的那个节点（前一道题只需要判断是否有环）。我想的其实是反转链表，把相遇点之前的链表反转，然后反向遍历，但是还可以通过计算直接得出一个更加方便的方法，也就是在快慢指针相遇的时候，再从链表头释放一个指针，这个指针会和不停绕着环转的慢指针相遇在入环点🤨。</p>
+<p>本题要求为返回进入环的那个节点（前一道题只需要判断是否有环）。我想的其实是反转链表，把相遇点之前的链表反转，然后反向遍历，但是还可以通过计算直接得出一个更加方便的方法，也就是在快慢指针相遇的时候， <em><strong>再从链表头释放一个指针</strong></em> ，这个指针会和不停绕着环转的慢指针相遇在入环点🤨。</p>
 <ul>
 <li>时间复杂度为O(n)：全部放在一个while的作用就在这里</li>
 <li>空间复杂度为O(1)：三指针</li>
@@ -381,7 +381,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
                       alt="公式"
                 ><br>其中 <em>a</em> 是环外距离， <em>b</em> 快慢指针走过的环内距离， <em>c</em> 是相遇点顺时针计算离入环点的距离。<br>可见有时不用很复杂的代码解决问题，和之前的矩阵顺时针旋转类似，用纸笔也可以计算出通用的公式，更方便执行。</p>
 <h2 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h2><h3 id="算法概述-5"><a href="#算法概述-5" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>题目要求为将给出的有序列表按照升序合并。还是双指针，同时因为链表很灵活，对于输入链表可以在遍历时同时修改，所以不需要创建新的变量。很像矩阵的查找目标值的思路（Z字形移动），因为实际的代码逻辑就是找单次比较中较小的，然后移动相应指针。</p>
+<p>题目要求为将给出的有序列表按照升序合并。还是双指针，同时因为链表很灵活，对于输入链表可以在遍历时同时修改，所以不需要创建新的变量。很像矩阵的查找目标值的思路（ <em><strong>Z字形移动</strong></em> ），因为实际的代码逻辑就是找单次比较中较小的，然后移动相应指针。</p>
 <ul>
 <li>时间复杂度为O(n+m)：都需要遍历比较</li>
 <li>空间复杂度为O(1)：只需要一个变量标记目前较大值</li>
@@ -403,7 +403,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <h3 id="注意-6"><a href="#注意-6" class="headerlink" title="注意"></a>注意</h3><p>虽然思路不复杂，但是搭建一个优雅的代码框架还是很困难的。<br>要注意用<code>int n1 = l1 != null ? l1.val : 0;</code>将值与遍历分离（因为每一个节点只能存一个数字，但和会是两位的）。<br>要常温常新。</p>
 <h2 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h2><h3 id="算法概述-7"><a href="#算法概述-7" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求为删除链表中倒数的第n个节点并返回链表。快慢指针，快指针到头了，恰好慢指针也到该删除的节点前面。</p>
+<p>本题要求为删除链表中倒数的第n个节点并返回链表。 <em><strong>快慢指针</strong></em> ，快指针到头了，恰好慢指针也到该删除的节点前面。</p>
 <ul>
 <li>时间复杂度为O(n)：一个循环</li>
 <li>空间复杂度为O(1)：双指针</li>
@@ -443,7 +443,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 </ol>
 <p>还需要注意的是在翻转中：<code>while(prev!=tail)</code>是以<code>tail</code>为终止条件，而不是<code>while(curr!=null)</code>，需要注意翻转对象的性质改变辅助函数。</p>
 <h2 id="随机链表的复制"><a href="#随机链表的复制" class="headerlink" title="随机链表的复制"></a>随机链表的复制</h2><h3 id="算法概述-10"><a href="#算法概述-10" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求为深拷贝给出的链表（每个子节点包括后驱和一个随机索引）。难点在于顺序，或者说思路本身并不难，如何组织出一个行之有效的方法才难。<br>给出的解法是三个循环：新节点（包含next）-&gt;random-&gt;新表。核心思路就是在原链表上操作，这样会极大减少查询原链表信息的难度，会使所有操作简化为使用几次迭代的问题。</p>
+<p>本题要求为深拷贝给出的链表（每个子节点包括后驱和一个随机索引）。难点在于顺序，或者说思路本身并不难，如何组织出一个行之有效的方法才难。<br>给出的解法是 <em><strong>三个循环：新节点（包含next）-&gt;random-&gt;新表</strong></em> 。核心思路就是在原链表上操作，这样会极大减少查询原链表信息的难度，会使所有操作简化为使用几次迭代的问题。</p>
 <ul>
 <li>时间复杂度为O(n)：遍历三次</li>
 <li>空间复杂度为O(1)：中间变量，输出不算</li>
@@ -458,7 +458,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 
 <h2 id="排序链表"><a href="#排序链表" class="headerlink" title="排序链表"></a>排序链表</h2><h3 id="算法概述-11"><a href="#算法概述-11" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-list/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求为升序排列给出的链表。使用自底向上的归并排序。<br>自底向上的归并排序，就是把原链表以1、2、4、6、8……等sublength的长度分为多个子链表，每次分成两个子链表后，将这两个子链表以“合并两个升序链表”的方式合并，因为是从1开始的，所以这样做没有问题。不断循环这样向上合并的过程，后面即使两个子链表剩的长度不够也没有问题，“合并两个升序链表”给出了解释。</p>
+<p>本题要求为升序排列给出的链表。使用 <em><strong>自底向上的归并排序</strong></em> 。<br>自底向上的归并排序，就是把原链表以1、2、4、6、8……等sublength的长度分为多个子链表，每次分成两个子链表后，将这两个子链表以“合并两个升序链表”的方式合并，因为是从1开始的，所以这样做没有问题。不断循环这样向上合并的过程，后面即使两个子链表剩的长度不够也没有问题，“合并两个升序链表”给出了解释。</p>
 <ul>
 <li>时间复杂度为O(nlogn)：归并排序</li>
 <li>空间复杂度为O(1)：原地操作</li>
@@ -477,7 +477,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 </ol>
 <p>归并排序对于链表极为重要， <strong>务必背记</strong> 。</p>
 <h2 id="合并k个升序链表"><a href="#合并k个升序链表" class="headerlink" title="合并k个升序链表"></a>合并k个升序链表</h2><h3 id="算法概述-12"><a href="#算法概述-12" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-k-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求为合并给出链表中的所有升序子链表。采用的还是和上题一样的分治法。但是这里因为用的是递归，所以隐藏代码写的更深，没有写出来。用的是独立的两个递归函数共同工作。</p>
+<p>本题要求为合并给出链表中的所有升序子链表。采用的还是和上题一样的 <em><strong>分治法</strong></em> 。但是这里因为用的是递归，所以隐藏代码写的更深，没有写出来。用的是独立的两个递归函数共同工作。</p>
 <ul>
 <li>时间复杂度为O(kn×logk)：多组分治遍历的次数求和</li>
 <li>空间复杂度为O(logk)：栈</li>
@@ -488,7 +488,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <h3 id="注意-12"><a href="#注意-12" class="headerlink" title="注意"></a>注意</h3><p>两道题都用到了基本的排序，说明还是很重要的，“合并两个升序链表”还是要牢记、<br>把功能分离到两个递归函数里来工作，是比较复杂的，虽然说结构很清晰简单，但是栈内的顺序还是要理清楚，要多练习。</p>
 <h2 id="LRU缓存"><a href="#LRU缓存" class="headerlink" title="LRU缓存"></a>LRU缓存</h2><h3 id="算法概述-13"><a href="#算法概述-13" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>本题要求设计一个满足getter和setter(get,put,capacity初始化)的类，LRU意为最近访问的数据在实例内优先级更高，且要求get()和put()在O(1)时间内完成。核心是在确保访问操作的时间复杂度的同时，根据capacity动态调整存储的键值对。使用双向链表实现。</p>
+<p>本题要求设计一个满足getter和setter（get,put,capacity初始化）的类，LRU意为最近访问的数据在实例内优先级更高，且要求get()和put()在O(1)时间内完成。核心是在确保访问操作的时间复杂度的同时，根据capacity动态调整存储的键值对。使用 <em><strong>双向链表</strong></em> 实现。</p>
 <h3 id="JAVA-13"><a href="#JAVA-13" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">class LRUCache &#123;</span><br><span class="line">    // 双向链表节点</span><br><span class="line">    class DLinkedNode &#123;</span><br><span class="line">        int key;</span><br><span class="line">        int value;</span><br><span class="line">        // 前驱和后驱都要有</span><br><span class="line">        DLinkedNode prev;</span><br><span class="line">        DLinkedNode next;</span><br><span class="line"></span><br><span class="line">        // 两个构造器</span><br><span class="line">        public <span class="function"><span class="title">DLinkedNode</span></span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        public DLinkedNode(int _key, int _value) &#123;key = _key;value = _value;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 数字索引，值为节点实例</span><br><span class="line">    private Map&lt;Integer, DLinkedNode&gt; cache = new HashMap&lt;Integer, DLinkedNode&gt;();</span><br><span class="line">    // 双向链表内部跟踪节点总数</span><br><span class="line">    private int size;</span><br><span class="line">    private int capacity;</span><br><span class="line">    // 头、尾指针</span><br><span class="line">    private DLinkedNode <span class="built_in">head</span>, <span class="built_in">tail</span>;</span><br><span class="line"></span><br><span class="line">    // capacity初始化</span><br><span class="line">    public LRUCache(int capacity) &#123;</span><br><span class="line">        this.size = 0;</span><br><span class="line">        this.capacity = capacity;</span><br><span class="line">        <span class="built_in">head</span> = new DLinkedNode();</span><br><span class="line">        <span class="built_in">tail</span> = new DLinkedNode();</span><br><span class="line">        head.next = <span class="built_in">tail</span>;</span><br><span class="line">        tail.prev = <span class="built_in">head</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int get(int key) &#123;</span><br><span class="line">        DLinkedNode node = cache.get(key);</span><br><span class="line">        <span class="keyword">if</span> (node == null) &#123;</span><br><span class="line">            <span class="built_in">return</span> -1;</span><br><span class="line">        &#125;</span><br><span class="line">        // 移动到头部，即变为“最近使用”</span><br><span class="line">        moveToHead(node);</span><br><span class="line">        <span class="built_in">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void put(int key, int value) &#123;</span><br><span class="line">        DLinkedNode node = cache.get(key);</span><br><span class="line">        // 没有就新建一个节点</span><br><span class="line">        <span class="keyword">if</span> (node == null) &#123;</span><br><span class="line">            DLinkedNode newNode = new DLinkedNode(key, value);</span><br><span class="line">            cache.put(key, newNode);</span><br><span class="line">            // 新建也是“最近使用”</span><br><span class="line">            addToHead(newNode);</span><br><span class="line">            ++size;</span><br><span class="line">            <span class="keyword">if</span> (size &gt; capacity) &#123;</span><br><span class="line">                // 把“最不最近使用”的节点删去，腾出空间</span><br><span class="line">                DLinkedNode <span class="built_in">tail</span> = removeTail();</span><br><span class="line">                cache.remove(tail.key);</span><br><span class="line">                --size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            // “最近使用”</span><br><span class="line">            node.value = value;</span><br><span class="line">            moveToHead(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void addToHead(DLinkedNode node) &#123;</span><br><span class="line">        // 移动节点位置基操，先改node，再改前后驱</span><br><span class="line">        node.prev = <span class="built_in">head</span>;</span><br><span class="line">        node.next = head.next;</span><br><span class="line">        head.next.prev = node;</span><br><span class="line">        head.next = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void removeNode(DLinkedNode node) &#123;</span><br><span class="line">        node.prev.next = node.next;</span><br><span class="line">        node.next.prev = node.prev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void moveToHead(DLinkedNode node) &#123;</span><br><span class="line">        // 这里没有真的去遍历移动，而是直接删除和新建，更方便</span><br><span class="line">        removeNode(node);</span><br><span class="line">        addToHead(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private DLinkedNode <span class="function"><span class="title">removeTail</span></span>() &#123;</span><br><span class="line">        DLinkedNode res = tail.prev;</span><br><span class="line">        removeNode(res);</span><br><span class="line">        <span class="built_in">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="C-13"><a href="#C-13" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样的思路，除了哈希表的接口不一样</span><br></pre></td></tr></table></figure></div>
@@ -509,7 +509,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-22 21:00:29
+                    :</strong> 2024-11-22 21:05:42
             </li>
         
         <li>
