@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="tobegold574">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/11/24/图论-4-hot-100-in-leetcode/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="岛屿数量  算法概述 原题  本题要求为计数给出矩阵中有多少个岛屿（连在一起的1）。dfs和bfs的基础实现。  时间复杂度为O(mn)：全部遍历一次 空间复杂度为O(mn)：隐式栈或显式栈或队列   JAVA 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论(4) --hot 100 in leetcode">
+<meta property="og:url" content="http://example.com/2024/11/24/%E5%9B%BE%E8%AE%BA-4-hot-100-in-leetcode/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:description" content="岛屿数量  算法概述 原题  本题要求为计数给出矩阵中有多少个岛屿（连在一起的1）。dfs和bfs的基础实现。  时间复杂度为O(mn)：全部遍历一次 空间复杂度为O(mn)：隐式栈或显式栈或队列   JAVA 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-24T06:41:27.000Z">
+<meta property="article:modified_time" content="2024-11-24T11:32:42.640Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hot 100">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            图论(4) --hot 100 in leetcode | tobegold574的个人博客
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"SINK OR SWIM","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                tobegold574的个人博客
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">图论(4) --hot 100 in leetcode</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">tobegold574</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-24 14:41:27</span>
+        <span class="mobile">2024-11-24 14:41:27</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-24 19:32:42</span>
+            <span class="mobile">2024-11-24 19:32:42</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<h2 id="岛屿数量"><a class="markdownIt-Anchor" href="#岛屿数量"></a> 岛屿数量</h2>
+<h3 id="算法概述"><a class="markdownIt-Anchor" href="#算法概述"></a> 算法概述</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-islands/description/?envType=study-plan-v2&amp;envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为计数给出矩阵中有多少个岛屿（连在一起的1）。dfs和bfs的基础实现。</p>
+<ul>
+<li>时间复杂度为O(mn)：全部遍历一次</li>
+<li>空间复杂度为O(mn)：隐式栈或显式栈或队列</li>
+</ul>
+<h3 id="java"><a class="markdownIt-Anchor" href="#java"></a> JAVA</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">// 深度优先搜索</span><br><span class="line">class Solution &#123;</span><br><span class="line">    void dfs(char[][] grid, int r, int c) &#123;</span><br><span class="line">        // 矩阵行数</span><br><span class="line">        int nr = grid.length;</span><br><span class="line">        // 矩阵列数</span><br><span class="line">        int nc = grid[0].length;</span><br><span class="line">        // 四个方向是否超出边界或已经把该方向全部转换完</span><br><span class="line">        <span class="keyword">if</span> (r &lt; 0 || c &lt; 0 || r &gt;= nr || c &gt;= nc || grid[r][c] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">            <span class="built_in">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        // 将当前元素转化成0，用以标记</span><br><span class="line">        grid[r][c] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        // 上</span><br><span class="line">        dfs(grid, r - 1, c);</span><br><span class="line">        // 下</span><br><span class="line">        dfs(grid, r + 1, c);</span><br><span class="line">        // 左</span><br><span class="line">        dfs(grid, r, c - 1);</span><br><span class="line">        // 右</span><br><span class="line">        dfs(grid, r, c + 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int numIslands(char[][] grid) &#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == null || grid.length == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int nr = grid.length;</span><br><span class="line">        int nc = grid[0].length;</span><br><span class="line">        int num_islands = 0;</span><br><span class="line">        // 是1就dfs转化</span><br><span class="line">        <span class="keyword">for</span> (int r = 0; r &lt; nr; ++r) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int c = 0; c &lt; nc; ++c) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[r][c] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    ++num_islands;</span><br><span class="line">                    dfs(grid, r, c);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> num_islands;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 广度优先搜索</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int numIslands(char[][] grid) &#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == null || grid.length == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int nr = grid.length;</span><br><span class="line">        int nc = grid[0].length;</span><br><span class="line">        int num_islands = 0;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (int r = 0; r &lt; nr; ++r) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int c = 0; c &lt; nc; ++c) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[r][c] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    ++num_islands;</span><br><span class="line">                    grid[r][c] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                    // 队列，只负责当前层，所以为临时变量</span><br><span class="line">                    Queue&lt;Integer&gt; neighbors = new LinkedList&lt;&gt;();</span><br><span class="line">                    // 当前元素映射到一维的索引</span><br><span class="line">                    neighbors.add(r * nc + c);</span><br><span class="line">                    <span class="keyword">while</span> (!neighbors.isEmpty()) &#123;</span><br><span class="line">                        // 加一层，删根元素</span><br><span class="line">                        int <span class="built_in">id</span> = neighbors.remove();</span><br><span class="line">                        int row = <span class="built_in">id</span> / nc;</span><br><span class="line">                        int col = <span class="built_in">id</span> % nc;</span><br><span class="line">                        <span class="keyword">if</span> (row - 1 &gt;= 0 &amp;&amp; grid[row-1][col] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                            neighbors.add((row-<span class="number">1</span>) * nc + col);</span><br><span class="line">                            grid[row-<span class="number">1</span>][col] = &#x27;<span class="number">0</span>&#x27;;</span><br><span class="line">                        &#125;</span><br><span class="line">                        if (row + <span class="number">1</span> &lt; nr &amp;&amp; grid[row+<span class="number">1</span>][col] == &#x27;<span class="number">1</span>&#x27;) &#123;</span><br><span class="line">                            neighbors.add((row+<span class="number">1</span>) * nc + col);</span><br><span class="line">                            grid[row+<span class="number">1</span>][col] = &#x27;<span class="number">0</span>&#x27;;</span><br><span class="line">                        &#125;</span><br><span class="line">                        if (col - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[row][col-<span class="number">1</span>] == &#x27;<span class="number">1</span>&#x27;) &#123;</span><br><span class="line">                            neighbors.add(row * nc + col-<span class="number">1</span>);</span><br><span class="line">                            grid[row][col-<span class="number">1</span>] = &#x27;<span class="number">0</span>&#x27;;</span><br><span class="line">                        &#125;</span><br><span class="line">                        if (col + <span class="number">1</span> &lt; nc &amp;&amp; grid[row][col+<span class="number">1</span>] == &#x27;<span class="number">1</span>&#x27;) &#123;</span><br><span class="line">                            neighbors.add(row * nc + col+<span class="number">1</span>);</span><br><span class="line">                            grid[row][col+<span class="number">1</span>] = &#x27;<span class="number">0</span>&#x27;;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return num_islands;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="c"><a class="markdownIt-Anchor" href="#c"></a> C++</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 对于深度优先搜索（递归）用不着容器类</span><br><span class="line">// 对于广度优先搜索可以用pair来表示坐标</span><br></pre></td></tr></table></figure></div>
+<h3 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h3>
+<p>也就是说，对于图而言，深度优先搜索，就是深入每个方向，<strong>边走边置零，直至三个方向全都堵死，才回头</strong> 。而广度优先搜索就相当于 <strong>每次循环向外扩张一层，并删除生成上一层的节点</strong> 。</p>
+<p>还可以用并查集🤨。</p>
+<h2 id="腐烂的橘子"><a class="markdownIt-Anchor" href="#腐烂的橘子"></a> 腐烂的橘子</h2>
+<h3 id="算法概述-2"><a class="markdownIt-Anchor" href="#算法概述-2"></a> 算法概述</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/rotting-oranges/description/?envType=study-plan-v2&amp;envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为在每分钟挨着图中’2’元素的’1’元素都会自增的情况下，最少需要多久时间只剩’0’和’1’（新鲜的橘子受腐烂的橘子影响腐烂）。关键是传递性。</p>
+<h3 id="java-2"><a class="markdownIt-Anchor" href="#java-2"></a> JAVA</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    // 成对的方向变化先声明好</span><br><span class="line">    int[] dr = new int[]&#123;-1, 0, 1, 0&#125;;</span><br><span class="line">    int[] dc = new int[]&#123;0, -1, 0, 1&#125;;</span><br><span class="line"></span><br><span class="line">    public int orangesRotting(int[][] grid) &#123;</span><br><span class="line">        int R = grid.length, C = grid[0].length;</span><br><span class="line">        Queue&lt;Integer&gt; queue = new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">        Map&lt;Integer, Integer&gt; depth = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        // 队列内存腐烂橘子的一维索引，哈希表也以一维索引为键，扩散次数为值存腐烂橘子</span><br><span class="line">        <span class="keyword">for</span> (int r = 0; r &lt; R; ++r) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int c = 0; c &lt; C; ++c) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[r][c] == 2) &#123;</span><br><span class="line">                    int code = r * C + c;</span><br><span class="line">                    queue.add(code);</span><br><span class="line">                    depth.put(code, 0);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            int code = queue.remove();</span><br><span class="line">            int r = code / C, c = code % C;</span><br><span class="line">            // 逐层扩散</span><br><span class="line">            <span class="keyword">for</span> (int k = 0; k &lt; 4; ++k) &#123;</span><br><span class="line">                int nr = r + dr[k];</span><br><span class="line">                int nc = c + dc[k];</span><br><span class="line">                // 新鲜橘子转化为腐烂橘子，进入哈希表和队列</span><br><span class="line">                <span class="keyword">if</span> (0 &lt;= nr &amp;&amp; nr &lt; R &amp;&amp; 0 &lt;= nc &amp;&amp; nc &lt; C &amp;&amp; grid[nr][nc] == 1) &#123;</span><br><span class="line">                    grid[nr][nc] = 2;</span><br><span class="line">                    int ncode = nr * C + nc;</span><br><span class="line">                    queue.add(ncode);</span><br><span class="line">                    // 值用之前累积的扩散次数更新</span><br><span class="line">                    depth.put(ncode, depth.get(code) + 1);</span><br><span class="line">                    // 扩散次数也就是答案</span><br><span class="line">                    ans = depth.get(ncode);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 是否还有剩下的新鲜橘子</span><br><span class="line">        <span class="keyword">for</span> (int[] row: grid) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int v: row) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v == 1) &#123;</span><br><span class="line">                    <span class="built_in">return</span> -1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="c-2"><a class="markdownIt-Anchor" href="#c-2"></a> C++</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    // 默认为private</span><br><span class="line">    int cnt;</span><br><span class="line">    int dis[10][10];</span><br><span class="line">    int dir_x[4] = &#123;0, 1, 0, -1&#125;;</span><br><span class="line">    int dir_y[4] = &#123;1, 0, -1, 0&#125;;</span><br><span class="line">public:</span><br><span class="line">    int orangesRotting(vector&lt;vector&lt;int&gt;&gt;&amp; grid) &#123;</span><br><span class="line">        queue&lt;pair&lt;int, int&gt;&gt;Q;</span><br><span class="line">        // 初始化数组全部元素为-1（标记数组）</span><br><span class="line">        memset(dis, -1, sizeof(dis));</span><br><span class="line">        cnt = 0;</span><br><span class="line">        int n = (int)grid.size(), m = (int)grid[0].size(), ans = 0;</span><br><span class="line">        // 把腐烂的橘子的坐标加入队列，将标记数组相应值转换为0（访问过了）</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == 2) &#123;</span><br><span class="line">                    Q.emplace(i, j);</span><br><span class="line">                    dis[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (grid[i][j] == 1) &#123;</span><br><span class="line">                    // 统计新鲜橘子数量</span><br><span class="line">                    cnt += 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!Q.empty())&#123;</span><br><span class="line">            auto [r, c] = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; 4; ++i) &#123;</span><br><span class="line">                int tx = r + dir_x[i];</span><br><span class="line">                int ty = c + dir_y[i];</span><br><span class="line">                // 如果访问过了（腐烂的橘子）就跳过</span><br><span class="line">                <span class="keyword">if</span> (tx &lt; 0|| tx &gt;= n || ty &lt; 0|| ty &gt;= m || ~dis[tx][ty] || !grid[tx][ty]) &#123;</span><br><span class="line">                    <span class="built_in">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                // 标记数组还用于统计扩散次数</span><br><span class="line">                dis[tx][ty] = dis[r][c] + 1;</span><br><span class="line">                Q.emplace(tx, ty);</span><br><span class="line">                <span class="keyword">if</span> (grid[tx][ty] == 1) &#123;</span><br><span class="line">                    // 新鲜变腐烂，但是不改值了，直接存坐标</span><br><span class="line">                    cnt -= 1;</span><br><span class="line">                    // 更新答案</span><br><span class="line">                    ans = dis[tx][ty];</span><br><span class="line">                    <span class="keyword">if</span> (!cnt) &#123;</span><br><span class="line">                        <span class="built_in">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> cnt ? -1 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+<h4 id="重要实例方法及属性c"><a class="markdownIt-Anchor" href="#重要实例方法及属性c"></a> 重要实例方法及属性(C++)</h4>
+<ul>
+<li><code>memset(dis, -1, sizeof(dis));</code>：将<code>dis</code>数组全部初始化为-1</li>
+</ul>
+<h3 id="注意-2"><a class="markdownIt-Anchor" href="#注意-2"></a> 注意</h3>
+<p>C<ins>和JAVA的差别还是蛮大的，由于容器类的不同。JAVA使用了 <strong>哈希表</strong> 和 <strong>队列</strong> ，而C</ins>使用了 <strong>原生数组标记</strong> 和 <strong>队列</strong> ，虽然两个用来标记的数据结构的作用还是一样的，但是在使用细节上是有差别的，需要注意。</p>
+<p>关键的是使用<code>depth.put(ncode, depth.get(code) + 1);</code>哈希表来追踪扩散次数，<code>depth.get(code) + 1</code>以 <strong>前一次的扩散次数</strong> 为下一层更新扩散次数。同时，不断更新所用时间<code>ans = depth.get(ncode);</code>，直至最外层，即是答案。</p>
+<h2 id="课程表"><a class="markdownIt-Anchor" href="#课程表"></a> 课程表</h2>
+<h3 id="算法概述-3"><a class="markdownIt-Anchor" href="#算法概述-3"></a> 算法概述</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule/description/?envType=study-plan-v2&amp;envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为判断含有先修后修关系的课程对是否能排序成一个有效的课程表，也就是拓扑排序问题。对于拓扑排序，如果是有向无环图，即可生成多个拓扑排序的可能，但如果有环，就不能进行拓扑排序。可以用 <em><strong>深度优先搜索递归</strong></em> 完成，也可以用 <em><strong>广度优先搜索维护显式队列</strong></em> 完成。<br />
+对于深度优先搜索：</p>
+<ul>
+<li>时间复杂度为O(n+m)：不仅所有课程要遍历，先修课程还要单拎出来遍历</li>
+<li>空间复杂度为O(n+m)：邻接表和隐栈<br />
+对于广度优先搜索：</li>
+<li>时间复杂度为O(n+m)</li>
+<li>空间复杂度为O(n+m)：领接表和队列</li>
+</ul>
+<h3 id="java-3"><a class="markdownIt-Anchor" href="#java-3"></a> JAVA</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">// 深度优先搜索</span><br><span class="line">class Solution &#123;</span><br><span class="line">    // 邻接表（存后续课程）</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; edges;</span><br><span class="line">    // 访问状态记录</span><br><span class="line">    int[] visited;</span><br><span class="line">    // 结果</span><br><span class="line">    boolean valid = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        edges = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            // 把每门课都当做先修课程</span><br><span class="line">            edges.add(new ArrayList&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        // 每门课的状态都要记录</span><br><span class="line">        visited = new int[numCourses];</span><br><span class="line">        // 在课程对应索引加入它们的先修可成</span><br><span class="line">        <span class="keyword">for</span> (int[] info : prerequisites) &#123;</span><br><span class="line">            // 前者（[1]）为后续，后者（[0]）为先修</span><br><span class="line">            edges.get(info[1]).add(info[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        // 对每一门课程进行深度优先搜索</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; numCourses &amp;&amp; valid; ++i) &#123;</span><br><span class="line">            // 未访问</span><br><span class="line">            <span class="keyword">if</span> (visited[i] == 0) &#123;</span><br><span class="line">                dfs(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> valid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(int u) &#123;</span><br><span class="line">        // 访问中</span><br><span class="line">        visited[u] = 1;</span><br><span class="line">        <span class="keyword">for</span> (int v: edges.get(u)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (visited[v] == 0) &#123;</span><br><span class="line">                dfs(v);</span><br><span class="line">                <span class="keyword">if</span> (!valid) &#123;</span><br><span class="line">                    // 有环了直接终止</span><br><span class="line">                    <span class="built_in">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (visited[v] == 1) &#123;</span><br><span class="line">                // 如果不止一个访问中，说明有环</span><br><span class="line">                valid = <span class="literal">false</span>;</span><br><span class="line">                <span class="built_in">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[u] = 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 广度优先搜索</span><br><span class="line">class Solution &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; edges;</span><br><span class="line">    // 入度数组</span><br><span class="line">    int[] indeg;</span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        edges = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            edges.add(new ArrayList&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        // 不是状态数组，而是入度数组</span><br><span class="line">        indeg = new int[numCourses];</span><br><span class="line">        <span class="keyword">for</span> (int[] info : prerequisites) &#123;</span><br><span class="line">            edges.get(info[1]).add(info[0]);</span><br><span class="line">            // 记录每个先修课程的入度</span><br><span class="line">            ++indeg[info[0]];</span><br><span class="line">        &#125;</span><br><span class="line">        // 记录可修课程</span><br><span class="line">        Queue&lt;Integer&gt; queue = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        // 入度为0直接可修</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (indeg[i] == 0) &#123;</span><br><span class="line">                queue.offer(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int visited = 0;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            // 每次从可修的队列中读出一个课程</span><br><span class="line">            ++visited;</span><br><span class="line">            int u = queue.poll();</span><br><span class="line">            // 遍历当前可修课程的后续课程</span><br><span class="line">            <span class="keyword">for</span> (int v: edges.get(u)) &#123;</span><br><span class="line">                // 当前可修，说明后续也可修，入度自减</span><br><span class="line">                --indeg[v];</span><br><span class="line">                // 如果入度为0，则可加入队列，维护此类递归过程</span><br><span class="line">                <span class="keyword">if</span> (indeg[v] == 0) &#123;</span><br><span class="line">                    queue.offer(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 最后比较所有队列中弹出的可修课程数和课程总数</span><br><span class="line">        <span class="built_in">return</span> visited == numCourses;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="c-3"><a class="markdownIt-Anchor" href="#c-3"></a> C++</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 代码逻辑上无差别</span><br></pre></td></tr></table></figure></div>
+<h4 id="重要实例方法及属性c-2"><a class="markdownIt-Anchor" href="#重要实例方法及属性c-2"></a> 重要实例方法及属性(C++)</h4>
+<p><code>vector.resize(int)</code>：调整元素数量</p>
+<h3 id="注意-3"><a class="markdownIt-Anchor" href="#注意-3"></a> 注意</h3>
+<p>深度优先搜索的核心是 <strong>检查三种状态是否会冲突</strong> ，这利用了深度优先搜索 <strong>易于递归</strong> 的特性。而广度优先搜索的核心是 <strong>逐层缩减</strong> ，不断更新入度， <strong>通过入度数判断当前层课程是否可修</strong> ，然后记录可修课程总数，利用的是广度优先搜索 <strong>层层相关</strong> 的特性。</p>
+<p><strong>拓扑排序，需要熟练掌握</strong></p>
+<h2 id="实现trie前缀树"><a class="markdownIt-Anchor" href="#实现trie前缀树"></a> 实现Trie（前缀树）</h2>
+<h3 id="算法概述-4"><a class="markdownIt-Anchor" href="#算法概述-4"></a> 算法概述</h3>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-trie-prefix-tree/description/?envType=study-plan-v2&amp;envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为实现一个字典树类（就是能存词，还能找前缀和词）。</p>
+<ul>
+<li>时间复杂度为O(|s|)：看输入</li>
+<li>空间复杂度为O(∣T∣⋅Σ)：看输入字符所属字符集和存了多少</li>
+</ul>
+<h3 id="java-4"><a class="markdownIt-Anchor" href="#java-4"></a> JAVA</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">// 多叉树或者一种特殊的图</span><br><span class="line">class Trie &#123;</span><br><span class="line">    // 当前节点的所有子节点</span><br><span class="line">    private Trie[] children;</span><br><span class="line">    // 是不是单词结尾</span><br><span class="line">    private boolean isEnd;</span><br><span class="line"></span><br><span class="line">    public <span class="function"><span class="title">Trie</span></span>() &#123;</span><br><span class="line">        // 多叉（最多26个叉）</span><br><span class="line">        children=new Trie[26];</span><br><span class="line">        // 默认不是单词结尾</span><br><span class="line">        isEnd=<span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void insert(String word) &#123;</span><br><span class="line">        Trie node=this;</span><br><span class="line">        // 一个字母对应一层，构造出word.length()层的深度的树结构</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;word.length();i++)&#123;</span><br><span class="line">            char ch=word.charAt(i);</span><br><span class="line">            int index=ch-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span>(node.children[index]==null)&#123;</span><br><span class="line">                node.children[index]=new Trie();</span><br><span class="line">            &#125;</span><br><span class="line">            node=node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        // 最后一个节点是字符串末尾</span><br><span class="line">        node.isEnd=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean search(String word) &#123;</span><br><span class="line">        Trie node=searchPrefix(word);</span><br><span class="line">        // 存在且为完整单词</span><br><span class="line">        <span class="built_in">return</span> node!=null&amp;&amp;node.isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean startsWith(String prefix) &#123;</span><br><span class="line">        // 不完整没关系</span><br><span class="line">        <span class="built_in">return</span> searchPrefix(prefix)!=null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 迭代</span><br><span class="line">    private Trie searchPrefix(String prefix)&#123;</span><br><span class="line">        Trie node=this;</span><br><span class="line">        // 一个一个字符向下找</span><br><span class="line">        <span class="keyword">for</span>(int i=0;i&lt;prefix.length();i++)&#123;</span><br><span class="line">            char ch=prefix.charAt(i);</span><br><span class="line">            int index=ch-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            // 中间没有就是没有了</span><br><span class="line">            <span class="keyword">if</span>(node.children[index]==null)&#123;</span><br><span class="line">                <span class="built_in">return</span> null;</span><br><span class="line">            &#125;</span><br><span class="line">            node=node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="c-4"><a class="markdownIt-Anchor" href="#c-4"></a> C++</h3>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样的</span><br></pre></td></tr></table></figure></div>
+<h3 id="注意-4"><a class="markdownIt-Anchor" href="#注意-4"></a> 注意</h3>
+<p>其实这道题最后不难，甚至用不着什么复杂的操作，但这也正是得益于结构设计的好。</p>
+<ul>
+<li><code>private Trie[] children;</code>：多叉树的结构支持了直接迭代查找</li>
+<li><code>private boolean isEnd;</code>：其实每个节点就存了这么一个信息，和一个扩展的next指针，即<code>children</code></li>
+<li><code>node.isEnd=true;</code>：构造函数中使默认<code>isEnd</code>为<code>false</code>，字符串末尾的<code>isEnd</code>需要自己记得设置</li>
+<li><code>if(node.children[index]==null)</code>：查找过程中可以进行判断，无需等到最后返回</li>
+</ul>
+<p>解法抓住了查找单词和查找迭代的共性，那就是 <strong>查找</strong> ，而它俩也是整个题目唯二要求的后续功能，所以可以直接使用 <strong>多叉树的结构和迭代的底层逻辑</strong> ，所以要注意的就还是 <strong>从需求出发，而不是从技术出发</strong> 。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 图论(4) --hot 100 in leetcode</li>
+        <li><strong>Author:</strong> tobegold574</li>
+        <li><strong>Created at
+                :</strong> 2024-11-24 14:41:27</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-11-24 19:32:42
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://tobegold574.me/2024/11/24/图论-4-hot-100-in-leetcode/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/hot-100/">#hot 100</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/leetcode/">#leetcode</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%9B%BE%E8%AE%BA/">#图论</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/11/22/%E4%BA%8C%E5%8F%89%E6%A0%91-15-hot-100-in-leetcode/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">二叉树(15) --hot 100 in leetcode</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">图论(4) --hot 100 in leetcode</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F"><span class="nav-text"> 岛屿数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text"> 算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java"><span class="nav-text"> JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c"><span class="nav-text"> C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text"> 注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90"><span class="nav-text"> 腐烂的橘子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-2"><span class="nav-text"> 算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-2"><span class="nav-text"> JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-2"><span class="nav-text"> C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-2"><span class="nav-text"> 注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E8%A1%A8"><span class="nav-text"> 课程表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-3"><span class="nav-text"> 算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-3"><span class="nav-text"> JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-3"><span class="nav-text"> C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-3"><span class="nav-text"> 注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0trie%E5%89%8D%E7%BC%80%E6%A0%91"><span class="nav-text"> 实现Trie（前缀树）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-4"><span class="nav-text"> 算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-4"><span class="nav-text"> JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-4"><span class="nav-text"> C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-4"><span class="nav-text"> 注意</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">tobegold574</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        10 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
