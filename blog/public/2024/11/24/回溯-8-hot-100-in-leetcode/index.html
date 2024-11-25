@@ -26,7 +26,7 @@
 <meta property="og:description" content="全排列算法概述原题  本题要求为给出目标数组的所有排列可能。使用 n!回溯 。  时间复杂度为O(n×n!)：需要固定的元素数量，以及它们的回溯 空间复杂度为O(n)：栈  JAVA1234567891011121314151617181920212223242526class Solution &#123;    public List&lt;List&lt;Integer&gt;&gt;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-24T11:36:24.000Z">
-<meta property="article:modified_time" content="2024-11-25T09:40:33.236Z">
+<meta property="article:modified_time" content="2024-11-25T09:57:44.939Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="hot 100">
 <meta property="article:tag" content="leetcode">
@@ -204,7 +204,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -212,7 +212,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -266,8 +266,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-25 17:40:33</span>
-            <span class="mobile">2024-11-25 17:40:33</span>
+            <span class="desktop">2024-11-25 17:57:44</span>
+            <span class="mobile">2024-11-25 17:57:44</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -347,6 +347,10 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 <p>这道题回溯的重点是将递归分成了两类，分别是 <strong>包含当前元素和不包含当前元素</strong> 。回溯法的核心思想依然是 <strong>分而治之</strong> ，而拆解成包含与不包含也正好对应了子集问题中的 <strong>取和舍</strong> ，同时也将原来的一维数组结构变成了 <strong>可用深度优先搜索处理的二叉树</strong> ，这是一种经典的 <strong>回溯建模</strong> ，需要熟练掌握。</p>
 <h2 id="电话号码的字母组合"><a href="#电话号码的字母组合" class="headerlink" title="电话号码的字母组合"></a>电话号码的字母组合</h2><h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>本题要求为按照给出的2-9内的数字字符串返回可能的九键输入法组合。</p>
+<ul>
+<li>时间复杂度为O(3^n)：基本上一个数字对应长度为3的字符串</li>
+<li>空间复杂度为O(n)</li>
+</ul>
 <h3 id="JAVA-2"><a href="#JAVA-2" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; letterCombinations(String digits) &#123;</span><br><span class="line">        List&lt;String&gt; combinations = new ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="keyword">if</span> (digits.length() == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> combinations;</span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;Character, String&gt; phoneMap = new HashMap&lt;Character, String&gt;() &#123;&#123;</span><br><span class="line">            put(<span class="string">&#x27;2&#x27;</span>, <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;3&#x27;</span>, <span class="string">&quot;def&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;4&#x27;</span>, <span class="string">&quot;ghi&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;5&#x27;</span>, <span class="string">&quot;jkl&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;6&#x27;</span>, <span class="string">&quot;mno&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;7&#x27;</span>, <span class="string">&quot;pqrs&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;8&#x27;</span>, <span class="string">&quot;tuv&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;9&#x27;</span>, <span class="string">&quot;wxyz&quot;</span>);</span><br><span class="line">        &#125;&#125;;</span><br><span class="line">        backtrack(combinations, phoneMap, digits, 0, new StringBuffer());</span><br><span class="line">        <span class="built_in">return</span> combinations;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void backtrack(List&lt;String&gt; combinations, Map&lt;Character, String&gt; phoneMap, String digits, int index, StringBuffer combination) &#123;</span><br><span class="line">        // 永远类似的终止条件</span><br><span class="line">        <span class="keyword">if</span> (index == digits.length()) &#123;</span><br><span class="line">            // index的范围代表多叉树的深度</span><br><span class="line">            combinations.add(combination.toString());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            // 就是向下遍历</span><br><span class="line">            char digit = digits.charAt(index);</span><br><span class="line">            // 映射到字符串的角度</span><br><span class="line">            String letters = phoneMap.get(digit);</span><br><span class="line">            int lettersCount = letters.length();</span><br><span class="line">            <span class="keyword">for</span> (int i = 0; i &lt; lettersCount; i++) &#123;</span><br><span class="line">                combination.append(letters.charAt(i));</span><br><span class="line">                // index+1意味着又多了一层digits和letters的映射</span><br><span class="line">                backtrack(combinations, phoneMap, digits, index + 1, combination);</span><br><span class="line">                combination.deleteCharAt(index);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="重要实例方法及属性-JAVA-1"><a href="#重要实例方法及属性-JAVA-1" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><p><code>StringBuffer</code>：支持多线程操作的可变字符串，相对的，<code>String</code>虽然也是线程安全但不可变</p>
@@ -385,6 +389,10 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 <p>其实结构并不复杂，关键是要掌握 <strong>如何分离每个部分所属，属于底层回溯，还是当前背景</strong> 。</p>
 <h2 id="单词搜索"><a href="#单词搜索" class="headerlink" title="单词搜索"></a>单词搜索</h2><h3 id="算法概述-5"><a href="#算法概述-5" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-search/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>本题要求判断在给出的二维字符网格中是否有路径能够练成要搜索的单词。有很多优化的细节操作吧，但是我感觉这个就是很经典的 <em><strong>图论深度优先搜索+回溯</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O(n!)：函数递归的栈空间</li>
+<li>空间复杂度为O(n)：几个集合</li>
+</ul>
 <h3 id="JAVA-5"><a href="#JAVA-5" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean exist(char[][] board, String word) &#123;</span><br><span class="line">        int h = board.length, w = board[0].length;</span><br><span class="line">        boolean[][] visited = new boolean[h][w];</span><br><span class="line">        // 图论经典标记数组</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; h; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt; w; j++) &#123;</span><br><span class="line">                boolean flag = check(board, visited, i, j, word, 0);</span><br><span class="line">                <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // dfs</span><br><span class="line">    public boolean check(char[][] board, boolean[][] visited, int i, int j, String s, int k) &#123;</span><br><span class="line">        // 类似图相关题目</span><br><span class="line">        <span class="keyword">if</span> (board[i][j] != s.charAt(k)) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        // 回溯标准判断</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == s.length() - 1) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[i][j] = <span class="literal">true</span>;</span><br><span class="line">        int[][] directions = &#123;&#123;0, 1&#125;, &#123;0, -1&#125;, &#123;1, 0&#125;, &#123;-1, 0&#125;&#125;;</span><br><span class="line">        boolean result = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (int[] <span class="built_in">dir</span> : directions) &#123;</span><br><span class="line">            int newi = i + <span class="built_in">dir</span>[0], newj = j + <span class="built_in">dir</span>[1];</span><br><span class="line">            <span class="keyword">if</span> (newi &gt;= 0 &amp;&amp; newi &lt; board.length &amp;&amp; newj &gt;= 0 &amp;&amp; newj &lt; board[0].length) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!visited[newi][newj]) &#123;</span><br><span class="line">                    // 换个字母搜</span><br><span class="line">                    boolean flag = check(board, visited, newi, newj, s, k + 1);</span><br><span class="line">                    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                        result = <span class="literal">true</span>;</span><br><span class="line">                        <span class="built_in">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 回溯</span><br><span class="line">        visited[i][j] = <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="C-5"><a href="#C-5" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 没区别</span><br></pre></td></tr></table></figure></div>
@@ -425,7 +433,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-25 17:40:33
+                    :</strong> 2024-11-25 17:57:44
             </li>
         
         <li>
@@ -469,6 +477,21 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/11/25/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-6-hot-100-in-leetcode/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">二分查找(6) --hot 100 in leetcode</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -575,7 +598,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        11 posts in total
+                        12 posts in total
                     </span>
                     
                 </p>

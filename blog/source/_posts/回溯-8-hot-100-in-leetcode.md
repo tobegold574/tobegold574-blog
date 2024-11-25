@@ -146,6 +146,8 @@ public:
 [原题](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-100-liked)
 
 本题要求为按照给出的2-9内的数字字符串返回可能的九键输入法组合。
+- 时间复杂度为O(3^n)：基本上一个数字对应长度为3的字符串
+- 空间复杂度为O(n)
 
 ### JAVA
 ```bash
@@ -352,6 +354,8 @@ public:
 [原题](https://leetcode.cn/problems/word-search/description/?envType=study-plan-v2&envId=top-100-liked)
 
 本题要求判断在给出的二维字符网格中是否有路径能够练成要搜索的单词。有很多优化的细节操作吧，但是我感觉这个就是很经典的 ***图论深度优先搜索+回溯*** 。
+- 时间复杂度为O(n!)：函数递归的栈空间
+- 空间复杂度为O(n)：几个集合
 
 ### JAVA
 ```bash
