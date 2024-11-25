@@ -208,3 +208,352 @@ class Solution {
 要记得从 **判断当前深度是否与最大深度相等** ，也就是`if (index == digits.length())`开始。
 
 ## 组合总和
+### 算法概述
+[原题](https://leetcode.cn/problems/combination-sum/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为从无重复数字的数组中找出和为目标值的组合，其中同一数字可以任取多次。还是 ***dfs*** ，和子集问题相同。
+- 时间复杂度为O(S)：所有可行长度之和，因为有剪枝，所以不用到2^n
+- 空间复杂度为O(n)
+
+### JAVA
+```bash
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        List<Integer> combine = new ArrayList<Integer>();
+        dfs(candidates, target, ans, combine, 0);
+        return ans;
+    }
+
+    public void dfs(int[] candidates, int target, List<List<Integer>> ans, List<Integer> combine, int idx) {
+        // 标准的回溯终止判断
+        if (idx == candidates.length) {
+            return;
+        }
+        // 递归中不断缩小至0
+        if (target == 0) {
+            ans.add(new ArrayList<Integer>(combine));
+            return;
+        }
+        // 不重复读取
+        dfs(candidates, target, ans, combine, idx + 1);
+        // 剪枝，如果重复无效就不重复了
+        if (target - candidates[idx] >= 0) {
+            combine.add(candidates[idx]);
+            // 重复读取
+            dfs(candidates, target - candidates[idx], ans, combine, idx);
+            // 回溯
+            combine.remove(combine.size() - 1);
+        }
+    }
+}
+```
+
+### C++
+```bash
+// 注意STL算法使用
+```
+
+### 注意
+类似于子集问题，还是构造成二叉树的深度优先搜索。要注意的是结构和另外加入的 **剪枝判断** 。
+
+还要注意的是，回溯的过程是 **不断递归向下生成二叉树** ，并且 **尝试完毕后在空间上撤回** 。对于这道题， **并不需要遍历完所有节点** 。所以 **添加组合的判断与遍历到最大深度的判断不一致** ，是分成两块的，`if (target == 0)`才是主要，还有不要忘记`return;`。
+
+对于这类加和问题，还可以使用剪枝`if (target - candidates[idx] >= 0)`减少复杂度。
+
+这里的二叉树的分支是依赖 **重复不重复读取** 判断。
+
+## 括号生成
+### 算法概述
+[原题](https://leetcode.cn/problems/generate-parentheses/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为按照要求的括号数量，给出所有可能且合理的括号组合。还是和前面几道题一个思路，关键是在 ***回溯的基础上剪枝如何剪枝和分类*** 。
+- 时间复杂度为%$O\left(\frac{4^n}{\sqrt{n}}\right)$：卡特兰数（不懂）
+- 空间复杂度为O(n)：递归栈
+### JAVA
+```bash
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> ans=new ArrayList<String>();
+        dfs(ans,new StringBuffer(),n,0,0);
+        return ans;
+    }
+
+    private void dfs(List<String> ans,StringBuffer t,int n,int left,int right){
+        // 排列的长度应该为2*n
+        if(t.length()==n<<1){
+            ans.add(t.toString());
+            return;
+        }
+        if (left < n) {
+            t.append('(');          
+            dfs(ans, t, n, left + 1, right);
+            t.deleteCharAt(t.length() - 1); 
+        }
+
+        // 左右括号数要一致
+        if (right < left) {
+            t.append(')');          
+            dfs(ans, t, n, left, right + 1);
+            t.deleteCharAt(t.length() - 1); 
+        }
+    }
+}
+```
+
+#### 重要实例方法及属性(JAVA)
+`new StringBuffer()`可以换成`new StringBuilder()`，后者只支持单线程，但是性能更好。
+
+### C++
+```bash
+class Solution {
+    // 智能指针（底层为引用计数）
+    shared_ptr<vector<string>> cache[100] = {nullptr};
+public:
+    shared_ptr<vector<string>> generate(int n) {
+        
+        if (cache[n] != nullptr)
+            return cache[n];
+        if (n == 0) {
+            cache[0] = shared_ptr<vector<string>>(new vector<string>{""});
+        // else是主要工作部分
+        } else {
+            auto result = shared_ptr<vector<string>>(new vector<string>);
+            for (int i = 0; i != n; ++i) {
+                // left和right对应递归生成
+                auto lefts = generate(i);
+                auto rights = generate(n - i - 1);
+                for (const string& left : *lefts)
+                    for (const string& right : *rights)
+                        result -> push_back("(" + left + ")" + right);
+            }
+            cache[n] = result;
+        }
+        return cache[n];
+    }
+    vector<string> generateParenthesis(int n) {
+        // 智能指针解引用结果
+        return *generate(n);
+    }
+};
+```
+
+#### 重要实例方法及属性(C++)
+`shared_ptr<vector<string>> cache[100] = {nullptr};`：这里使用了线程安全的智能指针
+`result -> push_back()`：可以直接这样访问实例方法，无需解引用
+
+### 注意
+回溯问题到目前为止都是 **在回溯的框架上实现不同的细节** 。这道题中的C++解法更像广度优先搜索，虽然用的还是递归，但采用了分层思想，不纳入考虑。参考JAVA的解法，回溯的框架，也就是 **改变深度以及撤销操作** 与之前的题目相仿。不同点在于 **分类和剪枝以及如何更新** 。这道题中可以以天然的左括号和右括号搭建深度优先搜索的二叉树，所以剪枝为`if (left < n)`和`if (right < left)`，以及需要像`t.append('(');`这样更新节点。
+
+其实结构并不复杂，关键是要掌握 **如何分离每个部分所属，属于底层回溯，还是当前背景** 。
+
+## 单词搜索
+### 算法概述
+[原题](https://leetcode.cn/problems/word-search/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求判断在给出的二维字符网格中是否有路径能够练成要搜索的单词。有很多优化的细节操作吧，但是我感觉这个就是很经典的 ***图论深度优先搜索+回溯*** 。
+
+### JAVA
+```bash
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int h = board.length, w = board[0].length;
+        boolean[][] visited = new boolean[h][w];
+        // 图论经典标记数组
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                boolean flag = check(board, visited, i, j, word, 0);
+                if (flag) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // dfs
+    public boolean check(char[][] board, boolean[][] visited, int i, int j, String s, int k) {
+        // 类似图相关题目
+        if (board[i][j] != s.charAt(k)) {
+            return false;
+        // 回溯标准判断
+        } else if (k == s.length() - 1) {
+            return true;
+        }
+        visited[i][j] = true;
+        int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        boolean result = false;
+        for (int[] dir : directions) {
+            int newi = i + dir[0], newj = j + dir[1];
+            if (newi >= 0 && newi < board.length && newj >= 0 && newj < board[0].length) {
+                if (!visited[newi][newj]) {
+                    // 换个字母搜
+                    boolean flag = check(board, visited, newi, newj, s, k + 1);
+                    if (flag) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+        // 回溯
+        visited[i][j] = false;
+        return result;
+    }
+}
+```
+
+### C++
+```bash
+// 没区别
+```
+
+### 注意
+这道题和之前题目的最大区别就是 **回溯的操作对象是图** ，而不是之前的字符串，或者自己拼的哈希表。 **图dfs的特点就是有四个方向和使用标记数组** 。回溯的操作基本还是那样。
+
+## 分割回文串
+### 算法概述
+[原题](https://leetcode.cn/problems/palindrome-partitioning/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为把一个字符串分成多个回文字符串（单个字符也算）。使用 ***动态切割版本的子集问题解法+一个回文判断*** 。
+- 时间复杂度为$O(n \cdot 2^n)$：最多是这样的
+- 空间复杂度为$O(n^2)$：所有可能的子串数
+
+
+### C++
+```bash
+class Solution {
+public:
+    vector<vector<string>> partition(string s) {
+        vector<vector<string>> result;
+        vector<string> path;
+        backtrack(s, 0, path, result);
+        return result;
+    }
+
+private:
+    void backtrack(const string& s, int start, vector<string>& path, vector<vector<string>>& result) {
+        // 终止条件：如果起始位置到达字符串末尾，记录当前路径
+        if (start == s.size()) {
+            result.push_back(path);
+            return;
+        }
+
+        // 尝试从起始位置划分不同长度的子串
+        for (int end = start; end < s.size(); ++end) {
+            // 判断很早，剪枝很有效
+            if (isPalindrome(s, start, end)) {
+                // 如果子串是回文，加入路径
+                path.push_back(s.substr(start, end - start + 1));
+                // 继续递归处理剩余部分
+                backtrack(s, end + 1, path, result);
+                // 回溯，撤销选择
+                path.pop_back();
+            }
+        }
+    }
+
+    // 判断子串是否为回文
+    bool isPalindrome(const string& s, int left, int right) {
+        while (left < right) {
+            if (s[left] != s[right]) return false;
+            ++left;
+            --right;
+        }
+        return true;
+    }
+};
+```
+
+### JAVA
+```bash
+// 类似吧
+```
+
+### 注意
+这里使用的还是求子集的方法，但是是 **动态分割** ，也就是 **起始点在递归中更新，并且更新用的是上一层递归的终点** ，所以是`backtrack(s, end + 1, path, result);`，而终点从起点开始`for (int end = start; end < s.size(); ++end)`。核心是能够 **剪枝** 。但如果是“加入或跳过”，这里做不了判断，就无法剪枝。
+
+## N皇后
+### 算法概述
+[原题](https://leetcode.cn/problems/n-queens/description/?envType=study-plan-v2&envId=top-100-liked)
+
+本题要求为在n*n的棋盘上找出有多少种放置互不攻击的n个皇后的方法。我一开始就想用类似bfs的回溯算法，也就是下方的解法，但又算错了空间复杂度，反而使用了更加复杂的纯dfs回溯。ε=(´ο｀*)))唉。这道题的核心还是 ***套一层外部循环以符合皇后的全局作用，用集合存不可访问的节点*** ，以及底层毫无变化的 ***回溯*** 。
+
+### JAVA
+```bash
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        // 存答案
+        List<List<String>> solutions = new ArrayList<List<String>>();
+        // 临时数组用来存皇后的列索引
+        int[] queens = new int[n];
+        Arrays.fill(queens, -1);
+        // 存不可访问的对象线和列
+        Set<Integer> columns = new HashSet<Integer>();
+        Set<Integer> diagonals1 = new HashSet<Integer>();
+        Set<Integer> diagonals2 = new HashSet<Integer>();
+        backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);
+        return solutions;
+    }
+
+    public void backtrack(List<List<String>> solutions, int[] queens, int n, int row, Set<Integer> columns, Set<Integer> diagonals1, Set<Integer> diagonals2) {
+        if (row == n) {
+            List<String> board = generateBoard(queens, n);
+            solutions.add(board);
+        } else {
+            // 每次遍历所有行，加入不可访问节点，以及完成回溯，注意是每次
+            for (int i = 0; i < n; i++) {
+                if (columns.contains(i)) {
+                    continue;
+                }
+                int diagonal1 = row - i;
+                if (diagonals1.contains(diagonal1)) {
+                    continue;
+                }
+                int diagonal2 = row + i;
+                if (diagonals2.contains(diagonal2)) {
+                    continue;
+                }
+                queens[row] = i;
+                columns.add(i);
+                diagonals1.add(diagonal1);
+                diagonals2.add(diagonal2);
+                backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);
+                // 不可访问集合和皇后位置标记都要回溯
+                queens[row] = -1;
+                columns.remove(i);
+                diagonals1.remove(diagonal1);
+                diagonals2.remove(diagonal2);
+            }
+        }
+    }
+
+    public List<String> generateBoard(int[] queens, int n) {
+        List<String> board = new ArrayList<String>();
+        for (int i = 0; i < n; i++) {
+            char[] row = new char[n];
+            Arrays.fill(row, '.');
+            row[queens[i]] = 'Q';
+            board.add(new String(row));
+        }
+        return board;
+    }
+}
+```
+
+### C++
+```bash
+// 类似
+```
+
+### 注意
+完整的棋盘概念无需再递归的检查中出现，因为检查的功能完全由三个集合承担，而`generateBoard(int[] queens, int n)`只需出现在最后加入答案的时候。
+
+最核心的是：
+```bash
+if (row == n) {
+    List<String> board = generateBoard(queens, n);
+    solutions.add(board);
+}
+```
+题目要求我们返回的确实是 **一整个棋盘** ，但这并不影响我们以 **棋盘上的每一行作为回溯单位** 。因为我们要求得的是所有的棋盘可能，**排列的单位是什么，我们回溯什么** ，所以`generateBoard(queens, n)`一定要只看作回溯的某个阶段的整合，而不是回溯的目的或者回溯的一部分， **要专注于处理最基本的排列单位** 。
