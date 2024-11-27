@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="tobegold574">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/11/27/动态规划-10-hot-100-in-leetcode/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="爬楼梯算法概述原题  本题要求为在给定每次只能上一层或二层楼梯时，上n层楼梯有多少种选择。解法采取 动态规划 ，子问题结构为 前一次跨了一次楼梯和跨了两次楼梯代表的排列的和 。  时间复杂度为O(n)：一共n级阶梯，每次都被当作为一个子问题 空间复杂度为O(1)：无额外数据结构  JAVA1234567891011121314class Solution &#123;    public i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划(10) --hot 100 in leetcode">
+<meta property="og:url" content="http://example.com/2024/11/27/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-10-hot-100-in-leetcode/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:description" content="爬楼梯算法概述原题  本题要求为在给定每次只能上一层或二层楼梯时，上n层楼梯有多少种选择。解法采取 动态规划 ，子问题结构为 前一次跨了一次楼梯和跨了两次楼梯代表的排列的和 。  时间复杂度为O(n)：一共n级阶梯，每次都被当作为一个子问题 空间复杂度为O(1)：无额外数据结构  JAVA1234567891011121314class Solution &#123;    public i">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-27T05:53:00.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:41:29.090Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hot 100">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            动态规划(10) --hot 100 in leetcode | tobegold574的个人博客
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"SINK OR SWIM","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                tobegold574的个人博客
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">17</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">动态规划(10) --hot 100 in leetcode</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">tobegold574</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-27 13:53</span>
+        <span class="mobile">2024-11-27 13:53</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-27 21:41:29</span>
+            <span class="mobile">2024-11-27 21:41:29</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h2 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为在给定每次只能上一层或二层楼梯时，上n层楼梯有多少种选择。解法采取 <em><strong>动态规划</strong></em> ，子问题结构为 <em><strong>前一次跨了一次楼梯和跨了两次楼梯代表的排列的和</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O(n)：一共n级阶梯，每次都被当作为一个子问题</li>
+<li>空间复杂度为O(1)：无额外数据结构</li>
+</ul>
+<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int climbStairs(int n) &#123;</span><br><span class="line">        int p = 0, q = 0, r = 1;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt;= n; ++i) &#123;</span><br><span class="line">            // 一步</span><br><span class="line">            p = q; </span><br><span class="line">            // 两步</span><br><span class="line">            q = r; </span><br><span class="line">            // 总方案数</span><br><span class="line">            r = p + q;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>这里使用的是 <strong>滑动数组</strong> 。也就是<code>r</code>代表当前阶梯的总方案数，由 <strong>前两级的方案数的加和</strong> 得到。也就是说在循环内存在 <strong>三级阶梯的方案数</strong> ，然后随着循环前进， <strong>第二级的方案数向第一级转移，第三级向第二级转移，第三级本身还是前二者的加和</strong> 。</p>
+<p><code>p</code>一开始在边界之外，所以设置为0。</p>
+<h2 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h2><h3 id="算法概述-1"><a href="#算法概述-1" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/pascals-triangle/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为填充生成杨辉三角。就是和上面一样的，不过这次取的是 <em><strong>前一行的后一个索引和当前索引的和</strong></em> ，每次还要记得在行首行尾加1。</p>
+<ul>
+<li>时间复杂度为O(n^2)：三角形</li>
+<li>空间复杂度为O(1)</li>
+</ul>
+<h3 id="JAVA-1"><a href="#JAVA-1" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; generate(int numRows) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ret = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; numRows; ++i) &#123;</span><br><span class="line">            List&lt;Integer&gt; row = new ArrayList&lt;Integer&gt;();</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt;= i; ++j) &#123;</span><br><span class="line">                // 行首行尾加1</span><br><span class="line">                <span class="keyword">if</span> (j == 0 || j == i) &#123;</span><br><span class="line">                    row.add(1);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    // 不然取上一行求均值</span><br><span class="line">                    row.add(ret.get(i - 1).get(j - 1) + ret.get(i - 1).get(j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ret.add(row);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>记得行首行尾的处理， <strong>学习如何组织循环，穿插预处理</strong> 。</p>
+<h2 id="打家劫舍"><a href="#打家劫舍" class="headerlink" title="打家劫舍"></a>打家劫舍</h2><h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/house-robber/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为在给出数组中每次只能取不相邻的两个值（不能偷两个邻居的），返回取得的所有数的最大和。以三个为一组，两种可能，偷中间的还是两边的，每个子问题中还要 <em><strong>判断最大和</strong></em> ，其余和爬楼梯一样，。</p>
+<ul>
+<li>时间复杂度为O(n)</li>
+<li>空间复杂度为O(1)</li>
+</ul>
+<h3 id="JAVA-2"><a href="#JAVA-2" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int rob(int[] nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == null || nums.length == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        <span class="keyword">if</span> (length == 1) &#123;</span><br><span class="line">            <span class="built_in">return</span> nums[0];</span><br><span class="line">        &#125;</span><br><span class="line">        int[] dp = new int[length];</span><br><span class="line">        dp[0] = nums[0];</span><br><span class="line">        dp[1] = Math.max(nums[0], nums[1]);</span><br><span class="line">        <span class="keyword">for</span> (int i = 2; i &lt; length; i++) &#123;</span><br><span class="line">            // 偷两边的多还是偷中间的多</span><br><span class="line">            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> dp[length - 1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-2"><a href="#C-2" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h3><p>边界值要像<code>dp[0] = nums[0];</code>和<code>dp[1] = Math.max(nums[0], nums[1]);</code>这样处理好，从2开始循环，正好 <strong>三个一次循环</strong> 。</p>
+<h2 id="完全平方数"><a href="#完全平方数" class="headerlink" title="完全平方数"></a>完全平方数</h2><h3 id="算法概述-3"><a href="#算法概述-3" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/perfect-squares/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为给出一个数，返回以平方数为加数最少需要几个平方数。从0开始遍历到目标值， <em><strong>每个数都是子问题</strong></em> ，求出每个数当前需要多少加数，然后遍历到目标值时可以选用之前遍历的值，也就是 <em><strong>记忆化搜索</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O($n \cdot \sqrt{n}$)：对每个数求平方数加数个数时用到平方根次遍历</li>
+<li>空间复杂度为O(n)：用一个数组保存前n-1个数的可能，供记忆化搜索使用</li>
+</ul>
+<h3 id="JAVA-3"><a href="#JAVA-3" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int numSquares(int n) &#123;</span><br><span class="line">        int[] f = new int[n + 1];</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int minn = Integer.MAX_VALUE;</span><br><span class="line">            // 对每个数求最小加数数量</span><br><span class="line">            <span class="keyword">for</span> (int j = 1; j * j &lt;= i; j++) &#123;</span><br><span class="line">                // 记忆化搜索：只用求和不同平方数的差的最小加数数量</span><br><span class="line">                minn = Math.min(minn, f[i - j * j]);</span><br><span class="line">            &#125;</span><br><span class="line">            // 这边+1补上前面减去的j*j</span><br><span class="line">            f[i] = minn + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> f[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-3"><a href="#C-3" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 没区别</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-3"><a href="#注意-3" class="headerlink" title="注意"></a>注意</h3><p>这道题的核心是 <strong>记忆化搜索</strong> 。通过使用 <strong>额外数组</strong> 保存前面的结果，再通过从1（<code>int j = 1</code>）开始的和平方数的差使用过去的结果，体现了动态规划中 <strong>利用过去状态</strong> 的思想。</p>
+<h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><h3 id="算法概述-4"><a href="#算法概述-4" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/coin-change/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为给出一个整数数组，利用其中的整数（可重复）加成目标值，返回最少需要多少个整数。要不就是 <em><strong>自顶而下的记忆化搜索</strong></em> ， 要不就是 <em><strong>自底向上的动态规划</strong></em> ，和上题其实差别不大。</p>
+<ul>
+<li>时间复杂度为O(sn)：s是目标值（总额），还是向上题那样每个值都遍历</li>
+<li>空间复杂度为O(s)</li>
+</ul>
+<h3 id="JAVA-4"><a href="#JAVA-4" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int coinChange(int[] coins, int amount) &#123;</span><br><span class="line">        int max = amount + 1;   </span><br><span class="line">        int[] dp = new int[amount + 1];</span><br><span class="line">        Arrays.fill(dp, max);</span><br><span class="line">        dp[0] = 0;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt;= amount; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt; coins.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (coins[j] &lt;= i) &#123;</span><br><span class="line">                    // 这次直接把+1放进来了</span><br><span class="line">                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> dp[amount] &gt; amount ? -1 : dp[amount];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-4"><a href="#C-4" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 没区别</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-4"><a href="#注意-4" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><code>int max = amount + 1;</code>：这样设置 <strong>哨兵值</strong> 的原因是零钱再少也不会是0，全是一块钱总不可能比<code>amount+1</code>还多。</li>
+<li><code>int[] dp = new int[amount + 1];</code>：多设置一位是解决0的边界问题</li>
+<li><code>return dp[amount] &gt; amount ? -1 : dp[amount];</code>：对应前面用哨兵值填充<code>dp</code></li>
+</ul>
+<h2 id="单词拆分"><a href="#单词拆分" class="headerlink" title="单词拆分"></a>单词拆分</h2><h3 id="算法概述-5"><a href="#算法概述-5" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-break/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为判断是否能用给出的字典中的字符串拼接成目标单词。还是和前面一样，不同的就是这里是字符串。</p>
+<ul>
+<li>时间复杂度为O(n^2)：对于每个子问题（目标字符串的子字符串）都要和字典对照一遍，每次只移动一位</li>
+<li>空间复杂度为O(n)：布尔数组或者哈希集合</li>
+</ul>
+<h3 id="JAVA-5"><a href="#JAVA-5" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">        Set&lt;String&gt; wordDictSet = new HashSet(wordDict);</span><br><span class="line">        // 为了处理边界值设置的长一点</span><br><span class="line">        boolean[] dp = new boolean[s.length() + 1];</span><br><span class="line">        dp[0] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt;= s.length(); i++) &#123;</span><br><span class="line">            // 每次只移动一位</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[j] &amp;&amp; wordDictSet.contains(s.substring(j, i))) &#123;</span><br><span class="line">                    dp[i] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="built_in">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> dp[s.length()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-5"><a href="#C-5" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 对哈希集合要用find() end() string.str什么的</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-5"><a href="#注意-5" class="headerlink" title="注意"></a>注意</h3><p>对于所有<code>j</code>，只要<code>if (dp[j] &amp;&amp; wordDictSet.contains(s.substring(j, i)))</code>判断成功一次就是<code>true</code>，但是必须 <strong>一点一点移动指针</strong> 。</p>
+<h2 id="最长递增子序列"><a href="#最长递增子序列" class="headerlink" title="最长递增子序列"></a>最长递增子序列</h2><h3 id="算法概述-6"><a href="#算法概述-6" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-increasing-subsequence/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求如题所示，可以删去一些元素，但不能移动元素位置。可以用贪心做（我一开始也这么想的），还更好。但还是用 <em><strong>动态规划</strong></em> 吧。</p>
+<ul>
+<li>时间复杂度为O(n^2)</li>
+<li>空间复杂度为O(n)</li>
+</ul>
+<h3 id="JAVA-6"><a href="#JAVA-6" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int lengthOfLIS(int[] nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> 0;</span><br><span class="line">        &#125;</span><br><span class="line">        // 不用多加容量，因为边界值直接设1是合理的</span><br><span class="line">        int[] dp = new int[nums.length];</span><br><span class="line">        dp[0] = 1;</span><br><span class="line">        int maxans = 1;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">            // 默认值为1</span><br><span class="line">            dp[i] = 1;</span><br><span class="line">            // 每次遍历整个子序列的所有数字</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt; i; j++) &#123;</span><br><span class="line">                // 碰到更小的值就用它的加1（把自己算进去）</span><br><span class="line">                <span class="keyword">if</span> (nums[i] &gt; nums[j]) &#123;</span><br><span class="line">                    dp[i] = Math.max(dp[i], dp[j] + 1);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxans = Math.max(maxans, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> maxans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-6"><a href="#C-6" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 没有区别</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-6"><a href="#注意-6" class="headerlink" title="注意"></a>注意</h3><p><code>dp[]</code>数组是用来存 <strong>当前索引的最长子序列的长度的</strong> ，一定要把前面的元素全部遍历一遍是因为 <strong>每个元素的最长子序列不同，不存在顺序</strong> ，循环的任务是要找到 <strong>前面元素中最长的那个再把自己加上</strong> 。所以贪心直接重构数组肯定会比这个快。</p>
+<p><strong>后一个元素和前面所有元素的相对关系都有作用，所以整个过程都是动态的，所有遍历都是必须的</strong></p>
+<h2 id="乘积最大数组"><a href="#乘积最大数组" class="headerlink" title="乘积最大数组"></a>乘积最大数组</h2><h3 id="算法概述-7"><a href="#算法概述-7" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-product-subarray/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为求出给定数组中最大子数组积（子数组必须是连续的）。还是 <em><strong>动态规划</strong></em> 。但是要考虑的是 <strong>负数不一定会让积变得更小，因为负负得正会让积更大</strong> 。</p>
+<ul>
+<li>时间复杂度为O(n)</li>
+<li>空间复杂度为O(n)</li>
+</ul>
+<h3 id="JAVA-7"><a href="#JAVA-7" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProduct(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        long[] maxF = new long[length];</span><br><span class="line">        long[] minF = new long[length];</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            maxF[i] = nums[i];</span><br><span class="line">            minF[i] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt; length; ++i) &#123;</span><br><span class="line">            // 考虑负负得正的情况或者只和当前数比较（maxF只包含正数）</span><br><span class="line">            maxF[i] = Math.max(maxF[i - 1] * nums[i], Math.max(nums[i], minF[i - 1] * nums[i]));</span><br><span class="line">            // 负的情况</span><br><span class="line">            minF[i] = Math.min(minF[i - 1] * nums[i], Math.min(nums[i], maxF[i - 1] * nums[i]));</span><br><span class="line">            // -1&lt;&lt;<span class="string">31表示一个极小的负数</span></span><br><span class="line"><span class="string">            if (minF[i] &lt; (-1 &lt;&lt; 31</span>)) &#123;</span><br><span class="line">                minF[i] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = (int) maxF[0];</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt; length; ++i) &#123;</span><br><span class="line">            ans = Math.max(ans, (int) maxF[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-7"><a href="#C-7" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 思路一样，操作更加精简</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-C"><a href="#重要实例方法及属性-C" class="headerlink" title="重要实例方法及属性(C++)"></a>重要实例方法及属性(C++)</h4><p><code>max_element()</code>：面向容器查找最大元素，时间复杂度为O(n)</p>
+<h3 id="注意-7"><a href="#注意-7" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><code>maxF</code>用来存储正数情况的最大值，<code>minF</code>用来存储最小值（之后可能负负得正）</li>
+<li>像<code>maxF[i] = nums[i];</code>填充哨兵是在假设当前值就是最大积（单个）</li>
+<li><code>if (minF[i] &lt; (-1 &lt;&lt; 31))</code>：用来防止最小值小的溢出</li>
+<li><code>maxF[i] = Math.max(maxF[i - 1] * nums[i], Math.max(nums[i], minF[i - 1] * nums[i]))</code>：通过内嵌<code>max()</code>比较三种情况的积</li>
+<li><code>minF[i] = Math.min(minF[i - 1] * nums[i], Math.min(nums[i], maxF[i - 1] * nums[i]));</code>：与上式相同，但求得是最小值</li>
+</ul>
+<p><strong>结构很清晰，需要好好学习，熟练掌握</strong><br><strong>可以用滚动数组</strong></p>
+<h2 id="分割等和子集"><a href="#分割等和子集" class="headerlink" title="分割等和子集"></a>分割等和子集</h2><h3 id="算法概述-8"><a href="#算法概述-8" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-equal-subset-sum/description/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为判断给出数组能否分成和相同的两个子集（子集可以不连续）。就是找有没有子集能够 <em><strong>加出来整个数组和的一半</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O(nk)：k是整体和的一半</li>
+<li>空间复杂度为O(k)：可优化为一个一维数组</li>
+</ul>
+<h3 id="JAVA-8"><a href="#JAVA-8" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canPartition(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        // 一个数不行</span><br><span class="line">        <span class="keyword">if</span> (n &lt; 2) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        int <span class="built_in">sum</span> = 0, maxNum = 0;</span><br><span class="line">        // 算总和</span><br><span class="line">        <span class="keyword">for</span> (int num : nums) &#123;</span><br><span class="line">            <span class="built_in">sum</span> += num;</span><br><span class="line">            maxNum = Math.max(maxNum, num);</span><br><span class="line">        &#125;</span><br><span class="line">        // 奇数个数不行</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">sum</span> % 2 != 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        int target = <span class="built_in">sum</span> / 2;</span><br><span class="line">        // 最大数超过一半不行</span><br><span class="line">        <span class="keyword">if</span> (maxNum &gt; target) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        // 默认是<span class="literal">false</span></span><br><span class="line">        boolean[] dp = new boolean[target + 1];</span><br><span class="line">        dp[0] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int num = nums[i];</span><br><span class="line">            // 从半值递减</span><br><span class="line">            <span class="keyword">for</span> (int j = target; j &gt;= num; --j) &#123;</span><br><span class="line">                // 逻辑运算符也可以这么写</span><br><span class="line">                dp[j] |= dp[j - num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> dp[target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-8"><a href="#C-8" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 没区别</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-8"><a href="#注意-8" class="headerlink" title="注意"></a>注意</h3><p><code>dp[j]</code>代表是否有子集的和为j。解法这么安排<code>i</code>和<code>j</code>非常 <strong>巧妙</strong> ，在节省了空间的同时保持了完整的逻辑思路。也就是说虽然 <strong>外层循环仍然控制状态数组</strong> ，但是内部循环对状态数组的更新是通过 <strong>倒序遍历</strong> 的，这样避免了重复使用<code>num</code>进行更新。因为这里用状态数组 <strong>不涉及复杂的相对关系</strong> ，所以可以使用 <strong>倒序遍历</strong> 。</p>
+<h2 id="最长有效括号"><a href="#最长有效括号" class="headerlink" title="最长有效括号"></a>最长有效括号</h2><h3 id="算法概述-9"><a href="#算法概述-9" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-valid-parentheses/solutions/314683/zui-chang-you-xiao-gua-hao-by-leetcode-solution/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>本题要求为返回有效括号子串的长度。这道题本来用栈来做的。现在就是用动态规划，而且只能一个一个遍历。</p>
+<ul>
+<li>时间复杂度为O(n)</li>
+<li>空间复杂度为O(n)</li>
+</ul>
+<h3 id="JAVA-9"><a href="#JAVA-9" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int longestValidParentheses(String s) &#123;</span><br><span class="line">        int maxans = 0;</span><br><span class="line">        // dp用来装当前索引有效括号子串的长度</span><br><span class="line">        int[] dp = new int[s.length()];</span><br><span class="line">        <span class="keyword">for</span> (int i = 1; i &lt; s.length(); i++) &#123;</span><br><span class="line">            // 只用判断右括号</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) == <span class="string">&#x27;)&#x27;</span>) &#123;</span><br><span class="line">                // 前面直接就是左括号</span><br><span class="line">                <span class="keyword">if</span> (s.charAt(i - 1) == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                    // 如果前面还有有效子串则可以累加（状态转移）</span><br><span class="line">                    dp[i] = (i &gt;= 2 ? dp[i - 2] : 0) + 2;</span><br><span class="line">                    // 左括号和右括号包含了一个有效子串</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i - dp[i - 1] &gt; 0 &amp;&amp; s.charAt(i - dp[i - 1] - 1) == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">                    // 如果前面还有有效子串则可以累加（状态转移）</span><br><span class="line">                    dp[i] = dp[i - 1] + ((i - dp[i - <span class="number">1</span>]) &gt;= <span class="number">2</span> ? dp[i - dp[i - <span class="number">1</span>] - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                maxans = Math.max(maxans, dp[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-9"><a href="#C-9" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样的</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-9"><a href="#注意-9" class="headerlink" title="注意"></a>注意</h3><p>这里看上去比较奇怪的原因就是 <strong>状态转移方程要分成两类</strong> ，分别是 <strong>前面一个就是括号</strong> 和 <strong>和前面的括号之间还包含了有效子串</strong> 。也就是说，当<code>i - dp[i - 1] &gt; 0 </code>时可以得出匹配的左括号离当前右括号有一段距离，并且当前右括号 <strong>前面有一个有效子串</strong> ，然后就是通过<code>s.charAt(i - dp[i - 1] - 1) == &#39;(&#39;</code>找匹配的左括号。这里<code>dp[i] = dp[i - 1] + ((i - dp[i - 1]) &gt;= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;</code>进行状态转移和<code>if</code>的区别无非就是减去了中间有效子串的长度罢了。</p>
+<p>之所以代码如此简单清晰，就是在预处理时理解了在用 <strong>动态规划一次遍历解决问题</strong> 的一个核心特征，根本 <strong>不会有无效子串的可能</strong> ，只可能会多一个少一个括号找不到匹配，这样每个都遍历时绝对不会出现无效括号的（除了开头右括号以外）。</p>
+<p>所以面对相对复杂问题的时候一定要 <strong>先对问题有基本的思考和转化</strong> 。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 动态规划(10) --hot 100 in leetcode</li>
+        <li><strong>Author:</strong> tobegold574</li>
+        <li><strong>Created at
+                :</strong> 2024-11-27 13:53:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-11-27 21:41:29
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://tobegold574.me/2024/11/27/动态规划-10-hot-100-in-leetcode/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/hot-100/">#hot 100</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/leetcode/">#leetcode</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/11/27/%E5%A4%9A%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-5-hot-100-in-leetcode/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">多维动态规划(5) --hot 100 in leetcode</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/11/27/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95-4-hot-100-in-leetcode/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">贪心算法(4) --hot 100 in leetcode</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">动态规划(10) --hot 100 in leetcode</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="nav-text">爬楼梯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92"><span class="nav-text">杨辉三角</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-1"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-1"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-1"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D"><span class="nav-text">打家劫舍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-2"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-2"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-2"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-2"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0"><span class="nav-text">完全平方数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-3"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-3"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-3"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-3"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2"><span class="nav-text">零钱兑换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-4"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-4"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-4"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-4"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86"><span class="nav-text">单词拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-5"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-5"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-5"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-5"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-text">最长递增子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-6"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-6"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-6"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-6"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E6%95%B0%E7%BB%84"><span class="nav-text">乘积最大数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-7"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-7"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-7"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-7"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86"><span class="nav-text">分割等和子集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-8"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-8"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-8"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-8"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7"><span class="nav-text">最长有效括号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-9"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-9"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-9"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-9"><span class="nav-text">注意</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">tobegold574</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        17 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.3</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
