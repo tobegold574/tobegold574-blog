@@ -26,7 +26,7 @@
 <meta property="og:description" content="判断是否可以赢得数字游戏(easy)做题过程直接一次遍历+计算两位数总和、一位数总和、总和，然后比较前两者是否小于第三者的一半，但实际上，只需要算前面两个，判断它们相不相等，因为 目标数组的范围不到三位数 。 算法概述原题  本题要求判断爱丽丝只取两位数或者一位数能不能赢取剩下数字的鲍勃。但实际上因为给定了数组最大值范围，所以完全可以 优化判断条件和减少临时变量使用 。  时间复杂度为O(n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-30T11:32:10.000Z">
-<meta property="article:modified_time" content="2024-11-30T11:57:27.906Z">
+<meta property="article:modified_time" content="2024-11-30T13:06:21.410Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="普通数组">
@@ -266,8 +266,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-30 19:57:27</span>
-            <span class="mobile">2024-11-30 19:57:27</span>
+            <span class="desktop">2024-11-30 21:06:21</span>
+            <span class="mobile">2024-11-30 21:06:21</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -324,9 +324,9 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 <li>时间复杂度为O(n)：一次遍历</li>
 <li>空间复杂度为O(1)</li>
 </ul>
-<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canAliceWin(int[] nums) &#123;</span><br><span class="line">        int singleDigitSum = 0;</span><br><span class="line">        int doubleDigitSum = 0;</span><br><span class="line">        <span class="keyword">for</span> (int num : nums) &#123;</span><br><span class="line">            // 我用了除法，其实不用的，而且除法很耗时间</span><br><span class="line">            <span class="keyword">if</span> (num &lt; 10) &#123;</span><br><span class="line">                singleDigitSum += num;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                doubleDigitSum += num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 因为只有个位数和两位数，只要两者不相等，爱丽丝总可以取到一个大的</span><br><span class="line">        <span class="built_in">return</span> singleDigitSum != doubleDigitSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canAliceWin</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">singleDigitSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">doubleDigitSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            <span class="comment">// 我用了除法，其实不用的，而且除法很耗时间</span></span><br><span class="line">            <span class="keyword">if</span> (num &lt; <span class="number">10</span>) &#123;</span><br><span class="line">                singleDigitSum += num;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                doubleDigitSum += num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 因为只有个位数和两位数，只要两者不相等，爱丽丝总可以取到一个大的</span></span><br><span class="line">        <span class="keyword">return</span> singleDigitSum != doubleDigitSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 一样的</span><br></pre></td></tr></table></figure></div>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一样的</span></span><br></pre></td></tr></table></figure></div>
 
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>一定要留心对数据范围的说明</strong> ，这决定了优化的上限和超时的下限。</p>
 
@@ -343,7 +343,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-30 19:57:27
+                    :</strong> 2024-11-30 21:06:21
             </li>
         
         <li>
