@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)：存放两个指针，但实际都指向参数数组中的值
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void moveZeroes(int[] nums) {
         int n=nums.length,left=0,right=0;
@@ -48,7 +48,7 @@ class Solution {
 `public void swap()`：辅助函数建议直接操作原数组（模拟指针）
 
 ### C++
-```bash
+```c++
 // 基本上一模一样
 class Solution {
 public:
@@ -71,7 +71,7 @@ public:
 
 ### 注意
 ***快慢指针***：无需交换，只提取非零值，剩下的全是零值。
-```bash
+```java
 class Solution {
     public void moveZeroes(int[] nums) {
         if(nums == null){
@@ -102,7 +102,7 @@ class Solution {
 - 空间复杂度为O(1)：只存储双指针的值
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int maxArea(int[] height) {
         // 双指针指向数组边界
@@ -127,7 +127,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 class Solution {
 public:
@@ -160,7 +160,7 @@ public:
 - 空间复杂度为O(log n)或O(n)：前者直接在原数组进行排序，需要存储每个可能的三元数组结果，而后者考虑了在原数组副本上进行排序
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         int n = nums.length;
@@ -207,7 +207,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 除使用vector.push_back()和sort()外没有语法结构上的差别
 ```
 
@@ -221,7 +221,7 @@ class Solution {
 - 空间复杂度为O(1)：只需要存储指针指向的值
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int trap(int[] height) {
         int ans=0;
@@ -250,7 +250,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 除了使用max以外无差别
 class Solution {
 public:

@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(n)：栈
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -53,7 +53,7 @@ class Solution {
 `Collections.swap(List<?> list, int i, int j)`：将i和j位置上的元素交换
 
 ### C++
-```bash
+```c++
 // 也是一样的
 ```
 
@@ -76,7 +76,7 @@ class Solution {
 
 
 ### JAVA
-```bash
+```java
 // 回溯（递归）
 class Solution {
     List<Integer> t = new ArrayList<Integer>();
@@ -129,7 +129,7 @@ public:
 ```
 
 ### C++
-```bash
+```c++
 // 位运算一样的
 ```
 
@@ -150,7 +150,7 @@ public:
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> combinations = new ArrayList<String>();
@@ -198,7 +198,7 @@ class Solution {
 
 
 ### C++ 
-```bash
+```c++
 // 没啥不一样的
 ```
 
@@ -218,7 +218,7 @@ class Solution {
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
@@ -252,7 +252,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 注意STL算法使用
 ```
 
@@ -273,7 +273,7 @@ class Solution {
 - 时间复杂度为%$O\left(\frac{4^n}{\sqrt{n}}\right)$：卡特兰数（不懂）
 - 空间复杂度为O(n)：递归栈
 ### JAVA
-```bash
+```java
 class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> ans=new ArrayList<String>();
@@ -307,7 +307,7 @@ class Solution {
 `new StringBuffer()`可以换成`new StringBuilder()`，后者只支持单线程，但是性能更好。
 
 ### C++
-```bash
+```c++
 class Solution {
     // 智能指针（底层为引用计数）
     shared_ptr<vector<string>> cache[100] = {nullptr};
@@ -358,7 +358,7 @@ public:
 - 空间复杂度为O(n)：几个集合
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean exist(char[][] board, String word) {
         int h = board.length, w = board[0].length;
@@ -408,7 +408,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -425,7 +425,7 @@ class Solution {
 
 
 ### C++
-```bash
+```java
 class Solution {
 public:
     vector<vector<string>> partition(string s) {
@@ -470,7 +470,7 @@ private:
 ```
 
 ### JAVA
-```bash
+```c++
 // 类似吧
 ```
 
@@ -484,7 +484,7 @@ private:
 本题要求为在n*n的棋盘上找出有多少种放置互不攻击的n个皇后的方法。我一开始就想用类似bfs的回溯算法，也就是下方的解法，但又算错了空间复杂度，反而使用了更加复杂的纯dfs回溯。ε=(´ο｀*)))唉。这道题的核心还是 ***套一层外部循环以符合皇后的全局作用，用集合存不可访问的节点*** ，以及底层毫无变化的 ***回溯*** 。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<List<String>> solveNQueens(int n) {
         // 存答案
@@ -546,7 +546,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 类似
 ```
 
@@ -554,7 +554,7 @@ class Solution {
 完整的棋盘概念无需再递归的检查中出现，因为检查的功能完全由三个集合承担，而`generateBoard(int[] queens, int n)`只需出现在最后加入答案的时候。
 
 最核心的是：
-```bash
+```java
 if (row == n) {
     List<String> board = generateBoard(queens, n);
     solutions.add(board);

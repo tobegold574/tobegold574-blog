@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(n)：经过优化
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int uniquePaths(int m, int n) {
         int[] cur = new int[n];
@@ -38,7 +38,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 无复杂接口调用
 ```
 
@@ -55,7 +55,7 @@ class Solution {
 - 空间复杂度为O(mn)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int minPathSum(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
@@ -86,7 +86,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -103,7 +103,7 @@ class Solution {
 - 空间复杂度为O(n^2)
 
 ### JAVA
-```bash
+```java
 public class Solution {
 
     public String longestPalindrome(String s) {
@@ -158,7 +158,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的思路
 ```
 
@@ -178,7 +178,7 @@ public class Solution {
 
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length(), n = text2.length();
@@ -207,7 +207,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 可用string.at()索引
 ```
 
@@ -222,7 +222,7 @@ class Solution {
 本题要求为返回将一个字符串转换成另外一个字符串的最少操作数（操作包括：插入、删除、替换）。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int minDistance(String word1, String word2) {
         int n = word1.length();
@@ -269,7 +269,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 

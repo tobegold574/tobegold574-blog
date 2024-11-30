@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)：只需要存储中间常数
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int maxSubArray(int[] nums) {
         // 存当前子数组和和当前最大和
@@ -36,7 +36,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
@@ -67,7 +67,7 @@ public:
 - 空间复杂度为O(logn)：排序
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[][] merge(int[][] intervals) {
         // 题目无效
@@ -104,7 +104,7 @@ class Solution {
 `Arrays.sort(intervals, new Comparator<int[]>())`：使用比较器`Comparator`进行比较，比较器是需要实现的接口，当比较器返回负值，则第一个参数在前
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -148,7 +148,7 @@ public:
 - 空间复杂度为O(1)：中间变量存储
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
@@ -185,7 +185,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -223,7 +223,7 @@ C++在较新版本的 **numeric** 中有很多新方法，可以活用。其实�
 - 空间复杂度为O(1)：只有中间变量存储
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         int length=nums.length;
@@ -250,7 +250,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一模一样
 class Solution {
 public:
@@ -282,7 +282,7 @@ public:
 题目要求为找出数组中缺失的最小正数。我第一反应是哈希秒了，但原地直接使用哈希是最慢的。哈希是没有错的，但是应该换一种思路
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
@@ -312,7 +312,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {

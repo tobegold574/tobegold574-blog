@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(mn)：隐式栈或显式栈或队列
 
 ### JAVA
-```bash
+```java
 // 深度优先搜索
 class Solution {
     void dfs(char[][] grid, int r, int c) {
@@ -118,7 +118,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 对于深度优先搜索（递归）用不着容器类
 // 对于广度优先搜索可以用pair来表示坐标
 ```
@@ -136,7 +136,7 @@ class Solution {
 本题要求为在每分钟挨着图中'2'元素的'1'元素都会自增的情况下，最少需要多久时间只剩'0'和'1'（新鲜的橘子受腐烂的橘子影响腐烂）。关键是传递性。
 
 ### JAVA
-```bash
+```java
 class Solution {
     // 成对的方向变化先声明好
     int[] dr = new int[]{-1, 0, 1, 0};
@@ -190,7 +190,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
     // 默认为private
     int cnt;
@@ -268,7 +268,7 @@ C++和JAVA的差别还是蛮大的，由于容器类的不同。JAVA使用了 **
 
 
 ### JAVA
-```bash
+```java
 // 深度优先搜索
 class Solution {
     // 邻接表（存后续课程）
@@ -368,7 +368,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 代码逻辑上无差别
 ```
 
@@ -390,7 +390,7 @@ class Solution {
 - 空间复杂度为O(∣T∣⋅Σ)：看输入字符所属字符集和存了多少
 
 ### JAVA
-```bash
+```java
 // 多叉树或者一种特殊的图
 class Trie {
     // 当前节点的所有子节点
@@ -450,7 +450,7 @@ class Trie {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 

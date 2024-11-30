@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)：无额外数据结构
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int climbStairs(int n) {
         int p = 0, q = 0, r = 1;
@@ -38,7 +38,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 
@@ -56,7 +56,7 @@ class Solution {
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ret = new ArrayList<List<Integer>>();
@@ -79,7 +79,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 
@@ -96,7 +96,7 @@ class Solution {
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
@@ -119,7 +119,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 
@@ -136,7 +136,7 @@ class Solution {
 - 空间复杂度为O(n)：用一个数组保存前n-1个数的可能，供记忆化搜索使用
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int numSquares(int n) {
         int[] f = new int[n + 1];
@@ -156,7 +156,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -173,7 +173,7 @@ class Solution {
 - 空间复杂度为O(s)
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public int coinChange(int[] coins, int amount) {
         int max = amount + 1;   
@@ -194,7 +194,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -213,7 +213,7 @@ public class Solution {
 - 空间复杂度为O(n)：布尔数组或者哈希集合
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> wordDictSet = new HashSet(wordDict);
@@ -235,7 +235,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 对哈希集合要用find() end() string.str什么的
 ```
 
@@ -252,7 +252,7 @@ public class Solution {
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int lengthOfLIS(int[] nums) {
         if (nums.length == 0) {
@@ -280,7 +280,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没有区别
 ```
 
@@ -299,7 +299,7 @@ class Solution {
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int maxProduct(int[] nums) {
         int length = nums.length;
@@ -329,7 +329,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 思路一样，操作更加精简
 ```
 
@@ -357,7 +357,7 @@ class Solution {
 - 空间复杂度为O(k)：可优化为一个一维数组
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean canPartition(int[] nums) {
         int n = nums.length;
@@ -397,7 +397,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -414,7 +414,7 @@ class Solution {
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int longestValidParentheses(String s) {
         int maxans = 0;
@@ -441,7 +441,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 

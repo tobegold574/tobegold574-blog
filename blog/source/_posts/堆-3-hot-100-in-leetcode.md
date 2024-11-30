@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(logn)：函数栈
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         int heapSize = nums.length;
@@ -71,7 +71,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // C++的swap不用自定义
 ```
 
@@ -99,7 +99,7 @@ class Solution {
 - 空间复杂度为O(n)：哈希表
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> occurrences = new HashMap<Integer, Integer>();
@@ -146,7 +146,7 @@ class Solution {
 `int num = entry.getKey(), count = entry.getValue();`：`getKey()`得到键，`getValue()`得到值
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     static bool cmp(pair<int, int>& m, pair<int, int>& n) {
@@ -195,7 +195,7 @@ public:
 本题要求为设计一个类包含加入单个整数元素并能够返回当前实例内所有元素中位数的功能。栈的最后一道题也是类似的要求，但不一样的是，栈需要找到的是两个数组的共同中位数，所以解法是通过 **查找第k大小的元素的辅助函数** 完成的，而对于堆的这道题，只需要找到 **当前实例内的中位数** ，所以采取了了 **最大堆和最小堆动态更新** 的方法。
 
 ### JAVA
-```bash
+```java
 class MedianFinder {
     PriorityQueue<Integer> queMin;
     PriorityQueue<Integer> queMax;
@@ -240,7 +240,7 @@ class MedianFinder {
 `queMin = new PriorityQueue<Integer>((a, b) -> (b - a));`：还可以这样直接初始化
 
 ### C++
-```bash
+```c++
 // 主要思路一样
 ```
 

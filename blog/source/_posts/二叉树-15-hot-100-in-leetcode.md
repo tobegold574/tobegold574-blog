@@ -28,7 +28,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 
 ### JAVA
-```bash
+```java
 // 递归
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
@@ -113,7 +113,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 对于C++，迭代可以用stack容器类(push(),pop())，而不是双向队列，其他一样
 ```
 
@@ -122,7 +122,7 @@ class Solution {
 对于一个树根为1，1的右子树为3,3的左子树为2的树，函数调用栈如上所示。
 
 对于迭代，代码的执行过程是差不多的，但内在逻辑的差别较大。迭代中`root`用右子节点刷新，所以不可避免会为null，所以循环条件特意这么设置` while (root != null || !stk.isEmpty())`，同时，`root`还从模拟栈中取值刷新`root = stk.pop();`，
-```bash
+```java
 while (root != null) {
     stk.push(root);
     root = root.left;
@@ -133,7 +133,7 @@ while (root != null) {
 对于Morris，代码的核心逻辑是将所有节点用中序遍历的逻辑连接起来， **对于左子结点，将其右子节点设为根节点** ，而 **对于右子节点，将其右子节点设置为根节点的根节点** ，这样就得到了本质为中序遍历的 **右序遍历** 。每次遍历的时候，核心是 **找到当前节点在中序遍历中的前驱并成为其右子节点** 。
 
 最后就是
-```bash
+```java
 else {
     res.add(root.val);
     root = root.right;
@@ -156,7 +156,7 @@ else {
 - 空间复杂度为O(n)：取决于需要存储多少个元素
 
 ### JAVA
-```bash
+```java
 // DFS
 class Solution {
     public int maxDepth(TreeNode root) {
@@ -211,7 +211,7 @@ class Solution {
 `Queue.size()`：返回队列长度
 
 ### C++
-```bash
+```c++
 // 其实DFS可以写的更简单
 class Solution {
 public:
@@ -241,7 +241,7 @@ public:
 - 空间复杂度为O(n)：栈
 
 ### JAVA
-```bash
+```java
 class Solution {
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
@@ -258,7 +258,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -279,7 +279,7 @@ class Solution {
 本题要求为判断二叉树是否对称。还是使用 ***递归*** 分别判断左右子节点。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean isSymmetric(TreeNode root) {
         return check(root.left,root.right);
@@ -300,7 +300,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 
@@ -316,7 +316,7 @@ class Solution {
 - 空间复杂度为O(height)：栈的深度最坏情况可能还是最大深度
 
 ### JAVA
-```bash
+```java
 class Solution {
     // 使用全局变量追踪
     int ans=0;
@@ -339,7 +339,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -353,7 +353,7 @@ class Solution {
 本题要求为把二叉树每一层的元素提取成一个列表，然后按照顺序组合成一个完整的列表返回。其实 ***只要在“二叉树的最大深度”那道题上稍微改一点*** 就可以了。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) return new ArrayList<>(); 
@@ -389,7 +389,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样是微调
 ```
 
@@ -405,7 +405,7 @@ class Solution {
 - 空间复杂度为O(logn)：平均，因为栈的使用空间会回退，如果退化成链表或者单边树，那就还是O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     Random rand = new Random();
 
@@ -435,7 +435,7 @@ class Solution {
 
 
 ### C++
-```bash
+```c++
 // 没有区别，除了用的是rand()
 ```
 
@@ -456,7 +456,7 @@ class Solution {
 - 空间复杂度为O(height)：最坏还是n
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean isValidBST(TreeNode root) {
     // 用常量设置函数栈底层，防止整数溢出
@@ -478,7 +478,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没啥区别吧
 ```
 
@@ -493,7 +493,7 @@ java里的防溢出常量是`Long.MIN_VALUE, Long.MAX_VALUE`这俩，而C++中�
 本题要求为找出二叉搜索树（定义上题有）中第k小的元素。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
         // 用双向队列来存储节点（模拟栈）
@@ -517,7 +517,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -531,7 +531,7 @@ class Solution {
 本题要求为按照根节点向下的顺序返回所有节点的右子节点。
 
 ### JAVA
-```bash
+```java
 // 还是BFS
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
@@ -568,7 +568,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 类似，除了c++有stack以外
 ```
 
@@ -584,7 +584,7 @@ class Solution {
 - 空间复杂度为O(1)：在原二叉树上操作
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void flatten(TreeNode root) {
         TreeNode curr = root;
@@ -611,7 +611,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 
@@ -619,7 +619,7 @@ class Solution {
 其实本质上还是一个 **找前驱后驱** 的工作，先序遍历是 **根->左->右** ，也就是说这样相当于为每个子树（三个节点的结构）找到后驱，把所有左子结点转移到右子树上去，所以当`if (curr.left != null)`再也没有左子节点的时候，就成功了。而且符合先序遍历的顺序。
 
 当然还是要了解先序遍历的实现方式：
-```bash
+```java
 class Solution {
     public void flatten(TreeNode root) {
         List<TreeNode> list = new ArrayList<TreeNode>();
@@ -656,7 +656,7 @@ class Solution {
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     // 哈希表辅助找根节点
     private Map<Integer, Integer> indexMap;
@@ -693,7 +693,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 哈希操作可以用重载[]，基本一样
 ```
 
@@ -716,7 +716,7 @@ class Solution {
 - 空间复杂度为O(n)：哈希表存储前缀和
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int pathSum(TreeNode root, int targetSum) {
         // 哈希表存储前缀和(key)和对应路径出现频次(value)
@@ -751,7 +751,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 可以用重载[]，不用put、getOrDefault这些，会方便很多
 ```
 
@@ -763,7 +763,7 @@ class Solution {
 `prefix.put(curr, prefix.getOrDefault(curr, 0) - 1);`这里是把哈希表中的统计清除了，但并不是清除`curr`当前前缀和，因为 **回溯之后前缀和自然保持的是上一层根节点的前缀和** 。这就是要把 **前缀和更新以及路径匹配放在递归之前，而回溯更新放在递归之后** 的原因。 
 
 还要会的是时间复杂度为O(n^2)的深度优先搜索的算法：
-```bash
+```java
 class Solution {
     public int pathSum(TreeNode root, long targetSum) {
         if (root == null) {
@@ -806,7 +806,7 @@ class Solution {
 - 时间复杂度为O(n)
 - 空间复杂度为O(height)：最坏还是n
 ### JAVA
-```bash
+```java
 class Solution {
     private TreeNode ans=null;
 
@@ -831,7 +831,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -853,7 +853,7 @@ class Solution {
 - 空间复杂度为O(height)：最坏为n
 
 ### JAVA    
-```bash
+```java
 class Solution {
     private int maxPath = Integer.MIN_VALUE; 
 
@@ -882,7 +882,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没啥区别
 ```
 

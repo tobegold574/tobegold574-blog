@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)：临时变量
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int searchInsert(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
@@ -41,7 +41,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -60,7 +60,7 @@ class Solution {
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length, n = matrix[0].length;
@@ -84,7 +84,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -102,7 +102,7 @@ class Solution {
 
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int leftIdx = binarySearch(nums, target, true);
@@ -134,7 +134,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 实现逻辑相同
 ```
 
@@ -156,7 +156,7 @@ class Solution {
 - 空间复杂度为O(1)：临时变量
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int search(int[] nums, int target) {
         int n = nums.length;
@@ -190,7 +190,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 
@@ -209,7 +209,7 @@ class Solution {
 - 空间复杂度为O(1)：临时变量
 
 ### JAVA    
-```bash
+```java
 class Solution {
     public int findMin(int[] nums) {
         int low = 0;
@@ -228,7 +228,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -246,7 +246,7 @@ class Solution {
 - 空间复杂度为O(1)：临时变量
 
 ### JAVA
-```bash
+```java
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int length1 = nums1.length, length2 = nums2.length;
@@ -303,7 +303,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 

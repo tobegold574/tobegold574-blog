@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(n)：存储所有元素的哈希映射结果
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         // 创建哈希表的新实例（Map是接口，HashMap是接口实现）
@@ -47,7 +47,7 @@ class Solution {
 - `hashtable.put(key,value)`：将元素放入表中
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -90,7 +90,7 @@ public:
 - 空间复杂度为O(nk)：k是字符串元素的最大长度，n是字符串数量
 
 ### Java
-```bash
+```java
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String,List<String>> map=new HashMap<String,List<String>>();
@@ -123,7 +123,7 @@ class Solution {
 - `map.values()`：返回`Collection<V>`，也就是可读可写的视图
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {

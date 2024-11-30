@@ -25,7 +25,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(nm)：同上
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int countOfPairs(int[] nums) {
         // 题目还要求将最后的结果对mod这个数求余
@@ -64,7 +64,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 总体思路是一样的
 ```
 

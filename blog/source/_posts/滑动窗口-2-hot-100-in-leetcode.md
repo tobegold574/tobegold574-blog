@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(∣Σ∣)：字符集大小，因为要创建容器类对应字符串映射
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         // 创建空集合
@@ -57,7 +57,7 @@ class Solution {
 - `set.contains(element)`：是否存在某元素，返回true或flase
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -104,7 +104,7 @@ public:
 - 空间复杂度为O(∑)：需要存储字符集
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         // 先算好两个字符串长度
@@ -171,7 +171,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 除了用vector以及vector.emplace_back()，没有区别
 ...
 ```

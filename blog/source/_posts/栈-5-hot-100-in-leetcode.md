@@ -21,7 +21,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean isValid(String s) {
         int n = s.length();
@@ -65,7 +65,7 @@ class Solution {
 `Deque.push()`：压入
 
 ### C++
-```bash
+```c++
 // 可用stack
 ```
 
@@ -88,7 +88,7 @@ class Solution {
 - 空间复杂度为O(n)：辅助栈
 
 ### JAVA
-```bash
+```java
 class MinStack {
     Deque<Integer> xStack;
     Deque<Integer> minStack;
@@ -122,7 +122,7 @@ class MinStack {
 ```
 
 ### C++
-```bash
+```c++
 // 与之类似
 ```
 
@@ -130,13 +130,13 @@ class MinStack {
 辅助栈的思路类似于 **迭代** ，因为入栈时从第一个元素开始的，所以最小值永远可以与当前栈顶元素进行比较得到，所以 **能不断重复此过程** 。除了保存每次入栈后栈内最小值，也可以通过更巧妙的方法，避免那么多次的入栈与出栈。
 
 比如，在入栈时加入判断：
-```bash
+```java
 if (minStack.isEmpty() || x <= minStack.peek()) {
     minStack.push(x);
 }
 ```
 只有 **比栈顶元素小的时候** 才入栈，同时
-```bash
+```java
 if (popped == minStack.peek()) {
     minStack.pop(); 
 }
@@ -154,7 +154,7 @@ if (popped == minStack.peek()) {
 - 空间复杂度为O(n)：
 
 ### JAVA
-```bash
+```java
 class Solution {
     int ptr;
 
@@ -233,7 +233,7 @@ class Solution {
 `Integer.parseInt()`：将字符串转换为数字
 
 ### C++
-```bash
+```c++
 // api很不一样，实现思路一样
 ```
 
@@ -256,7 +256,7 @@ class Solution {
 - 空间复杂度为O(n)：最大只需一个和原数组长度相当的栈
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
         int length = temperatures.length;
@@ -281,7 +281,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 
@@ -303,7 +303,7 @@ class Solution {
 - 空间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
@@ -336,7 +336,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 ```
 

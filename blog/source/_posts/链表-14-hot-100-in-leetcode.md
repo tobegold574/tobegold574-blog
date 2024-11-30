@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)：双指针存储
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         // 无效题目
@@ -41,7 +41,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没有区别
 class Solution {
 public:
@@ -72,7 +72,7 @@ public:
 - 空间复杂度为O(1)：三个变量（存在于不同作用域）存储这个三元关系
 
 ### JAVA
-```bash
+```java
 class Solution {
     public ListNode reverseList(ListNode head) {
         // 原链表中的前驱
@@ -95,7 +95,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样
 class Solution {
 public:
@@ -127,7 +127,7 @@ public:
 - 空间复杂度为O(1)：只修改原链表
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean isPalindrome(ListNode head) {
         if(head==null){
@@ -182,7 +182,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没什么区别
 ```
 
@@ -199,7 +199,7 @@ class Solution {
 - 空间复杂度为O(1)：快慢指针
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public boolean hasCycle(ListNode head) {
         // 无效题目
@@ -224,7 +224,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 无区别
 ```
 
@@ -240,7 +240,7 @@ public class Solution {
 - 空间复杂度为O(1)：三指针
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public ListNode detectCycle(ListNode head) {
         if (head == null) {
@@ -272,7 +272,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -290,7 +290,7 @@ public class Solution {
 - 空间复杂度为O(1)：只需要一个变量标记目前较大值
 
 ### JAVA
-```bash
+```java
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
        // 因为双指针会移动，所以还需要一个指针指向起始位置
@@ -319,7 +319,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 无区别
 ```
 
@@ -377,7 +377,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```java
 // 一样
 ```
 
@@ -395,7 +395,7 @@ class Solution {
 - 空间复杂度为O(1)：双指针
 
 ### JAVA
-```bash
+```c++
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         // 头结点之前
@@ -420,7 +420,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```java
 // 没区别
 ```
 
@@ -438,7 +438,7 @@ class Solution {
 - 空间复杂度为O(1)；和上题一样需要哑结点和一些其他的中间变量
 
 ### JAVA
-```bash
+```c++
 class Solution {
     public ListNode swapPairs(ListNode head) {
         // 哑结点和上题一样，是用来处理边界的，因为一套操作下来需要三个节点，而头两个节点不够
@@ -461,7 +461,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 相同
 ```
 
@@ -479,7 +479,7 @@ class Solution {
 - 空间复杂度为O(1)；依托中间变量
 
 ### JAVA
-```bash
+```java
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummy = new ListNode(0,head);
@@ -530,7 +530,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 // public区别不大
 public:
@@ -599,7 +599,7 @@ private:
 - 空间复杂度为O(1)：中间变量，输出不算
 
 ### JAVA
-```bash
+```java
 class Solution {
     public Node copyRandomList(Node head) {
         if (head == null) {
@@ -637,7 +637,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没有区别
 ```
 
@@ -647,7 +647,7 @@ class Solution {
 总而言之，核心的核心就是 **把新节点插入到原链表中** ，这也属于基于原链表使操作更便捷，非常经典，需要牢记和熟练。
 
 还有回溯+哈希表的解法，时间复杂度一样：
-```bash
+```java
 class Solution {
 public:
     unordered_map<Node*, Node*> cachedNode;
@@ -680,7 +680,7 @@ public:
 - 空间复杂度为O(1)：原地操作
 
 ### JAVA
-```bash
+```java
 class Solution {
     public ListNode sortList(ListNode head) {
         if (head == null) {
@@ -762,7 +762,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没啥区别
 ```
 
@@ -785,7 +785,7 @@ class Solution {
 - 空间复杂度为O(logk)：栈
 
 ### JAVA
-```bash
+```java
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         // 直接用函数彻底分装
@@ -833,7 +833,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别，就是java里的!=null可以不用写，直接写指针名会自动判断的
 ```
 
@@ -848,7 +848,7 @@ class Solution {
 本题要求设计一个满足getter和setter（get,put,capacity初始化）的类，LRU意为最近访问的数据在实例内优先级更高，且要求get()和put()在O(1)时间内完成。核心是在确保访问操作的时间复杂度的同时，根据capacity动态调整存储的键值对。使用 ***双向链表*** 实现。
 
 ### JAVA
-```bash
+```java
 class LRUCache {
     // 双向链表节点
     class DLinkedNode {
@@ -942,7 +942,7 @@ class LRUCache {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的思路，除了哈希表的接口不一样
 ```
 

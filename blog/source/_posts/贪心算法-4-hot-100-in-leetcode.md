@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public int maxProfit(int prices[]) {
         int minprice = Integer.MAX_VALUE;
@@ -39,7 +39,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没区别
 ```
 
@@ -56,7 +56,7 @@ public class Solution {
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 public class Solution {
     public boolean canJump(int[] nums) {
         int n = nums.length;
@@ -76,7 +76,7 @@ public class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 
@@ -93,7 +93,7 @@ public class Solution {
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int jump(int[] nums) {
         int length = nums.length;
@@ -115,7 +115,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 能用max()
 ```
 
@@ -132,7 +132,7 @@ class Solution {
 - 空间复杂度为O(1)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<Integer> partitionLabels(String s) {
         // 记录所有字符的最后出现位置
@@ -158,7 +158,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 没去呗
 ```
 

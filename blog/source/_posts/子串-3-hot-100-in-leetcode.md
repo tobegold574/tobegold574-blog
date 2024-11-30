@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(n)：需要另外创建哈希表，最坏情况需要n的空间大小
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int subarraySum(int[] nums, int k) {
         // 计数答案和前缀
@@ -48,7 +48,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
@@ -87,7 +87,7 @@ public:
 - 空间复杂度为O(k)：滑动窗口长度
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n=nums.length;
@@ -136,7 +136,7 @@ class Solution {
 `deque.isEmpty()`：检查队列是否为空
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -192,7 +192,7 @@ public:
 - 空间复杂度为O(n+m) (C++)：要存字符出现频次
 
 ### JAVA
-```bash
+```java
 // 一下解法不能够处理非英文字母以外的情况（更全面的解法应该用哈希映射而不是数字数组）
 class Solution {
     public String minWindow(String s, String t) {
@@ -255,7 +255,7 @@ class Solution {
 `String.substring(begin,end)`：两个参数应该为起始的索引
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     // string可以直接通过重载[]索引，所以不需要转换成字符数组

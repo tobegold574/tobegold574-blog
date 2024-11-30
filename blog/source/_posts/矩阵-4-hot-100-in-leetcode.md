@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 - 空间复杂度为O(1)：一个标记变量
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void setZeroes(int[][] matrix) {
         // m为行数，n为列数
@@ -59,7 +59,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -103,7 +103,7 @@ public:
 - 空间复杂度为O(1)：原地操作
 
 ### JAVA
-```bash
+```java
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> order = new ArrayList<Integer>();
@@ -147,7 +147,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 除了push_back以外一模一样
 class Solution {
 public:
@@ -199,7 +199,7 @@ public:
 - 空间复杂度为O(1)：中间变量
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void rotate(int[][] matrix) {
         int n = matrix.length;
@@ -221,7 +221,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -255,7 +255,7 @@ public:
 - 空间复杂度为O(1)：行、列指针
 
 ### JAVA
-```bash
+```java
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length, n = matrix[0].length;
@@ -279,7 +279,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 class Solution {
 public:

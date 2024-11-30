@@ -18,7 +18,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 本题要求为在给出的由一个出现一次的数字和其他出现两次的数字中找到那个出现一次的（要求时间复杂度为O(n)，空间复杂度为O(1)）。使用 ***位运算*** 解决。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int singleNumber(int[] nums) {
         int single = 0;
@@ -32,7 +32,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 异或运算是一样的
 ```
 
@@ -51,7 +51,7 @@ class Solution {
 本题要求为返回其中多数元素（出现频次大于一半），要求时间复杂度和空间复杂度与上题一致。使用Boyer-Moore 投票算法。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int majorityElement(int[] nums) {
         int count = 0;
@@ -73,7 +73,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 总体思路一致
 ```
 
@@ -88,7 +88,7 @@ class Solution {
 本题要求将相同颜色 **原地** 排列相邻，不同颜色之间遵照顺序（一共三种颜色，用012表示）,复杂度要求与上题一致。使用 ***双指针*** 解决。
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void sortColors(int[] nums) {
         int n = nums.length;
@@ -122,7 +122,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 思路一致，用vector，不用指针，数字索引就行
 ```
 
@@ -140,7 +140,7 @@ class Solution {
 - 时间复杂度为O(n)：两次遍历
 
 ### JAVA
-```bash
+```java
 class Solution {
     public void nextPermutation(int[] nums) {
         // 从倒数第二个元素开始（因为要和后一个元素比较）
@@ -179,7 +179,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的思路
 ```
 
@@ -198,7 +198,7 @@ class Solution {
 - 时间复杂度为O(n)
 
 ### JAVA
-```bash
+```java
 class Solution {
     public int findDuplicate(int[] nums) {
         int slow = 0, fast = 0;
@@ -224,7 +224,7 @@ class Solution {
 ```
 
 ### C++
-```bash
+```c++
 // 一样的
 ```
 
