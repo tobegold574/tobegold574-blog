@@ -20,7 +20,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 [原题](https://leetcode.cn/problems/n-queens/description/)
 
 就是用一维数组存储每行皇后的位置，然后每次创建新的一行的皇后的位置的时候，遍历之前所有行，检查是否合适（是否会被攻击），其实还是有一点点浪费时间的。回溯被前面的检查操作直接覆盖了，也有一点不符合经典回溯思想。
-- 时间复杂度为O(N!)：往上检查
+- 时间复杂度为O(N^2)：往上检查
 - 空间复杂度为O(n)：只需要一个一维数组存储每行皇后的位置
 
 ### JAVA
