@@ -7,9 +7,7 @@ tags:
     - leetcode
 ---
 
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+ 
 
 ## 和为K的子数组
 ### 算法概述

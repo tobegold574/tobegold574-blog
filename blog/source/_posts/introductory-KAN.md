@@ -5,10 +5,9 @@ tags:
     - 机器学习
     - 新模型
     - KAN
+mathjax: true
 ---
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+ 
 
 [kaggle notebook](https://www.kaggle.com/code/tobegold574/introductory-kan)
 [github repo](https://github.com/KindXiaoming/pykan)
@@ -53,11 +52,17 @@ dataset = create_dataset(f, n_var=2, device=device)
 # 训练
 ## KAN的基础认识
 (latex有转译问题，建议跳过)
-这是**KAN**的激活函数：$$\phi(x)={\rm scale\_base}*b(x) + {\rm scale\_sp}*{\rm spline}(x)$$
-+ $b(x)$ 是最基础的部分，默认为 'silu' ($x/(1+e^{-x})$), 可以通过设置${\rm base\_fun}$更改
-+ scale_sp 从 N(0,$\text{noise_scale}^2$)中取样
-+ scale_base 从N(scale_base_mu,$\text{scale_base_sigma}^2$)
-+ sparse initialization: 如果 sparse_init = True, 那么 scale_base and scale_sp 将会被设置为0
+这是**KAN**的激活函数（注意多词变量全部用的是驼峰法命名，实际使用是使用下标的，请参考代码）：
+
+$$
+\phi(x) = scaleBase \cdot b(x) + scaleSp \cdot spline(x)
+$$
+
++ $b(x)$ 是最基础的部分，默认为 'silu': $\left( \frac{x}{1 + e^{-x}} \right)$, 可以通过设置 ${\rm baseFun}$ 更改
++ $scaleSp$ 从 $\mathcal{N}(0, noiseScale^2)$ 中取样
++ $scaleBase$ 从 $\mathcal{N}(scaleBaseMu, scaleBaseSigma^2)$ 中取样
++ **sparse initialization**: 如果 `sparse_init = True`, 那么 `scale_base` 和 `scale_sp` 将会被设置为 0
+
 
 ## Grid(interval) and K(degree&extened girds)
 grid是**KAN**中非常重要的一个参数，它主要用于在一定的范围内，该将所有基础的曲线单元如何划分（**KAN**所使用的曲线为b-spline），该值越大，那么就有更多的单元，可以类比为随机森林中的决策树数量等等。
@@ -106,7 +111,12 @@ model.plot(metric='forward_n')
 ```
 
 ## 剪枝
-KAN内部对于每个edge、隐藏层神经元都有权重，正如之前给出的公式$$\phi(x)={\rm scale\_base}*b(x) + {\rm scale\_sp}*{\rm spline}(x)$$
+KAN内部对于每个edge、隐藏层神经元都有权重，正如之前给出的公式
+
+$$ 
+\phi(x) = {\rm scaleBase} \cdot b(x) + {\rm scaleSp} \cdot {\rm spline}(x) 
+$$
+
 可以通过设定阈值自动剪枝，或者也可以通过可视化学习过程，手动剪去看的出来有问题的。
 
 ### 剪神经元

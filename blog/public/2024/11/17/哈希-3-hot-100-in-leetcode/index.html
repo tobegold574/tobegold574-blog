@@ -11,13 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     
-        <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-        </script>
-    
-        
-
-    
     <!--- Seo Part-->
     
     <link rel="canonical" href="http://example.com/2024/11/17/哈希-3-hot-100-in-leetcode/"/>
@@ -25,16 +18,16 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="两数之和算法概述原题  两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 java 中的 HashMap 的还是 c++ 中的 unordered_map 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插">
+        <meta name="description" content="两数之和算法概述原题  两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 java 中的 HashMap 的还是 c++ 中的 unordered_map 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插入，使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哈希(3) --hot 100 in leetcode">
 <meta property="og:url" content="http://example.com/2024/11/17/%E5%93%88%E5%B8%8C-3-hot-100-in-leetcode/index.html">
 <meta property="og:site_name" content="hexo">
-<meta property="og:description" content="两数之和算法概述原题  两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 java 中的 HashMap 的还是 c++ 中的 unordered_map 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插">
+<meta property="og:description" content="两数之和算法概述原题  两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 java 中的 HashMap 的还是 c++ 中的 unordered_map 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插入，使">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
 <meta property="article:published_time" content="2024-11-17T08:20:10.000Z">
-<meta property="article:modified_time" content="2024-11-30T13:15:17.073Z">
+<meta property="article:modified_time" content="2024-12-02T05:32:52.611Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="hot 100">
@@ -275,8 +268,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-30 21:15:17</span>
-            <span class="mobile">2024-11-30 21:15:17</span>
+            <span class="desktop">2024-12-02 13:32:52</span>
+            <span class="mobile">2024-12-02 13:32:52</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -322,11 +315,7 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+            <h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>两数之和是hot100中的一道简单题，要求从给出的数组中找到可以作为给出的目标值的两个加数的组合。不管是调用 <strong>java</strong> 中的 <em><strong>HashMap</strong></em> 的还是 <strong>c++</strong> 中的 <em><strong>unordered_map</strong></em> 哪种容器类，还是c中的uthash的宏，这道题的核心都是插入与查找。除此之外，还需要注意的是，哈希映射的核心并不只是创建了一种新表通过算法使每个值都变得特殊且好找，而是通过反向插入，使键变为值，由此使查找工作变得简单的。</p>
 <ul>
 <li>时间复杂度为O(n)：一次遍历用于插入，查找无需遍历</li>
@@ -392,7 +381,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-30 21:15:17
+                    :</strong> 2024-12-02 13:32:52
             </li>
         
         <li>

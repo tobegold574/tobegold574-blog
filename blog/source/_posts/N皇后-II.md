@@ -7,9 +7,7 @@ tags:
     - leetcode
 ---
 
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+ 
 
 ## N皇后 II
 ### 做题过程

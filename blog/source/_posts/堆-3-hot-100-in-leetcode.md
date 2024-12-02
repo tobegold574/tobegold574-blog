@@ -7,9 +7,7 @@ tags:
     - leetcode
 ---
 
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+ 
 
 ## 数组中的第K个最大元素
 ### 算法概述

@@ -7,9 +7,7 @@ tags:
     - leetcode
 ---
 
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+ 
 
 ## 二叉树的中序遍历
 ### 算法概述

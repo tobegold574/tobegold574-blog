@@ -11,13 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     
-        <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-        </script>
-    
-        
-
-    
     <!--- Seo Part-->
     
     <link rel="canonical" href="http://example.com/2024/12/02/n皇后-ii/"/>
@@ -25,15 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="N皇后 II做题过程和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。 算法概述原题  时间和空间复杂度都与N皇后一致，N皇后也不会把棋盘纳入复杂度考虑。 JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    int res&#x3D;0;    public in">
+        <meta name="description" content="N皇后 II做题过程和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。 算法概述原题  时间和空间复杂度都与N皇后一致，N皇后也不会把棋盘纳入复杂度考虑。 JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    int res&#x3D;0;    public int t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="N皇后 II">
 <meta property="og:url" content="http://example.com/2024/12/02/N%E7%9A%87%E5%90%8E-II/index.html">
 <meta property="og:site_name" content="hexo">
-<meta property="og:description" content="N皇后 II做题过程和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。 算法概述原题  时间和空间复杂度都与N皇后一致，N皇后也不会把棋盘纳入复杂度考虑。 JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    int res&#x3D;0;    public in">
+<meta property="og:description" content="N皇后 II做题过程和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。 算法概述原题  时间和空间复杂度都与N皇后一致，N皇后也不会把棋盘纳入复杂度考虑。 JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    int res&#x3D;0;    public int t">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-02T04:49:19.000Z">
-<meta property="article:modified_time" content="2024-12-02T04:54:23.929Z">
+<meta property="article:modified_time" content="2024-12-02T05:32:52.583Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="回溯">
 <meta property="article:tag" content="每日一题">
@@ -273,8 +266,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-12-02 12:54:23</span>
-            <span class="mobile">2024-12-02 12:54:23</span>
+            <span class="desktop">2024-12-02 13:32:52</span>
+            <span class="mobile">2024-12-02 13:32:52</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -320,11 +313,7 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<h2 id="N皇后-II"><a href="#N皇后-II" class="headerlink" title="N皇后 II"></a>N皇后 II</h2><h3 id="做题过程"><a href="#做题过程" class="headerlink" title="做题过程"></a>做题过程</h3><p>和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。</p>
+            <h2 id="N皇后-II"><a href="#N皇后-II" class="headerlink" title="N皇后 II"></a>N皇后 II</h2><h3 id="做题过程"><a href="#做题过程" class="headerlink" title="做题过程"></a>做题过程</h3><p>和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。</p>
 <h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/n-queens-ii/description/" >原题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>时间和空间复杂度都与N皇后一致，N皇后也不会把棋盘纳入复杂度考虑。</p>
 <h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">totalNQueens</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span> cols[]=<span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        dfs(cols,n,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span>[] cols,<span class="type">int</span> n,<span class="type">int</span> row)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i!=n;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(isConflicted(cols,i,row)) <span class="keyword">continue</span>;</span><br><span class="line">            cols[row]=i;</span><br><span class="line">            dfs(cols,n,row+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">isConflicted</span><span class="params">(<span class="type">int</span>[] cols,<span class="type">int</span> i,<span class="type">int</span> row)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j!=row;++j)&#123;</span><br><span class="line">            <span class="comment">// 这里用j，要避免参数冲突</span></span><br><span class="line">            <span class="keyword">if</span>((cols[j]==i)||Math.abs(cols[j]-i)==row-j) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -344,7 +333,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-12-02 12:54:23
+                    :</strong> 2024-12-02 13:32:52
             </li>
         
         <li>

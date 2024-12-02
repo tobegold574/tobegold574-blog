@@ -11,13 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     
-        <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-        </script>
-    
-        
-
-    
     <!--- Seo Part-->
     
     <link rel="canonical" href="http://example.com/"/>
@@ -345,13 +338,10 @@
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-N皇后 II做题过程和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。
+                            N皇后 II做题过程和N皇后思路一模一样，甚至还不需要构建棋盘，简单了很多，还是N皇后的思路，直接手撕了。
 算法概述原题 
 时间和空间复杂度都与N皇后一致，N皇后也不会把棋盘纳入复杂度考虑。
-JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    int res=0;    public...
+JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    int res=0;    public in...
                         
                     </div>
 
@@ -413,13 +403,9 @@ JAVA1234567891011121314151617181920212223242526272829class Solution &#123;    in
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-
-N皇后做题过程一开始想的就是 三个哈希集合 用来存不可访问位置，但后面发现更高效的解法根本 不用这么多变量 ，其实可以很高效的搞定，然后记了一遍，默了一遍，又让GPT给我矫正了一下错误，除去语法，思路是对的，还比原解更精简了一点。
+                            N皇后做题过程一开始想的就是 三个哈希集合 用来存不可访问位置，但后面发现更高效的解法根本 不用这么多变量 ，其实可以很高效的搞定，然后记了一遍，默了一遍，又让GPT给我矫正了一下错误，除去语法，思路是对的，还比原解更精简了一点。
 算法概述原题 
-就是用一维数组存储每行皇后的位置，然后每次创建新的一行的皇后的位置的时候，遍历之前所有行，检查是否合适（是否会被攻击），其实还是有一点点浪...
+就是用一维数组存储每行皇后的位置，然后每次创建新的一行的皇后的位置的时候，遍历之前所有行，检查是否合适（是否会被攻击），其实还是有一点点浪费时间的...
                         
                     </div>
 
@@ -481,14 +467,11 @@ N皇后做题过程一开始想的就是 三个哈希集合 用来存不可访�
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-判断是否可以赢得数字游戏(easy)做题过程直接一次遍历+计算两位数总和、一位数总和、总和，然后比较前两者是否小于第三者的一半，但实际上，只需要算前面两个，判断它们相不相等，因为 目标数组的范围不到三位数 。
+                            判断是否可以赢得数字游戏(easy)做题过程直接一次遍历+计算两位数总和、一位数总和、总和，然后比较前两者是否小于第三者的一半，但实际上，只需要算前面两个，判断它们相不相等，因为 目标数组的范围不到三位数 。
 算法概述原题 
 本题要求判断爱丽丝只取两位数或者一位数能不能赢取剩下数字的鲍勃。但实际上因为给定了数组最大值范围，所以完全可以 优化判断条件和减少临时变量使用 。
 
-时间复杂度为...
+时间复杂度为O(n...
                         
                     </div>
 
@@ -550,12 +533,9 @@ N皇后做题过程一开始想的就是 三个哈希集合 用来存不可访�
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-单调数组对的题目 II(hard)做题过程一开始我想的是用 双指针为基础的优化算法 ，然后感觉不太对，后面绝对可以试试看 多维动态规划（二维） ，又想了一下就没深思，就跳过去了，最后突然觉得 回溯 应该能写，结果还应该是 多维动态规划 。总之， 没做出来 。
+                            单调数组对的题目 II(hard)做题过程一开始我想的是用 双指针为基础的优化算法 ，然后感觉不太对，后面绝对可以试试看 多维动态规划（二维） ，又想了一下就没深思，就跳过去了，最后突然觉得 回溯 应该能写，结果还应该是 多维动态规划 。总之， 没做出来 。
 算法概述原题 
-本题要求为给出一个数组，求出由两个非严格递增和非严格递减的数组相加能得到对应索引元素的可能有多少。使用 二维动态...
+本题要求为给出一个数组，求出由两个非严格递增和非严格递减的数组相加能得到对应索引元素的可能有多少。使用 二维动态规划 ...
                         
                     </div>
 
@@ -617,12 +597,9 @@ N皇后做题过程一开始想的就是 三个哈希集合 用来存不可访�
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-只出现一次的数字算法概述原题 
+                            只出现一次的数字算法概述原题 
 本题要求为在给出的由一个出现一次的数字和其他出现两次的数字中找到那个出现一次的（要求时间复杂度为O(n)，空间复杂度为O(1)）。使用 位运算 解决。
-JAVA12345678910class Solution &#123;    public int singleNumber(int[] nums) &#123;        int single =...
+JAVA12345678910class Solution &#123;    public int singleNumber(int[] nums) &#123;        int single = 0;...
                         
                     </div>
 
@@ -684,16 +661,13 @@ JAVA12345678910class Solution &#123;    public int singleNumber(int[] nums) &#12
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-不同路径算法概述原题 
+                            不同路径算法概述原题 
 本题要求为统计二维矩阵中从左上角出发到右下角的所有可能。其实没区别的。
 
 时间复杂度为O(mn)：一次遍历
 空间复杂度为O(n)：经过优化
 
-JAVA1234567891011121314class Solution &#123;    public int uniquePaths(int m, int n) &#123;        int[] cur = ...
+JAVA1234567891011121314class Solution &#123;    public int uniquePaths(int m, int n) &#123;        int[] cur = new...
                         
                     </div>
 
@@ -755,16 +729,13 @@ JAVA1234567891011121314class Solution &#123;    public int uniquePaths(int m, in
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-爬楼梯算法概述原题 
+                            爬楼梯算法概述原题 
 本题要求为在给定每次只能上一层或二层楼梯时，上n层楼梯有多少种选择。解法采取 动态规划 ，子问题结构为 前一次跨了一次楼梯和跨了两次楼梯代表的排列的和 。
 
 时间复杂度为O(n)：一共n级阶梯，每次都被当作为一个子问题
 空间复杂度为O(1)：无额外数据结构
 
-JAVA1234567891011121314class Solution &#123;    publi...
+JAVA1234567891011121314class Solution &#123;    public i...
                         
                     </div>
 
@@ -826,16 +797,13 @@ JAVA1234567891011121314class Solution &#123;    publi...
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-买卖股票的最佳时机算法概述原题 
+                            买卖股票的最佳时机算法概述原题 
 本题要求为在给出数组中找出两个差值最大的元素。就是拿两个临时变量存当前的最小值和最大差值，然后 动态更新 它俩。
 
 时间复杂度为O(n)
 空间复杂度为O(1)
 
-JAVA123456789101112131415public class Solution &#123;    public int maxProfit(int prices[]) &#12...
+JAVA123456789101112131415public class Solution &#123;    public int maxProfit(int prices[]) &#123; ...
                         
                     </div>
 
@@ -897,16 +865,13 @@ JAVA123456789101112131415public class Solution &#123;    public int maxProfit(in
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-数组中的第K个最大元素算法概述原题 
+                            数组中的第K个最大元素算法概述原题 
 本题要求为返回数组中的第K个最大元素。栈也可以实现。如果需要频繁插入和查询，就用 堆排 ，保持顺序就用栈。
 
 时间复杂度为O(nlogn)：建堆需要O(n)，总删除需要O(klogn)，最后应该是O(n+klogn)，但k小于n，大概是这么多
 空间复杂度为O(logn)：函数栈
 
-JAVA123456789101112131415161718192...
+JAVA123456789101112131415161718192021...
                         
                     </div>
 
@@ -968,16 +933,13 @@ JAVA123456789101112131415161718192...
                     <div class="home-article-content markdown-body">
                         
                             
-                            
-
-
-有效的括号算法概述原题 
+                            有效的括号算法概述原题 
 本题要求为判断输入的括号组成的字符串是否有效。所有字符遍历，一半字符串入栈， ***另外一半与此时栈内的进行匹配 ***。
 
 时间复杂度为O(n)
 空间复杂度为O(n+∑)：栈（原字符）和哈希表（字符集）
 
-JAVA1234567891011121314151617181920212223242526272829303132class Solution &#1...
+JAVA1234567891011121314151617181920212223242526272829303132class Solution &#123;...
                         
                     </div>
 
