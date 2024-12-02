@@ -104,3 +104,7 @@ deploy:
   type: ''
 
 
+# LaTex
+mathjax:
+  enable: true
+  engine: 'MathJax'
