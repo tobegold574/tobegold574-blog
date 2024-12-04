@@ -37,7 +37,7 @@ class Solution {
     }
     // 将数组转化成最大堆
     public void buildMaxHeap(int[] a, int heapSize) {
-        // 从倒数第二层的最后一个（最右边）的节点向左遍历，并且逐渐向上
+        // 从最后一个有子节点的节点向左遍历，并且逐渐向上
         for (int i = heapSize / 2 - 1; i >= 0; --i) {
             maxHeapify(a, i, heapSize);
         } 
@@ -55,7 +55,7 @@ class Solution {
         if (largest != i) {
             // 交换根节点与更大的子节点
             swap(a, i, largest);
-            // 递归（向左，向上）
+            // 这里的递归是为了后续移除堆顶时重新对堆排序
             maxHeapify(a, largest, heapSize);
         }
     }
