@@ -52,7 +52,7 @@ global:
   fonts:
     # Chinese fonts
     chinese: 
-      enable: false # Whether to enable custom chinese fonts
+      enable: true # Whether to enable custom chinese fonts
       family:  # Font family
       url:  # Font URL to CSS file
     # English fonts
@@ -128,10 +128,10 @@ home_banner:
     light: /images/wallhaven-wqery6-light.webp # light mode
     dark: /images/wallhaven-wqery6-dark.webp # dark mode
   # Home banner title
-  title: Theme Redefine
+  title: 沉起
   # Home banner subtitle
   subtitle:
-    text: [] # subtitle text, array
+    text: ["sink or swim", "to be or not to be","nothing is impossible"] # subtitle text, array
     hitokoto:  # 一言配置
       enable: false # Whether to enable hitokoto
       show_author: false # Whether to show author
@@ -165,16 +165,16 @@ home_banner:
   # Home banner social links
   social_links:
     # Whether to enable
-    enable: false
+    enable: true
     # Social links style
     style: default # default, reverse, center
     # Social links
     links:
-      github:  # your GitHub URL
+      github: https://github.com/tobegold574 # your GitHub URL
       instagram: # your Instagram URL
       zhihu:  # your ZhiHu URL
       twitter:  # your twitter URL
-      email:  # your email
+      email: # your email
       # ...... # you can add more
     # Social links with QRcode drawers
     qrs:
