@@ -11,13 +11,13 @@
 # Docs: https://redefine-docs.ohevan.com/basic/info
 info:
   # Site title
-  title: Theme Redefine
+  title: 沉起
   # Site subtitle
-  subtitle: Redefine Your Hexo Journey.
+  subtitle: sink or swim
   # Author name
-  author: The Redefine Team
+  author: tobegold574
   # Site URL
-  url: https://redefine.ohevan.com
+  url: https://tobegold574.me/
 # BASIC INFORMATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
@@ -25,7 +25,7 @@ info:
 # Docs: https://redefine-docs.ohevan.com/basic/defaults
 defaults:
   # Favicon
-  favicon: /images/redefine-favicon.svg
+  favicon: /static/avatar.jpg
   # Site logo
   logo: 
   # Site avatar
