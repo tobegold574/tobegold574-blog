@@ -7,7 +7,7 @@ tags:
     - leetcode
 ---
 
-## K此乘运算后的最终数组 I(easy)
+## K次乘运算后的最终数组 I(easy)
 ### 做题过程
 本来觉得easy不应该要用到小根堆，毕竟上一道是hard，但发现还是小根堆，虽然模拟通得过。
 
@@ -15,6 +15,8 @@ tags:
 [原题](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-i/description/)
 
 本体要求为取当前数组中最前面的最小值，乘以给定数字，对次操作重复K次，返回原地操作的结果。 ***小根堆*** 。
+- 时间复杂度为O(Klogn)：重新排序
+- 空间复杂度为O(n)
 
 ### JAVA
 ```java
