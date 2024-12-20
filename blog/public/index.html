@@ -413,7 +413,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">44</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -453,7 +453,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">44</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">45</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -468,6 +468,75 @@ mjx-container[display="true"] + br {
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/20/%E5%90%8C%E4%BD%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%80%E5%B0%8F%E9%95%BF%E5%BA%A6/">
+                            同位字符串连接的最小长度
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            同位字符串连接的最小长度(medium)做题过程一开始想到了栈，但是如果内部有重复就不行。
+算法概述原题
+本题要求为查找最短的同位字符串（即整个字符串均由该字符串组成）。
+
+时间复杂度为$O(n \times T)
+空间复杂度为：字符集
+
+JAVA1234567891011121314151617181920212223242526272829303132333435class Soluti...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Dec 20 2024 08:11:12 GMT+0800">
+                
+                    2024-12-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%9E%9A%E4%B8%BE/">枚举</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/12/20/%E5%90%8C%E4%BD%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%80%E5%B0%8F%E9%95%BF%E5%BA%A6/">Read more<span class="seo-reader-text">同位字符串连接的最小长度</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -559,18 +628,14 @@ mjx-container[display="true"] + br {
                     <div class="home-article-content markdown-body">
                         
                             
-                             赎金信(easy)
- 做题过程
-哈希表已经easy至极了。
- 算法概述
-原题
+                            赎金信(easy)做题过程哈希表已经easy至极了。
+算法概述原题
 本题要求为第二参数字符串是否包含第一个字符串中所有出现的字符。用 哈希表 存了频次然后删就行。
 
 时间复杂度为O(m+n)
 空间复杂度为O(m)：只需要存储可用字符串的字符出现频次
 
- JAVA
-123456789101112131415class Solution &#123;    public boolea...
+JAVA123456789101112131415class Solution &#123;    public boolean canCon...
                         
                     </div>
 
@@ -1095,75 +1160,6 @@ JAVA12345678910111213141516171819...
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/12/13/K%E6%AD%A4%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84-I/">
-                            K次乘运算后的最终数组 I
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            K次乘运算后的最终数组 I(easy)做题过程本来觉得easy不应该要用到小根堆，毕竟上一道是hard，但发现还是小根堆，虽然模拟通得过。
-算法概述原题
-本体要求为取当前数组中最前面的最小值，乘以给定数字，对次操作重复K次，返回原地操作的结果。 小根堆 。
-
-时间复杂度为O(Klogn)：重新排序
-空间复杂度为O(n)
-
-JAVA1234567891011121314151617181920...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Dec 13 2024 16:04:02 GMT+0800">
-                
-                    2024-12-13
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%A0%86/">堆</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/12/13/K%E6%AD%A4%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84-I/">Read more<span class="seo-reader-text">K次乘运算后的最终数组 I</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -1194,7 +1190,7 @@ JAVA1234567891011121314151617181920...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        44 posts in total
+                        45 posts in total
                     </span>
                     
                 </p>
