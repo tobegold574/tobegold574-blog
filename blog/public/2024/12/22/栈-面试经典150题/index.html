@@ -30,7 +30,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2024-12-22T11:35:17.000Z">
-<meta property="article:modified_time" content="2024-12-22T12:42:49.761Z">
+<meta property="article:modified_time" content="2024-12-23T03:02:19.401Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="栈">
@@ -212,7 +212,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -220,7 +220,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">52</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -271,8 +271,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-12-22 20:42:49</span>
-            <span class="mobile">2024-12-22 20:42:49</span>
+            <span class="desktop">2024-12-23 11:02:19</span>
+            <span class="mobile">2024-12-23 11:02:19</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -343,6 +343,13 @@
 
 <h4 id="重要实例方法及属性-JAVA"><a href="#重要实例方法及属性-JAVA" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><p><code>poll()</code>和<code>pollLast()</code>：前者是 <strong>队列的入队</strong> ，后者才是 <strong>栈的弹出栈顶</strong> 。</p>
 <h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>对API和re都不熟悉，很麻烦，必须整理总结一下。</p>
+<h2 id="基本计算器-hard"><a href="#基本计算器-hard" class="headerlink" title="基本计算器(hard)"></a>基本计算器(hard)</h2><h3 id="做题过程-2"><a href="#做题过程-2" class="headerlink" title="做题过程"></a>做题过程</h3><p>就是栈，但还要带括号时的优先级，比较麻烦。</p>
+<h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题为数据结构课程的基本例题（除去乘除法，还更加简单）。但是还有更逆天的解决方法。</p>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; <span class="variable">s</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> calculate = <span class="keyword">function</span>(<span class="params">s</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(s)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>对于javascript这样的语言，解析字符串的优先级很高，因为是浏览器的脚本语言，所以会提供这样一个不安全但有效的接口。</p>
+<p><strong>真的逆天🚀</strong> </p>
 
 		</div>
 
@@ -357,7 +364,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-12-22 20:42:49
+                    :</strong> 2024-12-23 11:02:19
             </li>
         
         <li>
@@ -401,6 +408,18 @@
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/12/23/%E8%80%83%E5%9C%BA%E5%B0%B1%E5%BA%A7/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">考场就座</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -471,7 +490,7 @@
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
 		<div class="page-title">栈 --面试经典150题</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84-medium"><span class="nav-text">简化路径(medium)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="nav-text">做题过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">逆波兰表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E9%A2%98%E8%BF%87%E7%A8%8B-1"><span class="nav-text">做题过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-1"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-1"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-text">总结</span></a></li></ol></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84-medium"><span class="nav-text">简化路径(medium)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="nav-text">做题过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">逆波兰表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E9%A2%98%E8%BF%87%E7%A8%8B-1"><span class="nav-text">做题过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-1"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-1"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8-hard"><span class="nav-text">基本计算器(hard)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E9%A2%98%E8%BF%87%E7%A8%8B-2"><span class="nav-text">做题过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-2"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-text">总结</span></a></li></ol></li></ol>
 
 	</div>
 </div>
@@ -498,7 +517,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        50 posts in total
+                        52 posts in total
                     </span>
                     
                 </p>
