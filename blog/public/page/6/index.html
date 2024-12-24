@@ -354,7 +354,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">37</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -362,7 +362,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">53</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">55</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -394,7 +394,7 @@ mjx-container[display="true"] + br {
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">33</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">37</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -402,7 +402,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">53</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">55</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -417,6 +417,142 @@ mjx-container[display="true"] + br {
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/19/%E5%AD%90%E4%B8%B2-3-hot-100-in-leetcode/">
+                            子串(3) --hot 100 in leetcode
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            和为K的子数组算法概述原题 
+题目要求为给定数组中有多少个子数组的加和为k。使用前缀和和哈希表，实际上也是把问题从“串”的维度降为“数”的维度，从“和为k的子数组”变为了两数之和，但是中间加了一层抽象，可以参考一下两数之和 。
+
+时间复杂度为O(n)：只遍历一次
+空间复杂度为O(n)：需要另外创建哈希表，最坏情况需要n的空间大小
+
+JAVA12345678910111213141516171...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Nov 19 2024 22:27:08 GMT+0800">
+                
+                    2024-11-19
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%AD%90%E4%B8%B2/">子串</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/19/%E5%AD%90%E4%B8%B2-3-hot-100-in-leetcode/">Read more<span class="seo-reader-text">子串(3) --hot 100 in leetcode</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/11/19/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3-2-hot-100-in-leetcode/">
+                            滑动窗口(2) --hot 100 in leetcode
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            无重复字符的最长子串算法概述原题 
+题目要求是返回给出字符串的最长无重复子串长度。同样要用到双指针，但此时双指针的功能不在于 减少遍历 ，而在于 定位 ，也就是创建滑动窗口。
+
+时间复杂度为O(n)：看似有两个循环，但实际上对应滑动窗口两侧，滑动窗口只往 一个方向 动态变化
+空间复杂度为O(∣Σ∣)：字符集大小，因为要创建容器类对应字符串映射
+
+JAVA1234567891011121314...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Nov 19 2024 10:55:52 GMT+0800">
+                
+                    2024-11-19
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">滑动窗口</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/11/19/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3-2-hot-100-in-leetcode/">Read more<span class="seo-reader-text">滑动窗口(2) --hot 100 in leetcode</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -642,7 +778,7 @@ JAVA12345678910111213141516171819202122class Solution &...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        53 posts in total
+                        55 posts in total
                     </span>
                     
                 </p>
