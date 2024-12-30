@@ -413,7 +413,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">62</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">63</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -453,7 +453,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">62</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">63</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -468,6 +468,75 @@ mjx-container[display="true"] + br {
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/30/%E5%9B%BE%E8%AE%BA-%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150%E9%A2%98/">
+                            图论 --面试经典150题
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            被围绕的区域(medium)做题过程大概清楚肯定还是DFS和BFS都可以，但问题是该怎么组织代码结构，完全没有思路。而且抄都能抄错好几次。
+算法概述原题
+本题要求为给出二维矩阵，需要通过原地操作将其中被’X’完全包围的’O’转换为’X’（在边界不算）。DFS看上去好写一些。
+
+时间复杂度为O(n*m)
+空间复杂度为O(n*m)
+
+JAVA123456789101112131415161718...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Dec 30 2024 14:48:59 GMT+0800">
+                
+                    2024-12-30
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150%E9%A2%98/">面试经典150题</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/12/30/%E5%9B%BE%E8%AE%BA-%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150%E9%A2%98/">Read more<span class="seo-reader-text">图论 --面试经典150题</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -835,18 +904,14 @@ JAVA123456789101112131415class Solution &#123;    public int[] occurrencesOfElem
                     <div class="home-article-content markdown-body">
                         
                             
-                             相同的树(easy)
- 做题过程
-不太记得了，反正就是选一个遍历方式一个一个比对，DFS或者BFS。
- 算法概述
-原题
+                            相同的树(easy)做题过程不太记得了，反正就是选一个遍历方式一个一个比对，DFS或者BFS。
+算法概述原题
 本题要求为比较两个树是否相同。
 
 时间复杂度为O(min(n,m))：不一样就是比完一棵较小的树就行
 空间复杂度为O(min(n,m))：递归
 
- JAVA
-12345678910111213class Solution &#123;    public boolean ...
+JAVA12345678910111213class Solution &#123;    public boolean isSameTr...
                         
                     </div>
 
@@ -1086,70 +1151,6 @@ JAVA123456789101112131415class Solution &#123;    public int[] occurrencesOfElem
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/12/23/%E7%AC%AC429%E5%9C%BA%E5%91%A8%E8%B5%9B/">
-                            第429场周赛
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            🚀竞赛
-使数组元素互不相同所需的最少操作次数做题过程第一次没有罚时过了。
-算法概述本题要求为每次操作为移除数组中的前三个元素，求为了使数组内元素互不相同需要多少次操作（空数组也算）。直接模拟就完了。
-
-时间复杂度为O(n)
-空间复杂度为O(n)
-
-JAVA1234567891011class Solution &#123;    public int minimumOperations(i...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Dec 23 2024 16:19:38 GMT+0800">
-                
-                    2024-12-23
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E5%91%A8%E8%B5%9B/">周赛</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/12/23/%E7%AC%AC429%E5%9C%BA%E5%91%A8%E8%B5%9B/">Read more<span class="seo-reader-text">第429场周赛</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -1180,7 +1181,7 @@ JAVA1234567891011class Solution &#123;    public int minimumOperations(i...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        62 posts in total
+                        63 posts in total
                     </span>
                     
                 </p>
