@@ -362,7 +362,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">70</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">71</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -402,7 +402,7 @@ mjx-container[display="true"] + br {
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">70</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">71</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -417,6 +417,75 @@ mjx-container[display="true"] + br {
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/17/%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0-I/">
+                            形成目标字符串需要的最少字符串数 I
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            形成目标字符串需要的最少字符串数 I(medium)做题过程想到了KMP，也想到了DP，但是因为都不是非常熟悉，所以没有实现出来。
+算法概述原题
+本题要求为给出目标字符串，要求从给出的字符串数组中取各字符串的前缀拼接成目标字符串，返回需要最少的字符串（前缀）数量。 KMP+动态规划 。
+
+时间复杂度为：k为单词数量，构造KMP
+空间复杂度为：最大为KMP
+
+JAVA1234567891011...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Dec 17 2024 09:50:24 GMT+0800">
+                
+                    2024-12-17
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/12/17/%E5%BD%A2%E6%88%90%E7%9B%AE%E6%A0%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0-I/">Read more<span class="seo-reader-text">形成目标字符串需要的最少字符串数 I</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1040,80 +1109,11 @@ JAVA12345678910111213141516class Solution &#123;    public int semiOrder...
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/12/09/%E5%88%A4%E6%96%AD%E5%9B%BD%E9%99%85%E8%B1%A1%E6%A3%8B%E6%A3%8B%E7%9B%98%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E6%A0%BC%E5%AD%90%E7%9A%84%E9%A2%9C%E8%89%B2/">
-                            判断国际象棋棋盘中的一个格子的颜色
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            判断国际象棋棋盘中的一个格子的颜色(easy)做题过程还是用了差值来求，题目本身很简单，但这样求解极其不优雅且冗长。
-算法概述原题 
-本题要求为给出格子坐标，判断格子元素。可用 位运算 简单完成。
-
-时间复杂度为O(n)
-空间复杂度为O(1)
-
-JAVA123456class Solution &#123;    public boolean squareIsWhite(String coo...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Dec 09 2024 11:46:10 GMT+0800">
-                
-                    2024-12-09
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">每日一题</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/leetcode/">leetcode</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%8A%80%E5%B7%A7/">技巧</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/12/09/%E5%88%A4%E6%96%AD%E5%9B%BD%E9%99%85%E8%B1%A1%E6%A3%8B%E6%A3%8B%E7%9B%98%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E6%A0%BC%E5%AD%90%E7%9A%84%E9%A2%9C%E8%89%B2/">Read more<span class="seo-reader-text">判断国际象棋棋盘中的一个格子的颜色</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-	<a class="extend prev" rel="prev" href="/page/3/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa-regular fa-angle-right"></i></a>
+	<a class="extend prev" rel="prev" href="/page/3/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
   
     </div>
@@ -1139,7 +1139,7 @@ JAVA123456class Solution &#123;    public boolean squareIsWhite(String coo...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        70 posts in total
+                        71 posts in total
                     </span>
                     
                 </p>
