@@ -1,0 +1,8 @@
+- links_category: friends
+  has_thumbnail: false
+  list:
+      - name: 0Kr
+        link: https://0krblog.yqbirdmp.com/
+        description: 现充
+        avatar: ../images/0Kr_avatar.png
+ 

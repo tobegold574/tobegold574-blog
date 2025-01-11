@@ -199,6 +199,8 @@ navbar:
     pages: 1000px #other pages
   # Navbar links
   links:
+    Friends:
+      path: /links/
     Home: 
       path: / 
       icon: fa-regular fa-house # can be empty
