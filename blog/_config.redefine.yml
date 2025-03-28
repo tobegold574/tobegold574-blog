@@ -199,6 +199,8 @@ navbar:
     pages: 1000px #other pages
   # Navbar links
   links:
+    Tags:
+      path: /tags/
     Friends:
       path: /links/
     Home: 
