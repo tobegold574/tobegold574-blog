@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="tobegold574">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/11/24/算法/leetcode/hot-100/回溯-8-hot-100-in-leetcode/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯(8) --hot 100 in leetcode">
+<meta property="og:url" content="http://example.com/2024/11/24/%E7%AE%97%E6%B3%95/LeetCode/hot-100/%E5%9B%9E%E6%BA%AF-8-hot-100-in-leetcode/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2024-11-24T11:36:24.000Z">
+<meta property="article:modified_time" content="2024-12-02T05:32:52.611Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hot 100">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="回溯">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/your_name.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/your_name.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/your_name.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            回溯(8) --hot 100 in leetcode | 沉起
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沉起","subtitle":{"text":["sink or swim","to be or not to be","nothing is impossible"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/tobegold574","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Tags":{"path":"/tags/"},"Friends":{"path":"/links/"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/your_name.ico" class="w-full h-full rounded-xs">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                沉起
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    
+                                    FRIENDS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                FRIENDS
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">75</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">回溯(8) --hot 100 in leetcode</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/your_name.ico">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">tobegold574</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-24 19:36:24</span>
+        <span class="mobile">2024-11-24 19:36:24</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-12-02 13:32:52</span>
+            <span class="mobile">2024-12-02 13:32:52</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutations/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为给出目标数组的所有排列可能。使用 <em><strong>n!回溯</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O(n×n!)：需要固定的元素数量，以及它们的回溯</li>
+<li>空间复杂度为O(n)：栈</li>
+</ul>
+<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">permute</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; output = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            output.add(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        backtrack(n, output, res, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(<span class="type">int</span> n, List&lt;Integer&gt; output, List&lt;List&lt;Integer&gt;&gt; res, <span class="type">int</span> first)</span> &#123;</span><br><span class="line">        <span class="comment">// first是回溯的分界点</span></span><br><span class="line">        <span class="keyword">if</span> (first == n) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;(output));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> first; i &lt; n; i++) &#123;   </span><br><span class="line">            <span class="comment">// 动态维护数组</span></span><br><span class="line">            Collections.swap(output, first, i);</span><br><span class="line">            <span class="comment">// first向右移动，因为i是从first开始的，相当于多了一个固定的位置</span></span><br><span class="line">            backtrack(n, output, res, first + <span class="number">1</span>);</span><br><span class="line">            <span class="comment">// 回溯</span></span><br><span class="line">            Collections.swap(output, first, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-JAVA"><a href="#重要实例方法及属性-JAVA" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><p><code>Collections.swap(List&lt;?&gt; list, int i, int j)</code>：将i和j位置上的元素交换</p>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 也是一样的</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>从时间复杂度上可以尝试理解，其实每一次就是 <strong>从左向右固定一个元素</strong> ，而且这个过程用 <strong>自顶向下的递归实现</strong> ，也就意味着，可以把 <strong>不同的栈深度看作对原数组扩大分割的结果</strong> 。</p>
+<p><strong>重要</strong></p>
+<h2 id="子集"><a href="#子集" class="headerlink" title="子集"></a>子集</h2><h3 id="算法概述-1"><a href="#算法概述-1" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为返回给出数组的所有子集。使用 <em><strong>二分类的回溯</strong></em> ，或者将直接把这2^n个自己映射到二进制上。<br>对于回溯：</p>
+<ul>
+<li>时间复杂度为O(n*n^2)：所有元素和它们的递归深度</li>
+<li>空间复杂度为O(n)：栈和临时数组最大都是n<br>对于迭代：</li>
+<li>时间复杂度为O(n*n^2)：</li>
+<li>空间复杂度为O(n)：临时数组</li>
+</ul>
+<h3 id="JAVA-1"><a href="#JAVA-1" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 回溯（递归）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    List&lt;Integer&gt; t = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">subsets</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        dfs(<span class="number">0</span>, nums);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 深度优先搜索递归</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> cur, <span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="comment">// 和上题类似的终止条件</span></span><br><span class="line">        <span class="keyword">if</span> (cur == nums.length) &#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;(t));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 加入当前元素</span></span><br><span class="line">        t.add(nums[cur]);</span><br><span class="line">        dfs(cur + <span class="number">1</span>, nums);</span><br><span class="line">        <span class="comment">// 回溯尾部加入的元素（与之前加入当前元素相互抵消）</span></span><br><span class="line">        t.remove(t.size() - <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 不加入当前元素</span></span><br><span class="line">        dfs(cur + <span class="number">1</span>, nums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; t;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="title function_">subsets</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.size();</span><br><span class="line">        <span class="comment">// 1&lt;&lt;n就是2的n次方</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">mask</span> <span class="operator">=</span> <span class="number">0</span>; mask &lt; (<span class="number">1</span> &lt;&lt; n); ++mask) &#123;</span><br><span class="line">            t.clear();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">                <span class="comment">// 检查mask的第i位是不是1</span></span><br><span class="line">                <span class="keyword">if</span> (mask &amp; (<span class="number">1</span> &lt;&lt; i)) &#123;</span><br><span class="line">                    t.push_back(nums[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 位运算一样的</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-C"><a href="#重要实例方法及属性-C" class="headerlink" title="重要实例方法及属性(C++)"></a>重要实例方法及属性(C++)</h4><p><code>vector.pop_back()</code>：删除最后一个元素</p>
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>位运算的算法太逆天了，以后再说吧。</p>
+<p>这道题回溯的重点是将递归分成了两类，分别是 <strong>包含当前元素和不包含当前元素</strong> 。回溯法的核心思想依然是 <strong>分而治之</strong> ，而拆解成包含与不包含也正好对应了子集问题中的 <strong>取和舍</strong> ，同时也将原来的一维数组结构变成了 <strong>可用深度优先搜索处理的二叉树</strong> ，这是一种经典的 <strong>回溯建模</strong> ，需要熟练掌握。</p>
+<h2 id="电话号码的字母组合"><a href="#电话号码的字母组合" class="headerlink" title="电话号码的字母组合"></a>电话号码的字母组合</h2><h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为按照给出的2-9内的数字字符串返回可能的九键输入法组合。</p>
+<ul>
+<li>时间复杂度为O(3^n)：基本上一个数字对应长度为3的字符串</li>
+<li>空间复杂度为O(n)</li>
+</ul>
+<h3 id="JAVA-2"><a href="#JAVA-2" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">letterCombinations</span><span class="params">(String digits)</span> &#123;</span><br><span class="line">        List&lt;String&gt; combinations = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        <span class="keyword">if</span> (digits.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> combinations;</span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;Character, String&gt; phoneMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Character, String&gt;() &#123;&#123;</span><br><span class="line">            put(<span class="string">&#x27;2&#x27;</span>, <span class="string">&quot;abc&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;3&#x27;</span>, <span class="string">&quot;def&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;4&#x27;</span>, <span class="string">&quot;ghi&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;5&#x27;</span>, <span class="string">&quot;jkl&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;6&#x27;</span>, <span class="string">&quot;mno&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;7&#x27;</span>, <span class="string">&quot;pqrs&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;8&#x27;</span>, <span class="string">&quot;tuv&quot;</span>);</span><br><span class="line">            put(<span class="string">&#x27;9&#x27;</span>, <span class="string">&quot;wxyz&quot;</span>);</span><br><span class="line">        &#125;&#125;;</span><br><span class="line">        backtrack(combinations, phoneMap, digits, <span class="number">0</span>, <span class="keyword">new</span> <span class="title class_">StringBuffer</span>());</span><br><span class="line">        <span class="keyword">return</span> combinations;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(List&lt;String&gt; combinations, Map&lt;Character, String&gt; phoneMap, String digits, <span class="type">int</span> index, StringBuffer combination)</span> &#123;</span><br><span class="line">        <span class="comment">// 永远类似的终止条件</span></span><br><span class="line">        <span class="keyword">if</span> (index == digits.length()) &#123;</span><br><span class="line">            <span class="comment">// index的范围代表多叉树的深度</span></span><br><span class="line">            combinations.add(combination.toString());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 就是向下遍历</span></span><br><span class="line">            <span class="type">char</span> <span class="variable">digit</span> <span class="operator">=</span> digits.charAt(index);</span><br><span class="line">            <span class="comment">// 映射到字符串的角度</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">letters</span> <span class="operator">=</span> phoneMap.get(digit);</span><br><span class="line">            <span class="type">int</span> <span class="variable">lettersCount</span> <span class="operator">=</span> letters.length();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; lettersCount; i++) &#123;</span><br><span class="line">                combination.append(letters.charAt(i));</span><br><span class="line">                <span class="comment">// index+1意味着又多了一层digits和letters的映射</span></span><br><span class="line">                backtrack(combinations, phoneMap, digits, index + <span class="number">1</span>, combination);</span><br><span class="line">                combination.deleteCharAt(index);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-JAVA-1"><a href="#重要实例方法及属性-JAVA-1" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><p><code>StringBuffer</code>：支持多线程操作的可变字符串，相对的，<code>String</code>虽然也是线程安全但不可变</p>
+<h3 id="C-2"><a href="#C-2" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没啥不一样的</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h3><p>这个题目的核心算法思想不复杂，就是一个简单的回溯结构，甚至只需要 <strong>向下遍历</strong> 就可以了。麻烦的是有很多映射，需要处理这些映射之间交互的问题。</p>
+<p>梳理一下总体的结构：<code>char digit = digits.charAt(index);</code>每个数字对应一个字符串，而组合问题发生在字符串的维度，所以如果将整个回溯的过程类比为一个多叉树，那么 <strong>每一层都代表一个数字</strong> ，虽然实际上组合的是它们的映射，字符串。然后，在回溯真正工作的循环<code>for (int i = 0; i &lt; lettersCount; i++)</code>内，回溯的 <strong>外部递归是层的维度</strong> ，也就是<code>backtrack(combinations, phoneMap, digits, index + 1, combination);</code> ，而 <strong>内部递归的主体仍然是遍历字符</strong> ，也就是<code>for (int i = 0; i &lt; lettersCount; i++)</code>，其实递归类的问题完全可以 <strong>简化到最后一层</strong> ，<code>index</code>与数字长度相等的次数应该与<code>lettersCount</code>相等。</p>
+<p>要记得从 <strong>判断当前深度是否与最大深度相等</strong> ，也就是<code>if (index == digits.length())</code>开始。</p>
+<h2 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h2><h3 id="算法概述-3"><a href="#算法概述-3" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为从无重复数字的数组中找出和为目标值的组合，其中同一数字可以任取多次。还是 <em><strong>dfs</strong></em> ，和子集问题相同。</p>
+<ul>
+<li>时间复杂度为O(S)：所有可行长度之和，因为有剪枝，所以不用到2^n</li>
+<li>空间复杂度为O(n)</li>
+</ul>
+<h3 id="JAVA-3"><a href="#JAVA-3" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combinationSum</span><span class="params">(<span class="type">int</span>[] candidates, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; combine = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        dfs(candidates, target, ans, combine, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span>[] candidates, <span class="type">int</span> target, List&lt;List&lt;Integer&gt;&gt; ans, List&lt;Integer&gt; combine, <span class="type">int</span> idx)</span> &#123;</span><br><span class="line">        <span class="comment">// 标准的回溯终止判断</span></span><br><span class="line">        <span class="keyword">if</span> (idx == candidates.length) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 递归中不断缩小至0</span></span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">            ans.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;(combine));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 不重复读取</span></span><br><span class="line">        dfs(candidates, target, ans, combine, idx + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 剪枝，如果重复无效就不重复了</span></span><br><span class="line">        <span class="keyword">if</span> (target - candidates[idx] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            combine.add(candidates[idx]);</span><br><span class="line">            <span class="comment">// 重复读取</span></span><br><span class="line">            dfs(candidates, target - candidates[idx], ans, combine, idx);</span><br><span class="line">            <span class="comment">// 回溯</span></span><br><span class="line">            combine.remove(combine.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-3"><a href="#C-3" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意STL算法使用</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-3"><a href="#注意-3" class="headerlink" title="注意"></a>注意</h3><p>类似于子集问题，还是构造成二叉树的深度优先搜索。要注意的是结构和另外加入的 <strong>剪枝判断</strong> 。</p>
+<p>还要注意的是，回溯的过程是 <strong>不断递归向下生成二叉树</strong> ，并且 <strong>尝试完毕后在空间上撤回</strong> 。对于这道题， <strong>并不需要遍历完所有节点</strong> 。所以 <strong>添加组合的判断与遍历到最大深度的判断不一致</strong> ，是分成两块的，<code>if (target == 0)</code>才是主要，还有不要忘记<code>return;</code>。</p>
+<p>对于这类加和问题，还可以使用剪枝<code>if (target - candidates[idx] &gt;= 0)</code>减少复杂度。</p>
+<p>这里的二叉树的分支是依赖 <strong>重复不重复读取</strong> 判断。</p>
+<h2 id="括号生成"><a href="#括号生成" class="headerlink" title="括号生成"></a>括号生成</h2><h3 id="算法概述-4"><a href="#算法概述-4" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为按照要求的括号数量，给出所有可能且合理的括号组合。还是和前面几道题一个思路，关键是在 <em><strong>回溯的基础上剪枝如何剪枝和分类</strong></em> 。</p>
+<ul>
+<li>时间复杂度为%$O\left(\frac{4^n}{\sqrt{n}}\right)$：卡特兰数（不懂）</li>
+<li>空间复杂度为O(n)：递归栈</li>
+</ul>
+<h3 id="JAVA-4"><a href="#JAVA-4" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">generateParenthesis</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        List&lt;String&gt; ans=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        dfs(ans,<span class="keyword">new</span> <span class="title class_">StringBuffer</span>(),n,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(List&lt;String&gt; ans,StringBuffer t,<span class="type">int</span> n,<span class="type">int</span> left,<span class="type">int</span> right)</span>&#123;</span><br><span class="line">        <span class="comment">// 排列的长度应该为2*n</span></span><br><span class="line">        <span class="keyword">if</span>(t.length()==n&lt;&lt;<span class="number">1</span>)&#123;</span><br><span class="line">            ans.add(t.toString());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (left &lt; n) &#123;</span><br><span class="line">            t.append(<span class="string">&#x27;(&#x27;</span>);          </span><br><span class="line">            dfs(ans, t, n, left + <span class="number">1</span>, right);</span><br><span class="line">            t.deleteCharAt(t.length() - <span class="number">1</span>); </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 左右括号数要一致</span></span><br><span class="line">        <span class="keyword">if</span> (right &lt; left) &#123;</span><br><span class="line">            t.append(<span class="string">&#x27;)&#x27;</span>);          </span><br><span class="line">            dfs(ans, t, n, left, right + <span class="number">1</span>);</span><br><span class="line">            t.deleteCharAt(t.length() - <span class="number">1</span>); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-JAVA-2"><a href="#重要实例方法及属性-JAVA-2" class="headerlink" title="重要实例方法及属性(JAVA)"></a>重要实例方法及属性(JAVA)</h4><p><code>new StringBuffer()</code>可以换成<code>new StringBuilder()</code>，后者只支持单线程，但是性能更好。</p>
+<h3 id="C-4"><a href="#C-4" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">// 智能指针（底层为引用计数）</span></span><br><span class="line">    shared_ptr&lt;vector&lt;string&gt;&gt; cache[<span class="number">100</span>] = &#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    shared_ptr&lt;vector&lt;string&gt;&gt; <span class="built_in">generate</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (cache[n] != <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> cache[n];</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">            cache[<span class="number">0</span>] = shared_ptr&lt;vector&lt;string&gt;&gt;(<span class="keyword">new</span> vector&lt;string&gt;&#123;<span class="string">&quot;&quot;</span>&#125;);</span><br><span class="line">        <span class="comment">// else是主要工作部分</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">auto</span> result = shared_ptr&lt;vector&lt;string&gt;&gt;(<span class="keyword">new</span> vector&lt;string&gt;);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i != n; ++i) &#123;</span><br><span class="line">                <span class="comment">// left和right对应递归生成</span></span><br><span class="line">                <span class="keyword">auto</span> lefts = <span class="built_in">generate</span>(i);</span><br><span class="line">                <span class="keyword">auto</span> rights = <span class="built_in">generate</span>(n - i - <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">const</span> string&amp; left : *lefts)</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">const</span> string&amp; right : *rights)</span><br><span class="line">                        result -&gt; <span class="built_in">push_back</span>(<span class="string">&quot;(&quot;</span> + left + <span class="string">&quot;)&quot;</span> + right);</span><br><span class="line">            &#125;</span><br><span class="line">            cache[n] = result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cache[n];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 智能指针解引用结果</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="built_in">generate</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-C-1"><a href="#重要实例方法及属性-C-1" class="headerlink" title="重要实例方法及属性(C++)"></a>重要实例方法及属性(C++)</h4><p><code>shared_ptr&lt;vector&lt;string&gt;&gt; cache[100] = &#123;nullptr&#125;;</code>：这里使用了线程安全的智能指针<br><code>result -&gt; push_back()</code>：可以直接这样访问实例方法，无需解引用</p>
+<h3 id="注意-4"><a href="#注意-4" class="headerlink" title="注意"></a>注意</h3><p>回溯问题到目前为止都是 <strong>在回溯的框架上实现不同的细节</strong> 。这道题中的C++解法更像广度优先搜索，虽然用的还是递归，但采用了分层思想，不纳入考虑。参考JAVA的解法，回溯的框架，也就是 <strong>改变深度以及撤销操作</strong> 与之前的题目相仿。不同点在于 <strong>分类和剪枝以及如何更新</strong> 。这道题中可以以天然的左括号和右括号搭建深度优先搜索的二叉树，所以剪枝为<code>if (left &lt; n)</code>和<code>if (right &lt; left)</code>，以及需要像<code>t.append(&#39;(&#39;);</code>这样更新节点。</p>
+<p>其实结构并不复杂，关键是要掌握 <strong>如何分离每个部分所属，属于底层回溯，还是当前背景</strong> 。</p>
+<h2 id="单词搜索"><a href="#单词搜索" class="headerlink" title="单词搜索"></a>单词搜索</h2><h3 id="算法概述-5"><a href="#算法概述-5" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-search/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求判断在给出的二维字符网格中是否有路径能够练成要搜索的单词。有很多优化的细节操作吧，但是我感觉这个就是很经典的 <em><strong>图论深度优先搜索+回溯</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O(n!)：函数递归的栈空间</li>
+<li>空间复杂度为O(n)：几个集合</li>
+</ul>
+<h3 id="JAVA-5"><a href="#JAVA-5" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">exist</span><span class="params">(<span class="type">char</span>[][] board, String word)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">h</span> <span class="operator">=</span> board.length, w = board[<span class="number">0</span>].length;</span><br><span class="line">        <span class="type">boolean</span>[][] visited = <span class="keyword">new</span> <span class="title class_">boolean</span>[h][w];</span><br><span class="line">        <span class="comment">// 图论经典标记数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; h; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; w; j++) &#123;</span><br><span class="line">                <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> check(board, visited, i, j, word, <span class="number">0</span>);</span><br><span class="line">                <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// dfs</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(<span class="type">char</span>[][] board, <span class="type">boolean</span>[][] visited, <span class="type">int</span> i, <span class="type">int</span> j, String s, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="comment">// 类似图相关题目</span></span><br><span class="line">        <span class="keyword">if</span> (board[i][j] != s.charAt(k)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// 回溯标准判断</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == s.length() - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[i][j] = <span class="literal">true</span>;</span><br><span class="line">        <span class="type">int</span>[][] directions = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] dir : directions) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">newi</span> <span class="operator">=</span> i + dir[<span class="number">0</span>], newj = j + dir[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (newi &gt;= <span class="number">0</span> &amp;&amp; newi &lt; board.length &amp;&amp; newj &gt;= <span class="number">0</span> &amp;&amp; newj &lt; board[<span class="number">0</span>].length) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!visited[newi][newj]) &#123;</span><br><span class="line">                    <span class="comment">// 换个字母搜</span></span><br><span class="line">                    <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> check(board, visited, newi, newj, s, k + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                        result = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 回溯</span></span><br><span class="line">        visited[i][j] = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-5"><a href="#C-5" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-5"><a href="#注意-5" class="headerlink" title="注意"></a>注意</h3><p>这道题和之前题目的最大区别就是 <strong>回溯的操作对象是图</strong> ，而不是之前的字符串，或者自己拼的哈希表。 <strong>图dfs的特点就是有四个方向和使用标记数组</strong> 。回溯的操作基本还是那样。</p>
+<h2 id="分割回文串"><a href="#分割回文串" class="headerlink" title="分割回文串"></a>分割回文串</h2><h3 id="算法概述-6"><a href="#算法概述-6" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-partitioning/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为把一个字符串分成多个回文字符串（单个字符也算）。使用 <em><strong>动态切割版本的子集问题解法+一个回文判断</strong></em> 。</p>
+<ul>
+<li>时间复杂度为$O(n \cdot 2^n)$：最多是这样的</li>
+<li>空间复杂度为$O(n^2)$：所有可能的子串数</li>
+</ul>
+<h3 id="C-6"><a href="#C-6" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="title function_">partition</span><span class="params">(string s)</span> &#123;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">        vector&lt;string&gt; path;</span><br><span class="line">        backtrack(s, <span class="number">0</span>, path, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(const string&amp; s, <span class="type">int</span> start, vector&lt;string&gt;&amp; path, vector&lt;vector&lt;string&gt;&gt;&amp; result)</span> &#123;</span><br><span class="line">        <span class="comment">// 终止条件：如果起始位置到达字符串末尾，记录当前路径</span></span><br><span class="line">        <span class="keyword">if</span> (start == s.size()) &#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 尝试从起始位置划分不同长度的子串</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">end</span> <span class="operator">=</span> start; end &lt; s.size(); ++end) &#123;</span><br><span class="line">            <span class="comment">// 判断很早，剪枝很有效</span></span><br><span class="line">            <span class="keyword">if</span> (isPalindrome(s, start, end)) &#123;</span><br><span class="line">                <span class="comment">// 如果子串是回文，加入路径</span></span><br><span class="line">                path.push_back(s.substr(start, end - start + <span class="number">1</span>));</span><br><span class="line">                <span class="comment">// 继续递归处理剩余部分</span></span><br><span class="line">                backtrack(s, end + <span class="number">1</span>, path, result);</span><br><span class="line">                <span class="comment">// 回溯，撤销选择</span></span><br><span class="line">                path.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断子串是否为回文</span></span><br><span class="line">    bool <span class="title function_">isPalindrome</span><span class="params">(const string&amp; s, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[left] != s[right]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            ++left;</span><br><span class="line">            --right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="JAVA-6"><a href="#JAVA-6" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类似吧</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-6"><a href="#注意-6" class="headerlink" title="注意"></a>注意</h3><p>这里使用的还是求子集的方法，但是是 <strong>动态分割</strong> ，也就是 <strong>起始点在递归中更新，并且更新用的是上一层递归的终点</strong> ，所以是<code>backtrack(s, end + 1, path, result);</code>，而终点从起点开始<code>for (int end = start; end &lt; s.size(); ++end)</code>。核心是能够 <strong>剪枝</strong> 。但如果是“加入或跳过”，这里做不了判断，就无法剪枝。</p>
+<h2 id="N皇后"><a href="#N皇后" class="headerlink" title="N皇后"></a>N皇后</h2><h3 id="算法概述-7"><a href="#算法概述-7" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/n-queens/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为在n<em>n的棋盘上找出有多少种放置互不攻击的n个皇后的方法。我一开始就想用类似bfs的回溯算法，也就是下方的解法，但又算错了空间复杂度，反而使用了更加复杂的纯dfs回溯。ε&#x3D;(´ο｀</em>)))唉。这道题的核心还是 <em><strong>套一层外部循环以符合皇后的全局作用，用集合存不可访问的节点</strong></em> ，以及底层毫无变化的 <em><strong>回溯</strong></em> 。</p>
+<h3 id="JAVA-7"><a href="#JAVA-7" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; <span class="title function_">solveNQueens</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">// 存答案</span></span><br><span class="line">        List&lt;List&lt;String&gt;&gt; solutions = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;List&lt;String&gt;&gt;();</span><br><span class="line">        <span class="comment">// 临时数组用来存皇后的列索引</span></span><br><span class="line">        <span class="type">int</span>[] queens = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        Arrays.fill(queens, -<span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 存不可访问的对象线和列</span></span><br><span class="line">        Set&lt;Integer&gt; columns = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;Integer&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals1 = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;Integer&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals2 = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;Integer&gt;();</span><br><span class="line">        backtrack(solutions, queens, n, <span class="number">0</span>, columns, diagonals1, diagonals2);</span><br><span class="line">        <span class="keyword">return</span> solutions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(List&lt;List&lt;String&gt;&gt; solutions, <span class="type">int</span>[] queens, <span class="type">int</span> n, <span class="type">int</span> row, Set&lt;Integer&gt; columns, Set&lt;Integer&gt; diagonals1, Set&lt;Integer&gt; diagonals2)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (row == n) &#123;</span><br><span class="line">            List&lt;String&gt; board = generateBoard(queens, n);</span><br><span class="line">            solutions.add(board);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 每次遍历所有行，加入不可访问节点，以及完成回溯，注意是每次</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (columns.contains(i)) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">int</span> <span class="variable">diagonal1</span> <span class="operator">=</span> row - i;</span><br><span class="line">                <span class="keyword">if</span> (diagonals1.contains(diagonal1)) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">int</span> <span class="variable">diagonal2</span> <span class="operator">=</span> row + i;</span><br><span class="line">                <span class="keyword">if</span> (diagonals2.contains(diagonal2)) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                queens[row] = i;</span><br><span class="line">                columns.add(i);</span><br><span class="line">                diagonals1.add(diagonal1);</span><br><span class="line">                diagonals2.add(diagonal2);</span><br><span class="line">                backtrack(solutions, queens, n, row + <span class="number">1</span>, columns, diagonals1, diagonals2);</span><br><span class="line">                <span class="comment">// 不可访问集合和皇后位置标记都要回溯</span></span><br><span class="line">                queens[row] = -<span class="number">1</span>;</span><br><span class="line">                columns.remove(i);</span><br><span class="line">                diagonals1.remove(diagonal1);</span><br><span class="line">                diagonals2.remove(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">generateBoard</span><span class="params">(<span class="type">int</span>[] queens, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        List&lt;String&gt; board = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">char</span>[] row = <span class="keyword">new</span> <span class="title class_">char</span>[n];</span><br><span class="line">            Arrays.fill(row, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">            row[queens[i]] = <span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">            board.add(<span class="keyword">new</span> <span class="title class_">String</span>(row));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-7"><a href="#C-7" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类似</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-7"><a href="#注意-7" class="headerlink" title="注意"></a>注意</h3><p>完整的棋盘概念无需再递归的检查中出现，因为检查的功能完全由三个集合承担，而<code>generateBoard(int[] queens, int n)</code>只需出现在最后加入答案的时候。</p>
+<p>最核心的是：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (row == n) &#123;</span><br><span class="line">    List&lt;String&gt; board = generateBoard(queens, n);</span><br><span class="line">    solutions.add(board);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>题目要求我们返回的确实是 <strong>一整个棋盘</strong> ，但这并不影响我们以 <strong>棋盘上的每一行作为回溯单位</strong> 。因为我们要求得的是所有的棋盘可能，<strong>排列的单位是什么，我们回溯什么</strong> ，所以<code>generateBoard(queens, n)</code>一定要只看作回溯的某个阶段的整合，而不是回溯的目的或者回溯的一部分， <strong>要专注于处理最基本的排列单位</strong> 。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 回溯(8) --hot 100 in leetcode</li>
+        <li><strong>Author:</strong> tobegold574</li>
+        <li><strong>Created at
+                :</strong> 2024-11-24 19:36:24</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-12-02 13:32:52
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://tobegold574.me/2024/11/24/算法/LeetCode/hot-100/回溯-8-hot-100-in-leetcode/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/hot-100/">#hot 100</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/leetcode/">#leetcode</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E5%9B%9E%E6%BA%AF/">#回溯</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/11/25/%E7%AE%97%E6%B3%95/LeetCode/hot-100/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-6-hot-100-in-leetcode/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">二分查找(6) --hot 100 in leetcode</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/11/24/%E7%AE%97%E6%B3%95/LeetCode/hot-100/%E5%9B%BE%E8%AE%BA-4-hot-100-in-leetcode/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">图论(4) --hot 100 in leetcode</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">回溯(8) --hot 100 in leetcode</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97"><span class="nav-text">全排列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E9%9B%86"><span class="nav-text">子集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-1"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-1"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-1"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88"><span class="nav-text">电话号码的字母组合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-2"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-2"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-2"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-2"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C"><span class="nav-text">组合总和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-3"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-3"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-3"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-3"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90"><span class="nav-text">括号生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-4"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-4"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-4"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-4"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2"><span class="nav-text">单词搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-5"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-5"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-5"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-5"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2"><span class="nav-text">分割回文串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-6"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-6"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-6"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-6"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N%E7%9A%87%E5%90%8E"><span class="nav-text">N皇后</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-7"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-7"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-7"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-7"><span class="nav-text">注意</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">tobegold574</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        75 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="tobegold574">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/11/21/算法/leetcode/hot-100/链表-14-hot-100-in-leetcode/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表(14) --hot 100 in leetcode">
+<meta property="og:url" content="http://example.com/2024/11/21/%E7%AE%97%E6%B3%95/LeetCode/hot-100/%E9%93%BE%E8%A1%A8-14-hot-100-in-leetcode/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2024-11-21T09:15:48.000Z">
+<meta property="article:modified_time" content="2024-12-02T05:32:52.583Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hot 100">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="链表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/your_name.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/your_name.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/your_name.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            链表(14) --hot 100 in leetcode | 沉起
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沉起","subtitle":{"text":["sink or swim","to be or not to be","nothing is impossible"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/tobegold574","instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Tags":{"path":"/tags/"},"Friends":{"path":"/links/"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/your_name.ico" class="w-full h-full rounded-xs">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                沉起
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    
+                                    FRIENDS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                FRIENDS
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">75</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">链表(14) --hot 100 in leetcode</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/your_name.ico">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">tobegold574</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-21 17:15:48</span>
+        <span class="mobile">2024-11-21 17:15:48</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-12-02 13:32:52</span>
+            <span class="mobile">2024-12-02 13:32:52</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hot-100/">hot 100</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/leetcode/">leetcode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>题目要求为找到两个链表中相交的元素（存储位置需要相对链表末尾相同，也就是从后往前数有几个节点）。我的想法是尽可能节约时间复杂度，我一开始想的是遍历到末尾再回头遍历，其实和这个方案得到的时间复杂度是一样的，但是我以为还有其他办法。但实际上是必须要这么多次遍历才够的。也就是要用双指针进行同时遍历，不过不是到末尾返回，而是 <em><strong>到对方的链表中继续遍历</strong></em> 。</p>
+<ul>
+<li>时间复杂度为O(n+m)：双指针同时遍历，最多遍历完（返回null情况）</li>
+<li>空间复杂度为O(1)：双指针存储</li>
+</ul>
+<h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> &#123;</span><br><span class="line">        <span class="comment">// 无效题目</span></span><br><span class="line">        <span class="keyword">if</span> (headA == <span class="literal">null</span> || headB == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pA</span> <span class="operator">=</span> headA, pB = headB;</span><br><span class="line">        <span class="comment">// 遍历直至两个指针相遇</span></span><br><span class="line">        <span class="keyword">while</span> (pA != pB) &#123;</span><br><span class="line">            <span class="comment">// 先判断指针是为空，然后根据三元运算符判断是换表还是继续更新</span></span><br><span class="line">            pA = pA == <span class="literal">null</span> ? headB : pA.next;</span><br><span class="line">            pB = pB == <span class="literal">null</span> ? headA : pB.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最后两个指针分别把两个链表都遍历完，最后返回的也是表外的空节点，也就是null（无交点）</span></span><br><span class="line">        <span class="keyword">return</span> pA;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有区别</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (headA == <span class="literal">nullptr</span> || headB == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *pA = headA, *pB = headB;</span><br><span class="line">        <span class="keyword">while</span> (pA != pB) &#123;</span><br><span class="line">            pA = pA == <span class="literal">nullptr</span> ? headB : pA-&gt;next;</span><br><span class="line">            pB = pB == <span class="literal">nullptr</span> ? headA : pB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pA;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p><code>pA = pA == nullptr ? headB : pA-&gt;next;</code>：可以使用这样的语句在单句代码中完成判断和赋值更新（先判断<code>=</code>右边，再到<code>=</code>）<br>这道题对 <strong>寻找交点</strong> 这种任务提供了一种新的思路，即从整体上，双指针的遍历次数已经确定的情况下， <strong>如何安排遍历</strong> 是重点，也就是怎样能够使双指针 <strong>在不同的起点，抵达同步的终点</strong> 。</p>
+<h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><h3 id="算法概述-1"><a href="#算法概述-1" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题目要求反转链表。链表的结构是拥有灵活的前驱和后驱，非常便于插入，所以应该以重新插入为重点，把每个节点想象成三个节点（前驱-当前节点-后驱）的联合结构。</p>
+<ul>
+<li>时间复杂度为O(n)：遍历链表</li>
+<li>空间复杂度为O(1)：三个变量（存在于不同作用域）存储这个三元关系</li>
+</ul>
+<h3 id="JAVA-1"><a href="#JAVA-1" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="comment">// 原链表中的前驱</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">prev</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">curr</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">while</span> (curr != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 原链表中的后驱（中间变量保存）</span></span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">next</span> <span class="operator">=</span> curr.next;</span><br><span class="line">            <span class="comment">// 将前驱转变为后驱</span></span><br><span class="line">            curr.next = prev;</span><br><span class="line">            <span class="comment">// 前驱向前移动</span></span><br><span class="line">            prev = curr;</span><br><span class="line">            <span class="comment">// 当前节点和前驱保持相对位置</span></span><br><span class="line">            curr = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当curr达到null，即边界外，前驱指向最后一个节点</span></span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一样</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        ListNode* prev = <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode* curr = head;</span><br><span class="line">        <span class="keyword">while</span> (curr) &#123;</span><br><span class="line">            ListNode* next = curr-&gt;next;</span><br><span class="line">            curr-&gt;next = prev;</span><br><span class="line">            prev = curr;</span><br><span class="line">            curr = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>链表的特性便在于灵活的插入与复杂的遍历，所以必须要在遍历的同时利用灵活的插入改变前驱和后驱来调整链表的顺序，不仅对于链表的顺序，在面对任何操作链表的问题时，应该记住它的灵活性所在，并加以利用。</p>
+<p>代码中难以理解的就是，虽然可以用空节点填补头结点的前驱空缺，但实际上链表只包含了自己的信息和下一个节点的信息，所以 <em>prev</em> 在这里的作用只是一个为了循环遍历服务的中间变量，就看的很奇怪，实际上只有 <em>next</em> 和 <em>curr</em> 是实际操作的主体，而且 <em>next</em> 因为可以通过当前节点访问，所以每次循环都会重新生成，是临时的。</p>
+<h2 id="回文链表"><a href="#回文链表" class="headerlink" title="回文链表"></a>回文链表</h2><h3 id="算法概述-2"><a href="#算法概述-2" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-linked-list/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为判断链表是否为互文的。互文的关键特征是链表是否是对称的，也就是说要找到中间节点，再 <em><strong>翻转后半部分</strong></em> ，再进行比较才行。</p>
+<ul>
+<li>时间复杂度为O(n)：只需遍历找到中间节点</li>
+<li>空间复杂度为O(1)：只修改原链表</li>
+</ul>
+<h3 id="JAVA-2"><a href="#JAVA-2" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isPalindrome</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 中间节点</span></span><br><span class="line">        ListNode firstHalfEnd=endOfFirstHalf(head);</span><br><span class="line">        <span class="comment">// 翻转后半段链表</span></span><br><span class="line">        ListNode secondHalfStart=reverseList(firstHalfEnd.next);</span><br><span class="line"></span><br><span class="line">        ListNode p1=head;</span><br><span class="line">        ListNode p2=secondHalfStart;</span><br><span class="line">        <span class="type">boolean</span> result=<span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 两部分链表并行比较</span></span><br><span class="line">        <span class="keyword">while</span>(result&amp;&amp;p2!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(p1.val!=p2.val)&#123;</span><br><span class="line">                result=<span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            p1=p1.next;</span><br><span class="line">            p2=p2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 翻转链表（同上一题）</span></span><br><span class="line">    <span class="keyword">private</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">        ListNode prev=<span class="literal">null</span>;</span><br><span class="line">        ListNode curr=head;</span><br><span class="line">        <span class="keyword">while</span>(curr!=<span class="literal">null</span>)&#123;</span><br><span class="line">            ListNode nextTemp=curr.next;</span><br><span class="line">            curr.next=prev;</span><br><span class="line">            prev=curr;</span><br><span class="line">            curr=nextTemp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取中间节点</span></span><br><span class="line">    <span class="keyword">private</span> ListNode <span class="title function_">endOfFirstHalf</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">        <span class="comment">// 快慢指针</span></span><br><span class="line">        ListNode fast=head;</span><br><span class="line">        ListNode slow=head;</span><br><span class="line">        <span class="comment">// 快指针速度是慢指针两倍</span></span><br><span class="line">        <span class="keyword">while</span>(fast.next!=<span class="literal">null</span>&amp;&amp;fast.next.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            fast=fast.next.next;</span><br><span class="line">            slow=slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 慢指针在快指针到达链表末尾的时候达到中段</span></span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-2"><a href="#C-2" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没什么区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h3><p>学会用<code>fast</code>和<code>slow</code>快慢指针找节点（之前也有双指针题目用过快慢指针）。<br>牢记 <strong>反转链表</strong> 的思路，可以用作其他题的模块。</p>
+<h2 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h2><h3 id="算法概述-3"><a href="#算法概述-3" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求判断链表中是否有环。可以用 <em><strong>快慢指针</strong></em> 解决。</p>
+<ul>
+<li>时间复杂度为O(n)：就按照慢指针最多移动多远算</li>
+<li>空间复杂度为O(1)：快慢指针</li>
+</ul>
+<h3 id="JAVA-3"><a href="#JAVA-3" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="comment">// 无效题目</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 不能重合，因为while需要靠这个判断（或者do-while）</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">            <span class="comment">// 快指针到null就肯定没环了</span></span><br><span class="line">            <span class="keyword">if</span> (fast == <span class="literal">null</span> || fast.next == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 快指针遍历速度比慢指针快一倍</span></span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-3"><a href="#C-3" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-3"><a href="#注意-3" class="headerlink" title="注意"></a>注意</h3><p>像前面的求交点问题一样，都是不可避免的需要一个几乎完整的循环遍历，但怎么让其中的双指针通过 <strong>相遇</strong> 把问题解决，是这类题目的重点。可以为双指针赋予不同的起点、速度等等，来求得不同的目标。</p>
+<h2 id="环形链表-II"><a href="#环形链表-II" class="headerlink" title="环形链表 II"></a>环形链表 II</h2><h3 id="算法概述-4"><a href="#算法概述-4" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为返回进入环的那个节点（前一道题只需要判断是否有环）。我想的其实是反转链表，把相遇点之前的链表反转，然后反向遍历，但是还可以通过计算直接得出一个更加方便的方法，也就是在快慢指针相遇的时候， <em><strong>再从链表头释放一个指针</strong></em> ，这个指针会和不停绕着环转的慢指针相遇在入环点🤨。</p>
+<ul>
+<li>时间复杂度为O(n)：全部放在一个while的作用就在这里</li>
+<li>空间复杂度为O(1)：三指针</li>
+</ul>
+<h3 id="JAVA-4"><a href="#JAVA-4" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> head, fast = head;</span><br><span class="line">        <span class="comment">// 其实和上题是一样的</span></span><br><span class="line">        <span class="keyword">while</span> (fast != <span class="literal">null</span>) &#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            <span class="keyword">if</span> (fast.next != <span class="literal">null</span>) &#123;</span><br><span class="line">                fast = fast.next.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow) &#123;</span><br><span class="line">                <span class="type">ListNode</span> <span class="variable">ptr</span> <span class="operator">=</span> head;</span><br><span class="line">                <span class="comment">// 当快慢指针相遇，释放ptr指针</span></span><br><span class="line">                <span class="keyword">while</span> (ptr != slow) &#123;</span><br><span class="line">                    <span class="comment">// 同频移动ptr和慢指针</span></span><br><span class="line">                    ptr = ptr.next;</span><br><span class="line">                    slow = slow.next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ptr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-4"><a href="#C-4" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-4"><a href="#注意-4" class="headerlink" title="注意"></a>注意</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/%5Cimages%5C%E5%85%A5%E7%8E%AF%E7%82%B9%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.png"
+                      alt="公式"
+                ><br>其中 <em>a</em> 是环外距离， <em>b</em> 快慢指针走过的环内距离， <em>c</em> 是相遇点顺时针计算离入环点的距离。<br>可见有时不用很复杂的代码解决问题，和之前的矩阵顺时针旋转类似，用纸笔也可以计算出通用的公式，更方便执行。</p>
+<h2 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h2><h3 id="算法概述-5"><a href="#算法概述-5" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>题目要求为将给出的有序列表按照升序合并。还是双指针，同时因为链表很灵活，对于输入链表可以在遍历时同时修改，所以不需要创建新的变量。很像矩阵的查找目标值的思路（ <em><strong>Z字形移动</strong></em> ），因为实际的代码逻辑就是找单次比较中较小的，然后移动相应指针。</p>
+<ul>
+<li>时间复杂度为O(n+m)：都需要遍历比较</li>
+<li>空间复杂度为O(1)：只需要一个变量标记目前较大值</li>
+</ul>
+<h3 id="JAVA-5"><a href="#JAVA-5" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">mergeTwoLists</span><span class="params">(ListNode list1, ListNode list2)</span> &#123;</span><br><span class="line">       <span class="comment">// 因为双指针会移动，所以还需要一个指针指向起始位置</span></span><br><span class="line">       ListNode prehead=<span class="keyword">new</span> <span class="title class_">ListNode</span>(-<span class="number">1</span>);</span><br><span class="line">       <span class="comment">// prev指向上次比较得到的较小值的下一个值</span></span><br><span class="line">       ListNode prev=prehead;</span><br><span class="line">       <span class="comment">// l1和l2不是同时移动，它们只需要指向需要比较的元素</span></span><br><span class="line">       <span class="keyword">while</span>(l1!=<span class="literal">null</span>&amp;&amp;l2!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="comment">// 谁小谁往前移动（升序）</span></span><br><span class="line">        <span class="keyword">if</span>(l1.val&lt;=l2.val)&#123;</span><br><span class="line">            prev.next=l1;</span><br><span class="line">            l1=l1.next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            prev.next=l2;</span><br><span class="line">            l2=l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// prev指向移动的那个元素</span></span><br><span class="line">        prev=prev.next;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 拼接未比较完的那个链表（升序，无需比较）</span></span><br><span class="line">       prev.next=l1==<span class="literal">null</span>?l2:l1;</span><br><span class="line">       <span class="comment">// 返回之前标记的位置</span></span><br><span class="line">       <span class="keyword">return</span> prehead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-5"><a href="#C-5" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-5"><a href="#注意-5" class="headerlink" title="注意"></a>注意</h3><p>可以用链表的头结点直接操作，但是需要记得 <strong>标记起始点</strong> 。<br>因为双指针的操作需要沿着它们各自链表，所以需要一个额外的指针将比较的结果串起来， <strong>它落后于链表遍历指针</strong> 。</p>
+<h2 id="两数相加"><a href="#两数相加" class="headerlink" title="两数相加"></a>两数相加</h2><h3 id="算法概述-6"><a href="#算法概述-6" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为求出两个以逆序且各个节点用以表示位数的链表表示的数字之和。就是直接相加，同时保留进位。</p>
+<ul>
+<li>时间复杂度为O(m+n)：都遍历一遍就行</li>
+<li>空间复杂度为O(1)：返回的链表不算</li>
+</ul>
+<h3 id="JAVA-6"><a href="#JAVA-6" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        // 创建新的链表返回</span><br><span class="line">        ListNode <span class="built_in">head</span> = null, <span class="built_in">tail</span> = null;</span><br><span class="line">        // 进位</span><br><span class="line">        int carry = 0;</span><br><span class="line">        <span class="keyword">while</span> (l1 != null || l2 != null) &#123;</span><br><span class="line">            // next有则移动，无则为0（长度不相同）</span><br><span class="line">            int n1 = l1 != null ? l1.val : 0;</span><br><span class="line">            int n2 = l2 != null ? l2.val : 0;</span><br><span class="line">            int <span class="built_in">sum</span> = n1 + n2 + carry;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">head</span> == null) &#123;</span><br><span class="line">                // 题目要求单节点只保存一位</span><br><span class="line">                <span class="built_in">head</span> = <span class="built_in">tail</span> = new ListNode(<span class="built_in">sum</span> % 10);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                // 头结点用于返回，尾节点用于更新返回链表</span><br><span class="line">                tail.next = new ListNode(<span class="built_in">sum</span> % 10);</span><br><span class="line">                <span class="built_in">tail</span> = tail.next;</span><br><span class="line">            &#125;</span><br><span class="line">            // 进位计算</span><br><span class="line">            carry = <span class="built_in">sum</span> / 10;</span><br><span class="line">            // 移动指针</span><br><span class="line">            <span class="keyword">if</span> (l1 != null) &#123;</span><br><span class="line">                l1 = l1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l2 != null) &#123;</span><br><span class="line">                l2 = l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 如果最后还有进位，就创建新节点</span><br><span class="line">        <span class="keyword">if</span> (carry &gt; 0) &#123;</span><br><span class="line">            tail.next = new ListNode(carry);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="built_in">head</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-6"><a href="#C-6" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一样</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-6"><a href="#注意-6" class="headerlink" title="注意"></a>注意</h3><p>虽然思路不复杂，但是搭建一个优雅的代码框架还是很困难的。<br>要注意用<code>int n1 = l1 != null ? l1.val : 0;</code>将值与遍历分离（因为每一个节点只能存一个数字，但和会是两位的）。<br>要常温常新。</p>
+<h2 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h2><h3 id="算法概述-7"><a href="#算法概述-7" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为删除链表中倒数的第n个节点并返回链表。 <em><strong>快慢指针</strong></em> ，快指针到头了，恰好慢指针也到该删除的节点前面。</p>
+<ul>
+<li>时间复杂度为O(n)：一个循环</li>
+<li>空间复杂度为O(1)：双指针</li>
+</ul>
+<h3 id="JAVA-7"><a href="#JAVA-7" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 头结点之前</span></span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">        ListNode first = head;</span><br><span class="line">        ListNode second = dummy;</span><br><span class="line">        <span class="comment">// 快指针先移动n次</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            first = first.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 一起动</span></span><br><span class="line">        <span class="keyword">while</span> (first != null) &#123;</span><br><span class="line">            first = first.next;</span><br><span class="line">            second = second.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 删除节点</span></span><br><span class="line">        second.next = second.next.next;</span><br><span class="line">        ListNode ans = dummy.next;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-7"><a href="#C-7" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-7"><a href="#注意-7" class="headerlink" title="注意"></a>注意</h3><p><code>ListNode dummy = new ListNode(0, head);</code>： <em>dummy</em> 是为了处理边界情况，也就是删除的就是头结点。<br><code>second.next = second.next.next;</code>：我前面想删除节点得找到前后节点，但实际上只需要找到前一个节点即可，这就是数据结构不熟。<br>思路很简单，但是怎样优雅的实现需要学习与思考。</p>
+<h2 id="两两交换链表中的节点"><a href="#两两交换链表中的节点" class="headerlink" title="两两交换链表中的节点"></a>两两交换链表中的节点</h2><h3 id="算法概述-8"><a href="#算法概述-8" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求将链表中的两两相邻节点原地交换位置。就是正常的遍历交换（迭代）。</p>
+<ul>
+<li>时间复杂度为O(n)：节点要遍历完</li>
+<li>空间复杂度为O(1)；和上题一样需要哑结点和一些其他的中间变量</li>
+</ul>
+<h3 id="JAVA-8"><a href="#JAVA-8" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 哑结点和上题一样，是用来处理边界的，因为一套操作下来需要三个节点，而头两个节点不够</span></span><br><span class="line">        ListNode dummyHead = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>,head);</span><br><span class="line">        <span class="comment">// 结构为temp node1 node2</span></span><br><span class="line">        ListNode temp = dummyHead;</span><br><span class="line">        <span class="comment">// 三节点结构完整，符合交换条件</span></span><br><span class="line">        <span class="keyword">while</span> (temp.next != null &amp;&amp; temp.next.next != null) &#123;</span><br><span class="line">            ListNode node1 = temp.next;</span><br><span class="line">            ListNode node2 = temp.next.next;</span><br><span class="line">            <span class="comment">// temp不参与交换，temp的更新是用于判断后面是否符合交换条件</span></span><br><span class="line">            temp.next = node2;</span><br><span class="line">            node<span class="number">1.</span>next = node<span class="number">2.</span>next;</span><br><span class="line">            node<span class="number">2.</span>next = node1;</span><br><span class="line">            temp = node1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-8"><a href="#C-8" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相同</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-8"><a href="#注意-8" class="headerlink" title="注意"></a>注意</h3><p><code>ListNode dummyHead = new ListNode(0,head);</code>：链表原地操作往往需要一个哑结点辅助处理边界。<br><code>while (temp.next != null &amp;&amp; temp.next.next != null)</code>： <em>temp</em> 只参与判断是否需要交换，交换本身 <em>node1</em> 和  <em>node2</em> 就能完成。<br>思路不难，重在实现与全面的考虑。</p>
+<h2 id="K个一组翻转链表"><a href="#K个一组翻转链表" class="headerlink" title="K个一组翻转链表"></a>K个一组翻转链表</h2><h3 id="算法概述-9"><a href="#算法概述-9" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为以k为一组翻转子链表。其实思路不复杂，关键是怎么组织需要使用到的中间变量。</p>
+<ul>
+<li>时间复杂度为O(n)：一次遍历</li>
+<li>空间复杂度为O(1)；依托中间变量</li>
+</ul>
+<h3 id="JAVA-9"><a href="#JAVA-9" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">reverseKGroup</span><span class="params">(ListNode head, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>,head);</span><br><span class="line">        <span class="comment">// 需要保留当前翻转部分的前一个节点</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummy;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (head != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 使用tail指针从头开始遍历</span></span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">tail</span> <span class="operator">=</span> pre;</span><br><span class="line">            <span class="comment">// 一个k链表一个k链表的来</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">                tail = tail.next;</span><br><span class="line">                <span class="keyword">if</span> (tail == <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="comment">// 剩余不足k，可返回</span></span><br><span class="line">                    <span class="keyword">return</span> dummy.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 当前翻转链表的后一个节点</span></span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">nex</span> <span class="operator">=</span> tail.next;</span><br><span class="line">            <span class="comment">// 翻转完了头尾倒置</span></span><br><span class="line">            ListNode[] reverse = myReverse(head, tail);</span><br><span class="line">            head = reverse[<span class="number">0</span>];</span><br><span class="line">            tail = reverse[<span class="number">1</span>];</span><br><span class="line">            <span class="comment">// 相当于一个新的链表需要重新接入原链表</span></span><br><span class="line">            pre.next = head;</span><br><span class="line">            tail.next = nex;</span><br><span class="line">            <span class="comment">// 更新，tail此时为翻转链表中的最后一个元素</span></span><br><span class="line">            pre = tail;</span><br><span class="line">            head = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 反转链表</span></span><br><span class="line">    <span class="keyword">public</span> ListNode[] myReverse(ListNode head, ListNode tail) &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">prev</span> <span class="operator">=</span> tail.next;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">curr</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">while</span> (prev != tail) &#123;</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">next</span> <span class="operator">=</span> curr.next;</span><br><span class="line">            curr.next = prev;</span><br><span class="line">            prev = curr;</span><br><span class="line">            curr = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>[]&#123;tail, head&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-9"><a href="#C-9" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="comment">// public区别不大</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseKGroup</span><span class="params">(ListNode* head, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        ListNode* dummy=<span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>,head);</span><br><span class="line">        ListNode* pre=dummy;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            ListNode* tail=pre;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i!=k;++i)&#123;</span><br><span class="line">                tail=tail-&gt;next;</span><br><span class="line">                <span class="keyword">if</span>(tail==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ListNode* nex=tail-&gt;next;</span><br><span class="line">            <span class="comment">// 这里用tie解包更方便</span></span><br><span class="line">            <span class="built_in">tie</span>(head,tail)=<span class="built_in">myReverse</span>(head,tail);</span><br><span class="line"></span><br><span class="line">            pre-&gt;next=head;</span><br><span class="line">            tail-&gt;next=nex;</span><br><span class="line">            </span><br><span class="line">            pre=tail;</span><br><span class="line">            head=tail-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 这里用了pair容器，</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">pair&lt;ListNode*,ListNode*&gt; <span class="title">myReverse</span><span class="params">(ListNode* head, ListNode* tail)</span></span>&#123;</span><br><span class="line">        ListNode* prev=tail-&gt;next;</span><br><span class="line">        ListNode* curr=head;</span><br><span class="line">        <span class="keyword">while</span>(prev!=tail)&#123;</span><br><span class="line">            ListNode* next=curr-&gt;next;</span><br><span class="line">            curr-&gt;next=prev;</span><br><span class="line">            prev=curr;</span><br><span class="line">            curr=next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;tail,head&#125;;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="重要实例方法及属性-C"><a href="#重要实例方法及属性-C" class="headerlink" title="重要实例方法及属性(C++)"></a>重要实例方法及属性(C++)</h4><p><code>pair&lt;ListNode*,ListNode*&gt;</code>：使用pair容器类返回多个值<br><code>tie(head,tail)=myReverse(head,tail)</code>：std::tie不仅可以解包std::tuple，也可以解包std::pair</p>
+<h3 id="注意-9"><a href="#注意-9" class="headerlink" title="注意"></a>注意</h3><p><code>ListNode* dummy=new ListNode(0,head);</code>这种需要操作子单位的题目都需要哑结点。<br>代码中用到<code>pre</code>来存储子链表的前一个节点，这里需要考虑到的是链表本身的特性，即 <strong>必须要有前一个节点，才能插入</strong> 。<br>以及用到了<code>tail</code>来进行遍历，判断是否剩余节点满足翻转条件。这里需要注意的是，<code>tail</code>不仅仅可用于遍历，还可用于 <strong>更新</strong> <code>pre</code>，这是很重要的。<br>以及还需要在翻转前保存子链表的下一个节点<code>nex</code>，在翻转后重新连接。</p>
+<ol>
+<li><code>pre</code>用于指向子链表前一个节点。</li>
+<li><code>tail</code>用于指向子链表的最后一个节点，以及下一组子链表的<code>pre</code>。</li>
+<li><code>nex</code>指向子链表的后一个节点。</li>
+</ol>
+<p>还需要注意的是在翻转中：<code>while(prev!=tail)</code>是以<code>tail</code>为终止条件，而不是<code>while(curr!=null)</code>，需要注意翻转对象的性质改变辅助函数。</p>
+<h2 id="随机链表的复制"><a href="#随机链表的复制" class="headerlink" title="随机链表的复制"></a>随机链表的复制</h2><h3 id="算法概述-10"><a href="#算法概述-10" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为深拷贝给出的链表（每个子节点包括后驱和一个随机索引）。难点在于顺序，或者说思路本身并不难，如何组织出一个行之有效的方法才难。<br>给出的解法是 <em><strong>三个循环：新节点（包含next）-&gt;random-&gt;新表</strong></em> 。核心思路就是在原链表上操作，这样会极大减少查询原链表信息的难度，会使所有操作简化为使用几次迭代的问题。</p>
+<ul>
+<li>时间复杂度为O(n)：遍历三次</li>
+<li>空间复杂度为O(1)：中间变量，输出不算</li>
+</ul>
+<h3 id="JAVA-10"><a href="#JAVA-10" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Node <span class="title function_">copyRandomList</span><span class="params">(Node head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 对遍历的当前节点进行深拷贝并放在其后一个位置（等同于上一个节点，无random）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head; node != <span class="literal">null</span>; node = node.next.next) &#123;</span><br><span class="line">            <span class="comment">// 深拷贝</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">nodeNew</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(node.val);</span><br><span class="line">            <span class="comment">// 前后连接</span></span><br><span class="line">            nodeNew.next = node.next;</span><br><span class="line">            node.next = nodeNew;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 仍然遍历原链表，为新节点创建random指针</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head; node != <span class="literal">null</span>; node = node.next.next) &#123;</span><br><span class="line">            <span class="comment">// 所有新节点是原节点的next</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">nodeNew</span> <span class="operator">=</span> node.next;</span><br><span class="line">            <span class="comment">// （核心）用原节点的random进行拷贝</span></span><br><span class="line">            nodeNew.random = (node.random != <span class="literal">null</span>) ? node.random.next : <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 头结点也变了</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">headNew</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="comment">// 遍历整个链表（包含新节点和原节点），进行分离</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head; node != <span class="literal">null</span>; node = node.next) &#123;</span><br><span class="line">            <span class="comment">// 保存新节点</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">nodeNew</span> <span class="operator">=</span> node.next;</span><br><span class="line">            <span class="comment">// 丢弃新节点</span></span><br><span class="line">            node.next = node.next.next;</span><br><span class="line">            <span class="comment">// 生成整个深拷贝新链表</span></span><br><span class="line">            nodeNew.next = (nodeNew.next != <span class="literal">null</span>) ? nodeNew.next.next : <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> headNew;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-10"><a href="#C-10" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-10"><a href="#注意-10" class="headerlink" title="注意"></a>注意</h3><p>第一个循环中把新节点插入节点之间的最大原因，就是可以在第三个循环中的<code>nodeNew.next = (nodeNew.next != null) ? nodeNew.next.next : null;</code>直接修改新节点的<code>next</code>，而且只需要两次迭代即可。<br>同时也方便了第二个循环中的<code>nodeNew.random = (node.random != null) ? node.random.next : null;</code>用以更新random，这样只需对当前节点的random进行迭代即可。<br>总而言之，核心的核心就是 <strong>把新节点插入到原链表中</strong> ，这也属于基于原链表使操作更便捷，非常经典，需要牢记和熟练。</p>
+<p>还有回溯+哈希表的解法，时间复杂度一样：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;Node*, Node*&gt; cachedNode;</span><br><span class="line"></span><br><span class="line">    Node* copyRandomList(Node* head) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head == nullptr) &#123;</span><br><span class="line">            <span class="keyword">return</span> nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 判断表里面有没有当前节点，没有就加进去</span></span><br><span class="line">        <span class="keyword">if</span> (!cachedNode.count(head)) &#123;</span><br><span class="line">            Node* headNew = <span class="keyword">new</span> <span class="title class_">Node</span>(head-&gt;val);</span><br><span class="line">            cachedNode[head] = headNew;</span><br><span class="line">            <span class="comment">// 递归解决</span></span><br><span class="line">            headNew-&gt;next = copyRandomList(head-&gt;next);</span><br><span class="line">            headNew-&gt;random = copyRandomList(head-&gt;random);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cachedNode[head];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="排序链表"><a href="#排序链表" class="headerlink" title="排序链表"></a>排序链表</h2><h3 id="算法概述-11"><a href="#算法概述-11" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-list/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为升序排列给出的链表。使用 <em><strong>自底向上的归并排序</strong></em> 。<br>自底向上的归并排序，就是把原链表以1、2、4、6、8……等sublength的长度分为多个子链表，每次分成两个子链表后，将这两个子链表以“合并两个升序链表”的方式合并，因为是从1开始的，所以这样做没有问题。不断循环这样向上合并的过程，后面即使两个子链表剩的长度不够也没有问题，“合并两个升序链表”给出了解释。</p>
+<ul>
+<li>时间复杂度为O(nlogn)：归并排序</li>
+<li>空间复杂度为O(1)：原地操作</li>
+</ul>
+<h3 id="JAVA-11"><a href="#JAVA-11" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">sortList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">node</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="comment">// 算链表长度</span></span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 哑结点</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummyHead</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">        <span class="comment">// 归并排序（位运算&lt;&lt;=1就是*=2）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">subLength</span> <span class="operator">=</span> <span class="number">1</span>; subLength &lt; length; subLength &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">prev</span> <span class="operator">=</span> dummyHead, curr = dummyHead.next;</span><br><span class="line">            <span class="comment">// 分割</span></span><br><span class="line">            <span class="keyword">while</span> (curr != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="comment">// head1为第一个子链表中的头结点（链表中的头结点）</span></span><br><span class="line">                <span class="type">ListNode</span> <span class="variable">head1</span> <span class="operator">=</span> curr;</span><br><span class="line">                <span class="comment">// 遍历到尾节点</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; subLength &amp;&amp; curr.next != <span class="literal">null</span>; i++) &#123;</span><br><span class="line">                    curr = curr.next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// head2是第一个子链表后的第一个节点</span></span><br><span class="line">                <span class="type">ListNode</span> <span class="variable">head2</span> <span class="operator">=</span> curr.next;</span><br><span class="line">                <span class="comment">// 断开</span></span><br><span class="line">                curr.next = <span class="literal">null</span>;</span><br><span class="line">                <span class="comment">// 进入第二个链表（重复上述操作）</span></span><br><span class="line">                curr = head2;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; subLength &amp;&amp; curr != <span class="literal">null</span> &amp;&amp; curr.next != <span class="literal">null</span>; i++) &#123;</span><br><span class="line">                    curr = curr.next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">ListNode</span> <span class="variable">next</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">                <span class="comment">// 现在curr是第二个链表的最后一个元素</span></span><br><span class="line">                <span class="keyword">if</span> (curr != <span class="literal">null</span>) &#123;</span><br><span class="line">                    next = curr.next;</span><br><span class="line">                    <span class="comment">// 断开，此时next是下一个子链表对的节点</span></span><br><span class="line">                    curr.next = <span class="literal">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 经历过分割与重新合并且排过序的子链表对</span></span><br><span class="line">                <span class="type">ListNode</span> <span class="variable">merged</span> <span class="operator">=</span> merge(head1, head2);</span><br><span class="line">                <span class="comment">// 遍历完子链表对</span></span><br><span class="line">                prev.next = merged;</span><br><span class="line">                <span class="keyword">while</span> (prev.next != <span class="literal">null</span>) &#123;</span><br><span class="line">                    prev = prev.next;</span><br><span class="line">                &#125;</span><br><span class="line">                curr = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">merge</span><span class="params">(ListNode head1, ListNode head2)</span> &#123;</span><br><span class="line">        <span class="comment">// 还要哑结点</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummyHead</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 三个临时变量</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">temp</span> <span class="operator">=</span> dummyHead, temp1 = head1, temp2 = head2;</span><br><span class="line">        <span class="comment">// 和“合并两个升序链表”的逻辑一样的</span></span><br><span class="line">        <span class="keyword">while</span> (temp1 != <span class="literal">null</span> &amp;&amp; temp2 != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (temp1.val &lt;= temp2.val) &#123;</span><br><span class="line">                temp.next = temp1;</span><br><span class="line">                temp1 = temp1.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                temp.next = temp2;</span><br><span class="line">                temp2 = temp2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (temp1 != <span class="literal">null</span>) &#123;</span><br><span class="line">            temp.next = temp1;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (temp2 != <span class="literal">null</span>) &#123;</span><br><span class="line">            temp.next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-11"><a href="#C-11" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没啥区别</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-11"><a href="#注意-11" class="headerlink" title="注意"></a>注意</h3><p>自顶向下和自底向上的归并排序 <strong>时间复杂度一样</strong> ，但是 <strong>空间复杂度上后者更优</strong> 。但自顶向上的应用更广泛，自底向上 <strong>适合链表</strong> 。</p>
+<ol>
+<li><code>class Solution</code>中的<code>dummyHead</code>用于处理整个链表的极端边界情况。</li>
+<li><code>merge()</code>中的<code>dummyHead</code>用于处理“合并两个升序链表”中的极端边界情况。</li>
+<li><code>head1</code>是当前子链表对第一个子链表的头，<code>head2</code>是当前子链表对第二个子链表的头。</li>
+<li><code>next</code>指向下一个子链表对的头结点，<code>curr</code>依据它来更新。</li>
+<li><code>prev</code>用于存储前一个子链表对的最后一个节点，然后将合并完（分割过的）子链表对重新连接回来。</li>
+</ol>
+<p>归并排序对于链表极为重要， <strong>务必背记</strong> 。</p>
+<h2 id="合并k个升序链表"><a href="#合并k个升序链表" class="headerlink" title="合并k个升序链表"></a>合并k个升序链表</h2><h3 id="算法概述-12"><a href="#算法概述-12" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-k-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求为合并给出链表中的所有升序子链表。采用的还是和上题一样的 <em><strong>分治法</strong></em> 。但是这里因为用的是递归，所以隐藏代码写的更深，没有写出来。用的是独立的两个递归函数共同工作。</p>
+<ul>
+<li>时间复杂度为O(kn×logk)：多组分治遍历的次数求和</li>
+<li>空间复杂度为O(logk)：栈</li>
+</ul>
+<h3 id="JAVA-12"><a href="#JAVA-12" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">mergeKLists</span><span class="params">(ListNode[] lists)</span> &#123;</span><br><span class="line">        <span class="comment">// 直接用函数彻底分装</span></span><br><span class="line">        <span class="keyword">return</span> merge(lists, <span class="number">0</span>, lists.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 左右指针从左右边界开始</span></span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">merge</span><span class="params">(ListNode[] lists, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">        <span class="comment">// 这两个判断条件是为递归底部使用的</span></span><br><span class="line">        <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">            <span class="keyword">return</span> lists[l];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l &gt; r) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 除以2</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 递归（在栈中是自底向上）</span></span><br><span class="line">        <span class="keyword">return</span> mergeTwoLists(merge(lists, l, mid), merge(lists, mid + <span class="number">1</span>, r));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// </span></span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">mergeTwoLists</span><span class="params">(ListNode a, ListNode b)</span> &#123;</span><br><span class="line">        <span class="comment">// 分治到只剩一个</span></span><br><span class="line">        <span class="keyword">if</span> (a == <span class="literal">null</span> || b == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> a != <span class="literal">null</span> ? a : b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这下和前面两道题都是一样的</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 要记得比较用的三元结构的第一个得从dummy开始</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">tail</span> <span class="operator">=</span> dummy, aPtr = a, bPtr = b;</span><br><span class="line">        <span class="keyword">while</span> (aPtr != <span class="literal">null</span> &amp;&amp; bPtr != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (aPtr.val &lt; bPtr.val) &#123;</span><br><span class="line">                tail.next = aPtr;</span><br><span class="line">                aPtr = aPtr.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                tail.next = bPtr;</span><br><span class="line">                bPtr = bPtr.next;</span><br><span class="line">            &#125;</span><br><span class="line">            tail = tail.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 处理末端边界</span></span><br><span class="line">        tail.next = (aPtr != <span class="literal">null</span> ? aPtr : bPtr);</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-12"><a href="#C-12" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没区别，就是java里的!=null可以不用写，直接写指针名会自动判断的</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-12"><a href="#注意-12" class="headerlink" title="注意"></a>注意</h3><p>两道题都用到了基本的排序，说明还是很重要的，“合并两个升序链表”还是要牢记、<br>把功能分离到两个递归函数里来工作，是比较复杂的，虽然说结构很清晰简单，但是栈内的顺序还是要理清楚，要多练习。</p>
+<h2 id="LRU缓存"><a href="#LRU缓存" class="headerlink" title="LRU缓存"></a>LRU缓存</h2><h3 id="算法概述-13"><a href="#算法概述-13" class="headerlink" title="算法概述"></a>算法概述</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/?envType=study-plan-v2&envId=top-100-liked" >原题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>本题要求设计一个满足getter和setter（get,put,capacity初始化）的类，LRU意为最近访问的数据在实例内优先级更高，且要求get()和put()在O(1)时间内完成。核心是在确保访问操作的时间复杂度的同时，根据capacity动态调整存储的键值对。使用 <em><strong>双向链表</strong></em> 实现。</p>
+<h3 id="JAVA-13"><a href="#JAVA-13" class="headerlink" title="JAVA"></a>JAVA</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line">    <span class="comment">// 双向链表节点</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">DLinkedNode</span> &#123;</span><br><span class="line">        <span class="type">int</span> key;</span><br><span class="line">        <span class="type">int</span> value;</span><br><span class="line">        <span class="comment">// 前驱和后驱都要有</span></span><br><span class="line">        DLinkedNode prev;</span><br><span class="line">        DLinkedNode next;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 两个构造器</span></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">DLinkedNode</span><span class="params">()</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">DLinkedNode</span><span class="params">(<span class="type">int</span> _key, <span class="type">int</span> _value)</span> &#123;key = _key;value = _value;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 数字索引，值为节点实例</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, DLinkedNode&gt; cache = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Integer, DLinkedNode&gt;();</span><br><span class="line">    <span class="comment">// 双向链表内部跟踪节点总数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;</span><br><span class="line">    <span class="comment">// 头、尾指针</span></span><br><span class="line">    <span class="keyword">private</span> DLinkedNode head, tail;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// capacity初始化</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LRUCache</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.size = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">this</span>.capacity = capacity;</span><br><span class="line">        head = <span class="keyword">new</span> <span class="title class_">DLinkedNode</span>();</span><br><span class="line">        tail = <span class="keyword">new</span> <span class="title class_">DLinkedNode</span>();</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.prev = head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">        <span class="type">DLinkedNode</span> <span class="variable">node</span> <span class="operator">=</span> cache.get(key);</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 移动到头部，即变为“最近使用”</span></span><br><span class="line">        moveToHead(node);</span><br><span class="line">        <span class="keyword">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">        <span class="type">DLinkedNode</span> <span class="variable">node</span> <span class="operator">=</span> cache.get(key);</span><br><span class="line">        <span class="comment">// 没有就新建一个节点</span></span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">DLinkedNode</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DLinkedNode</span>(key, value);</span><br><span class="line">            cache.put(key, newNode);</span><br><span class="line">            <span class="comment">// 新建也是“最近使用”</span></span><br><span class="line">            addToHead(newNode);</span><br><span class="line">            ++size;</span><br><span class="line">            <span class="keyword">if</span> (size &gt; capacity) &#123;</span><br><span class="line">                <span class="comment">// 把“最不最近使用”的节点删去，腾出空间</span></span><br><span class="line">                <span class="type">DLinkedNode</span> <span class="variable">tail</span> <span class="operator">=</span> removeTail();</span><br><span class="line">                cache.remove(tail.key);</span><br><span class="line">                --size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// “最近使用”</span></span><br><span class="line">            node.value = value;</span><br><span class="line">            moveToHead(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">addToHead</span><span class="params">(DLinkedNode node)</span> &#123;</span><br><span class="line">        <span class="comment">// 移动节点位置基操，先改node，再改前后驱</span></span><br><span class="line">        node.prev = head;</span><br><span class="line">        node.next = head.next;</span><br><span class="line">        head.next.prev = node;</span><br><span class="line">        head.next = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">removeNode</span><span class="params">(DLinkedNode node)</span> &#123;</span><br><span class="line">        node.prev.next = node.next;</span><br><span class="line">        node.next.prev = node.prev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">moveToHead</span><span class="params">(DLinkedNode node)</span> &#123;</span><br><span class="line">        <span class="comment">// 这里没有真的去遍历移动，而是直接删除和新建，更方便</span></span><br><span class="line">        removeNode(node);</span><br><span class="line">        addToHead(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DLinkedNode <span class="title function_">removeTail</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">DLinkedNode</span> <span class="variable">res</span> <span class="operator">=</span> tail.prev;</span><br><span class="line">        removeNode(res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="C-13"><a href="#C-13" class="headerlink" title="C++"></a>C++</h3><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一样的思路，除了哈希表的接口不一样</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="注意-13"><a href="#注意-13" class="headerlink" title="注意"></a>注意</h3><p>标准的将自定义数据结构和常用容器复合的类定义，要注意体现数据结构的特征（e.g., <code>moveToHead</code>直接删除和插入）。<br>在这个类中，哈希表和双向链表都存了一次数据，因为 <strong>哈希表是用于快速访问</strong> ，而 <strong>双向链表是用于更新顺序</strong> ，这里需要兼取两者的优势。<br>两个数据结构之间的交互或者数据结构本身的欠缺需要设置私有变量来弥补（e.g., <code>size</code>和<code>capacity</code>）。</p>
+<p><strong>常温常新</strong></p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 链表(14) --hot 100 in leetcode</li>
+        <li><strong>Author:</strong> tobegold574</li>
+        <li><strong>Created at
+                :</strong> 2024-11-21 17:15:48</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-12-02 13:32:52
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://tobegold574.me/2024/11/21/算法/LeetCode/hot-100/链表-14-hot-100-in-leetcode/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/hot-100/">#hot 100</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/leetcode/">#leetcode</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E9%93%BE%E8%A1%A8/">#链表</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/11/22/%E7%AE%97%E6%B3%95/LeetCode/hot-100/%E4%BA%8C%E5%8F%89%E6%A0%91-15-hot-100-in-leetcode/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">二叉树(15) --hot 100 in leetcode</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/11/21/%E7%AE%97%E6%B3%95/LeetCode/hot-100/%E7%9F%A9%E9%98%B5-4-hot-100-in-leetcode/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">矩阵(4) --hot 100 in leetcode</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">链表(14) --hot 100 in leetcode</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8"><span class="nav-text">相交链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-text">反转链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-1"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-1"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-1"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8"><span class="nav-text">回文链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-2"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-2"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-2"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-2"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8"><span class="nav-text">环形链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-3"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-3"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-3"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-3"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II"><span class="nav-text">环形链表 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-4"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-4"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-4"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-4"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-text">合并两个有序链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-5"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-5"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-5"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-5"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0"><span class="nav-text">两数相加</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-6"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-6"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-6"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-6"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="nav-text">删除链表的倒数第N个节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-7"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-7"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-7"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-7"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="nav-text">两两交换链表中的节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-8"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-8"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-8"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-8"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-text">K个一组翻转链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-9"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-9"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-9"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-9"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6"><span class="nav-text">随机链表的复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-10"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-10"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-10"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-10"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-text">排序链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-11"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-11"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-11"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-11"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6k%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-text">合并k个升序链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-12"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-12"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-12"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-12"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LRU%E7%BC%93%E5%AD%98"><span class="nav-text">LRU缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0-13"><span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-13"><span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-13"><span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F-13"><span class="nav-text">注意</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">tobegold574</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        75 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
