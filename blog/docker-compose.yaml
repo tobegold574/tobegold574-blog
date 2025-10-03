@@ -1,0 +1,10 @@
+services: 
+  node-hexo:
+    image: node:latest
+    container_name: blog
+    working_dir: /blog
+    volumes:
+     - ./:/blog
+    command: bash -c "npm install && tail -f /dev/null"
+    environment:
+      - TZ=Asia/Chongqing

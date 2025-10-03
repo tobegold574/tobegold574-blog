@@ -286,7 +286,7 @@ class Solution {
         visited = new int[numCourses];
         // 在课程对应索引加入它们的先修可成
         for (int[] info : prerequisites) {
-            // 前者（[1]）为后续，后者（[0]）为先修
+            // 前者（[1]）为先修课程，后者（[0]）为后续课程
             edges.get(info[1]).add(info[0]);
         }
         // 对每一门课程进行深度优先搜索
@@ -306,7 +306,7 @@ class Solution {
             if (visited[v] == 0) {
                 dfs(v);
                 if (!valid) {
-                    // 有环了直接终止
+                    // 单条记录遍历完后仍未有环则正常终止
                     return;
                 }
             } else if (visited[v] == 1) {
@@ -333,7 +333,7 @@ class Solution {
         indeg = new int[numCourses];
         for (int[] info : prerequisites) {
             edges.get(info[1]).add(info[0]);
-            // 记录每个先修课程的入度
+            // 记录每个后续课程的入度
             ++indeg[info[0]];
         }
         // 记录可修课程
@@ -414,7 +414,7 @@ class Trie {
             }
             node=node.children[index];
         }
-        // 最后一个节点是字符串末尾
+        // 单个单词的对应的字典树中最后一层的节点是字符串末尾
         node.isEnd=true;
     }
     
