@@ -5,6 +5,7 @@ tags:
     - 回溯
     - hot 100
     - leetcode
+mathjax: true
 ---
 
  
@@ -503,7 +504,7 @@ class Solution {
             List<String> board = generateBoard(queens, n);
             solutions.add(board);
         } else {
-            // 每次遍历所有行，加入不可访问节点，以及完成回溯，注意是每次
+            // 每次遍历所有列，加入不可访问节点，以及完成回溯
             for (int i = 0; i < n; i++) {
                 if (columns.contains(i)) {
                     continue;
@@ -535,6 +536,7 @@ class Solution {
         for (int i = 0; i < n; i++) {
             char[] row = new char[n];
             Arrays.fill(row, '.');
+            // 当row==n时，所有行应该都有一个皇后，所以不会有越界问题
             row[queens[i]] = 'Q';
             board.add(new String(row));
         }
